@@ -3,10 +3,13 @@ package Presentacion;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
 
 public class VentanaLogin {
 
 	private JFrame frame;
+	private JButton btnLaura;
 
 	/**
 	 * Launch the application.
@@ -38,6 +41,10 @@ public class VentanaLogin {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		{
+			btnLaura = new JButton("Laura");
+			frame.getContentPane().add(btnLaura, BorderLayout.NORTH);
+		}
 	}
 
 }
