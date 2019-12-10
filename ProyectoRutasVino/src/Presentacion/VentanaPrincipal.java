@@ -71,7 +71,7 @@ public class VentanaPrincipal {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frame.getContentPane().setBackground(new Color(231, 201, 167));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para que la aplicación finalice al pulsar "x"
 		frame.setBounds(0, 0, 516, 394); // Establece posición y tamaño de la ventana
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
