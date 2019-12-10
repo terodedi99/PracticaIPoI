@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VentanaLogin {
 
@@ -33,6 +35,8 @@ public class VentanaLogin {
 	private final String password = "Lautere";
 	private final String usuario = "User";
 	private JPasswordField passwordField;
+	private JLabel lblhasOlvidadoTu;
+	private JLabel lblHelp;
 
 
 	/**
@@ -68,6 +72,7 @@ public class VentanaLogin {
 		frame.getContentPane().setLayout(null);
 		{
 			panel = new JPanel();
+			panel.setBackground(new Color(244, 229, 226));
 			panel.setBorder(new TitledBorder(null, "Inicio sesi\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(0, 0, 434, 261);
 			frame.getContentPane().add(panel);
@@ -78,7 +83,7 @@ public class VentanaLogin {
 				lblEstado.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				lblEstado.setForeground(SystemColor.desktop);
 				lblEstado.setHorizontalAlignment(SwingConstants.CENTER);
-				lblEstado.setBackground(SystemColor.activeCaption);
+				lblEstado.setBackground(new Color(206, 207, 210));
 				lblEstado.setBounds(10, 213, 414, 37);
 				panel.add(lblEstado);
 			}
@@ -86,7 +91,7 @@ public class VentanaLogin {
 				lblLogo = new JLabel(" ");
 				lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
 				lblLogo.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
-				lblLogo.setBounds(10, 11, 135, 110);
+				lblLogo.setBounds(0, 32, 135, 110);
 				panel.add(lblLogo);
 			}
 			{
@@ -104,6 +109,7 @@ public class VentanaLogin {
 			}
 			{
 				txtUsuario = new JTextField();
+				txtUsuario.addMouseListener(new TxtUsuarioMouseListener());
 				txtUsuario.addActionListener(new TxtUsuarioActionListener());
 				txtUsuario.setBounds(239, 32, 145, 20);
 				panel.add(txtUsuario);
@@ -113,7 +119,7 @@ public class VentanaLogin {
 				btnEntrar = new JButton("Entrar");
 				btnEntrar.addActionListener(new BtnEntrarActionListener());
 				btnEntrar.setEnabled(false);
-				btnEntrar.setBounds(211, 117, 108, 37);
+				btnEntrar.setBounds(200, 105, 108, 37);
 				panel.add(btnEntrar);
 			}
 			{
@@ -122,6 +128,19 @@ public class VentanaLogin {
 				passwordField.setEnabled(false);
 				passwordField.setBounds(239, 66, 145, 20);
 				panel.add(passwordField);
+			}
+			{
+				lblhasOlvidadoTu = new JLabel("\u00BFHas olvidado tu password?");
+				lblhasOlvidadoTu.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblhasOlvidadoTu.setBounds(174, 153, 161, 25);
+				panel.add(lblhasOlvidadoTu);
+			}
+			{
+				lblHelp = new JLabel("");
+				lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
+				lblHelp.setIcon(new ImageIcon(VentanaLogin.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+				lblHelp.setBounds(332, 153, 25, 20);
+				panel.add(lblHelp);
 			}
 		}
 	}
@@ -157,6 +176,12 @@ public class VentanaLogin {
 	private class BtnEntrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
+		}
+	}
+	private class TxtUsuarioMouseListener extends MouseAdapter {
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			
 		}
 	}
 }
