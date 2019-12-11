@@ -90,7 +90,7 @@ public class VentanaLogin {
 			{
 				lblLogo = new JLabel(" ");
 				lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-				lblLogo.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
+				lblLogo.setIcon(new ImageIcon(VentanaPrincipalAntigua.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
 				lblLogo.setBounds(0, 32, 135, 110);
 				panel.add(lblLogo);
 			}

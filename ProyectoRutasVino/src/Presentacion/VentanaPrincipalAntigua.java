@@ -36,7 +36,7 @@ import javax.swing.JToolBar;
 import java.awt.ComponentOrientation;
 import javax.swing.JTextArea;
 
-public class VentanaPrincipal {
+public class VentanaPrincipalAntigua {
 
 	private JFrame frame;
 	private final JLabel lblLupa = new JLabel("");
@@ -49,7 +49,7 @@ public class VentanaPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal window = new VentanaPrincipal();
+					VentanaPrincipalAntigua window = new VentanaPrincipalAntigua();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,7 +61,7 @@ public class VentanaPrincipal {
 	/**
 	 * Create the application.
 	 */
-	public VentanaPrincipal() {
+	public VentanaPrincipalAntigua() {
 		initialize();
 	}
 
@@ -77,11 +77,10 @@ public class VentanaPrincipal {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height); // Cambia el tamaño de la ventana
 		frame.getContentPane().setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel pnlIdioma = new JPanel();
 		pnlIdioma.setBackground(new Color(231, 201, 167));
-		pnlIdioma.setBounds(0, 601, 1280, 72);
 		frame.getContentPane().add(pnlIdioma);
 		pnlIdioma.setLayout(null);
 		
@@ -99,17 +98,15 @@ public class VentanaPrincipal {
 		lblLupa.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		lblLupa.setVerticalTextPosition(SwingConstants.BOTTOM);
 		lblLupa.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblLupa.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/lupa.png")));
+		lblLupa.setIcon(new ImageIcon(VentanaPrincipalAntigua.class.getResource("/Presentacion/lupa.png")));
 		
 		JPanel pnlLogin = new JPanel();
 		pnlLogin.setBackground(new Color(231, 201, 167));
-		pnlLogin.setBounds(0, 0, 1280, 100);
 		frame.getContentPane().add(pnlLogin);
-		pnlLogin.setLayout(null);
+		pnlLogin.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblLogin = new JLabel("");
-		lblLogin.setBounds(981, 21, 50, 50);
-		lblLogin.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/login.png")));
+		lblLogin.setIcon(new ImageIcon(VentanaPrincipalAntigua.class.getResource("/Presentacion/login.png")));
 		pnlLogin.add(lblLogin);
 		
 		JButton btnLogin = new JButton("Registrarse/ Iniciar sesi\u00F3n");
@@ -120,12 +117,10 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnLogin.setBounds(1041, 27, 229, 44);
 		pnlLogin.add(btnLogin);
 		
 		JPanel pnlLocalidades = new JPanel();
 		pnlLocalidades.setBackground(new Color(231, 201, 167));
-		pnlLocalidades.setBounds(0, 98, 1280, 503);
 		frame.getContentPane().add(pnlLocalidades);
 		pnlLocalidades.setLayout(null);
 		
