@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
@@ -37,6 +39,8 @@ public class VentanaLogin {
 	private JPasswordField passwordField;
 	private JLabel lblhasOlvidadoTu;
 	private JLabel lblHelp;
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (206, 207, 210);
 
 
 	/**
@@ -72,7 +76,7 @@ public class VentanaLogin {
 		frame.getContentPane().setLayout(null);
 		{
 			panel = new JPanel();
-			panel.setBackground(new Color(244, 229, 226));
+			panel.setBackground(new Color(237, 217, 194));
 			panel.setBorder(new TitledBorder(null, "Inicio sesi\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(0, 0, 434, 261);
 			frame.getContentPane().add(panel);
@@ -109,6 +113,7 @@ public class VentanaLogin {
 			}
 			{
 				txtUsuario = new JTextField();
+				txtUsuario.addFocusListener(new MifocusListener());
 				txtUsuario.addMouseListener(new TxtUsuarioMouseListener());
 				txtUsuario.addActionListener(new TxtUsuarioActionListener());
 				txtUsuario.setBounds(239, 32, 145, 20);
@@ -124,6 +129,7 @@ public class VentanaLogin {
 			}
 			{
 				passwordField = new JPasswordField();
+				passwordField.addFocusListener(new MifocusListener());
 				passwordField.addActionListener(new PasswordFieldActionListener());
 				passwordField.setEnabled(false);
 				passwordField.setBounds(239, 66, 145, 20);
@@ -170,7 +176,20 @@ public class VentanaLogin {
 				lblEstado.setText("Contraseña incorrecta. Vuelva a intentarlo");
 				lblEstado.setVisible(true);
 				btnEntrar.setEnabled(false);
+				passwordField.setText(null);
 			}
+		}
+	}
+	
+	private class MifocusListener extends FocusAdapter {
+		@Override
+		public void focusGained(FocusEvent e) {
+			e.getComponent().setBackground(colorResaltado);
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			e.getComponent().setBackground(colorBlanco);
 		}
 	}
 	private class BtnEntrarActionListener implements ActionListener {
@@ -184,4 +203,6 @@ public class VentanaLogin {
 			
 		}
 	}
+	
+	
 }

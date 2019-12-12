@@ -11,6 +11,9 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
+
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -35,6 +38,8 @@ public class VentanaRegistro {
 	private JPasswordField passwordField1;
 	private JLabel lblInfo;
 	private JLabel lblInfo1;
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (206, 207, 210);
 
 	/**
 	 * Launch the application.
@@ -69,22 +74,22 @@ public class VentanaRegistro {
 		frame.getContentPane().setLayout(null);
 		{
 			pnlRegistro = new JPanel();
-			pnlRegistro.setBackground(new Color(244, 229, 226));
+			pnlRegistro.setBackground(new Color(237, 217, 194));
 			pnlRegistro.setBounds(0, 0, 469, 514);
 			frame.getContentPane().add(pnlRegistro);
 			pnlRegistro.setLayout(null);
 			{
 				lblTitulo = new JLabel("\u00BFA\u00FAn no tienes cuenta?");
-				lblTitulo.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
+				lblTitulo.setFont(new Font("Goudy Old Style", Font.PLAIN, 26));
 				lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 				lblTitulo.setBounds(127, 11, 217, 44);
 				pnlRegistro.add(lblTitulo);
 			}
 			{
 				lblSubtitulo = new JLabel("\u00A1Reg\u00EDstrate!");
-				lblSubtitulo.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+				lblSubtitulo.setFont(new Font("Goudy Old Style", Font.PLAIN, 20));
 				lblSubtitulo.setHorizontalAlignment(SwingConstants.CENTER);
-				lblSubtitulo.setBounds(168, 54, 108, 25);
+				lblSubtitulo.setBounds(182, 51, 108, 25);
 				pnlRegistro.add(lblSubtitulo);
 			}
 			{
@@ -95,8 +100,8 @@ public class VentanaRegistro {
 			}
 			{
 				txtNombre = new JTextField();
+				txtNombre.addFocusListener(new MifocusListener());
 				txtNombre.setBackground(new Color(255, 255, 255));
-				txtNombre.addMouseListener(new TxtNombreMouseListener());
 				txtNombre.setFocusTraversalPolicyProvider(true);
 				txtNombre.setBounds(37, 124, 202, 25);
 				pnlRegistro.add(txtNombre);
@@ -110,6 +115,7 @@ public class VentanaRegistro {
 			}
 			{
 				txtApellidos = new JTextField();
+				txtApellidos.addFocusListener(new MifocusListener());
 				txtApellidos.setBounds(37, 184, 202, 25);
 				pnlRegistro.add(txtApellidos);
 				txtApellidos.setColumns(10);
@@ -122,6 +128,7 @@ public class VentanaRegistro {
 			}
 			{
 				txtEmail = new JTextField();
+				txtEmail.addFocusListener(new MifocusListener());
 				txtEmail.setBounds(37, 244, 228, 25);
 				pnlRegistro.add(txtEmail);
 				txtEmail.setColumns(10);
@@ -134,6 +141,7 @@ public class VentanaRegistro {
 			}
 			{
 				txtNacimiento = new JTextField();
+				txtNacimiento.addFocusListener(new MifocusListener());
 				txtNacimiento.setBounds(37, 300, 125, 25);
 				pnlRegistro.add(txtNacimiento);
 				txtNacimiento.setColumns(10);
@@ -153,6 +161,7 @@ public class VentanaRegistro {
 			}
 			{
 				passwordField = new JPasswordField();
+				passwordField.addFocusListener(new MifocusListener());
 				passwordField.setBounds(37, 354, 202, 25);
 				pnlRegistro.add(passwordField);
 			}
@@ -164,6 +173,7 @@ public class VentanaRegistro {
 			}
 			{
 				passwordField1 = new JPasswordField();
+				passwordField1.addFocusListener(new MifocusListener());
 				passwordField1.setBounds(37, 409, 202, 25);
 				pnlRegistro.add(passwordField1);
 			}
@@ -183,11 +193,17 @@ public class VentanaRegistro {
 			}
 		}
 	}
-	private class TxtNombreMouseListener extends MouseAdapter {
+
+	private class MifocusListener extends FocusAdapter {
 		@Override
-		public void mousePressed(MouseEvent e) {
-			txtNombre.setBackground(new Color(180, 186, 191));
-			
+		public void focusGained(FocusEvent e) {
+			e.getComponent().setBackground(colorResaltado);
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			e.getComponent().setBackground(colorBlanco);
 		}
 	}
+	
 }
