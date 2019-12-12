@@ -36,6 +36,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JTextArea;
+import java.awt.CardLayout;
 
 public class VentanaPrincipal {
 
@@ -269,5 +270,9 @@ public class VentanaPrincipal {
 		gbc_lblRutasdelVino.gridx = 1;
 		gbc_lblRutasdelVino.gridy = 0;
 		pnlTitulo.add(lblRutasdelVino, gbc_lblRutasdelVino);
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.WEST);
+		panel.setLayout(new CardLayout(0, 0));
 	}
 }
