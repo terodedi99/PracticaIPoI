@@ -20,6 +20,7 @@ import javax.swing.JToolBar;
 import java.awt.ComponentOrientation;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -27,6 +28,7 @@ import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Point;
@@ -37,6 +39,11 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JTextArea;
 import java.awt.CardLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JTextPane;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal {
 
@@ -72,7 +79,7 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(231, 201, 167));
+		frame.getContentPane().setBackground(new Color(237, 217, 194));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para que la aplicación finalice al pulsar "x"
 		frame.setBounds(0, 0, 516, 394); // Establece posición y tamaño de la ventana
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -132,6 +139,7 @@ public class VentanaPrincipal {
 		lblFlecha.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/login.png")));
 		
 		JButton btnRegistrarse = new JButton("Registrarse/ Iniciar sesi\u00F3n");
+		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnRegistrarse.setPreferredSize(new Dimension(190, 40));
 		btnRegistrarse.setHorizontalTextPosition(SwingConstants.CENTER);
 		GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
@@ -185,38 +193,35 @@ public class VentanaPrincipal {
 		pnlIdioma.add(tFBuscar, gbc_tFBuscar);
 		tFBuscar.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBackground(new Color(231, 201, 167));
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setDoubleBuffered(true);
-		scrollPane.setFocusTraversalPolicyProvider(true);
-		scrollPane.setFocusCycleRoot(true);
-		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		JPanel pnlTitulo = new JPanel();
+		frame.getContentPane().add(pnlTitulo, BorderLayout.EAST);
+		pnlTitulo.setBackground(new Color(237, 217, 194));
+		pnlTitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		GridBagLayout gbl_pnlTitulo = new GridBagLayout();
+		gbl_pnlTitulo.columnWidths = new int[]{1282, 0};
+		gbl_pnlTitulo.rowHeights = new int[]{69, 49, 0, 0};
+		gbl_pnlTitulo.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_pnlTitulo.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		pnlTitulo.setLayout(gbl_pnlTitulo);
 		
-		JPanel pnlLocalidades = new JPanel();
-		pnlLocalidades.setBackground(new Color(231, 201, 167));
-		scrollPane.setViewportView(pnlLocalidades);
-		GridBagLayout gbl_pnlLocalidades = new GridBagLayout();
-		gbl_pnlLocalidades.columnWidths = new int[]{202, 884, 223, 0};
-		gbl_pnlLocalidades.rowHeights = new int[]{39, 0, 0};
-		gbl_pnlLocalidades.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlLocalidades.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		pnlLocalidades.setLayout(gbl_pnlLocalidades);
+		JLabel lblRutasdelVino = new JLabel("Rutas del Vino");
+		lblRutasdelVino.setMaximumSize(new Dimension(71, 21));
+		lblRutasdelVino.setForeground(new Color(81, 43, 55));
+		lblRutasdelVino.setFont(new Font("Goudy Old Style", Font.ITALIC, 40));
+		GridBagConstraints gbc_lblRutasdelVino = new GridBagConstraints();
+		gbc_lblRutasdelVino.insets = new Insets(0, 0, 5, 0);
+		gbc_lblRutasdelVino.gridx = 0;
+		gbc_lblRutasdelVino.gridy = 0;
+		pnlTitulo.add(lblRutasdelVino, gbc_lblRutasdelVino);
 		
 		JToolBar toolBar = new JToolBar();
 		GridBagConstraints gbc_toolBar = new GridBagConstraints();
-		gbc_toolBar.insets = new Insets(0, 0, 5, 5);
-		gbc_toolBar.gridx = 1;
-		gbc_toolBar.gridy = 0;
-		pnlLocalidades.add(toolBar, gbc_toolBar);
-		toolBar.setFocusCycleRoot(true);
-		toolBar.setFocusTraversalPolicyProvider(true);
-		toolBar.setMargin(new Insets(0, 5, 0, 5));
-		toolBar.setBackground(new Color(231, 201, 167));
-		toolBar.setRollover(true);
+		gbc_toolBar.insets = new Insets(0, 0, 5, 0);
+		gbc_toolBar.gridx = 0;
+		gbc_toolBar.gridy = 1;
+		pnlTitulo.add(toolBar, gbc_toolBar);
 		
-		JButton btnCiudadReal = new JButton("Ciudad Real");
+		JButton btnCiudadReal = new JButton("CiudadReal");
 		btnCiudadReal.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		toolBar.add(btnCiudadReal);
@@ -229,12 +234,14 @@ public class VentanaPrincipal {
 		JButton btnAlmagro = new JButton("Almagro");
 		btnAlmagro.setForeground(new Color(81, 43, 55));
 		btnAlmagro.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
-		btnAlmagro.setFocusTraversalPolicyProvider(true);
-		btnAlmagro.setFocusCycleRoot(true);
 		toolBar.add(btnAlmagro);
 		
 		JButton btnAlcazar = new JButton("Alc\u00E1zar de San Juan");
 		btnAlcazar.setForeground(new Color(81, 43, 55));
+		btnAlcazar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAlcazar.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		toolBar.add(btnAlcazar);
 		
@@ -243,36 +250,107 @@ public class VentanaPrincipal {
 		btnCampo.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		toolBar.add(btnCampo);
 		
-		JDesktopPane desktopPane = new JDesktopPane();
-		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
-		gbc_desktopPane.insets = new Insets(0, 0, 0, 5);
-		gbc_desktopPane.fill = GridBagConstraints.BOTH;
-		gbc_desktopPane.gridx = 1;
-		gbc_desktopPane.gridy = 1;
-		pnlLocalidades.add(desktopPane, gbc_desktopPane);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 2;
+		pnlTitulo.add(scrollPane, gbc_scrollPane);
 		
-		JPanel pnlTitulo = new JPanel();
-		pnlTitulo.setBackground(new Color(237, 217, 194));
-		pnlTitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		scrollPane.setColumnHeaderView(pnlTitulo);
-		GridBagLayout gbl_pnlTitulo = new GridBagLayout();
-		gbl_pnlTitulo.columnWidths = new int[]{403, 459, 0};
-		gbl_pnlTitulo.rowHeights = new int[]{60, 0};
-		gbl_pnlTitulo.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlTitulo.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		pnlTitulo.setLayout(gbl_pnlTitulo);
+		JPanel pnlCardCarrusell = new JPanel();
+		pnlCardCarrusell.setBackground(new Color(206, 219, 197));
+		scrollPane.setColumnHeaderView(pnlCardCarrusell);
+		pnlCardCarrusell.setLayout(new CardLayout(0, 0));
 		
-		JLabel lblRutasdelVino = new JLabel("Rutas del Vino");
-		lblRutasdelVino.setMaximumSize(new Dimension(71, 21));
-		lblRutasdelVino.setForeground(new Color(81, 43, 55));
-		lblRutasdelVino.setFont(new Font("Goudy Old Style", Font.ITALIC, 40));
-		GridBagConstraints gbc_lblRutasdelVino = new GridBagConstraints();
-		gbc_lblRutasdelVino.gridx = 1;
-		gbc_lblRutasdelVino.gridy = 0;
-		pnlTitulo.add(lblRutasdelVino, gbc_lblRutasdelVino);
+		JLabel lblCarrusell = new JLabel("Carrusell");
+		pnlCardCarrusell.add(lblCarrusell, "name_783334722000200");
 		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.WEST);
-		panel.setLayout(new CardLayout(0, 0));
+		JPanel pnlCardInformacion = new JPanel();
+		pnlCardInformacion.setFocusTraversalPolicyProvider(true);
+		pnlCardInformacion.setFocusCycleRoot(true);
+		pnlCardInformacion.setBackground(new Color(206, 219, 197));
+		scrollPane.setViewportView(pnlCardInformacion);
+		pnlCardInformacion.setLayout(new CardLayout(0, 0));
+		
+		JPanel pnlInformacion = new JPanel();
+		pnlInformacion.setBackground(new Color(206, 219, 197));
+		pnlInformacion.setOpaque(false);
+		pnlCardInformacion.add(pnlInformacion, "name_783381932718400");
+		GridBagLayout gbl_pnlInformacion = new GridBagLayout();
+		gbl_pnlInformacion.columnWidths = new int[]{653, 568, 0};
+		gbl_pnlInformacion.rowHeights = new int[]{68, 0, 187, 86, 46, 0};
+		gbl_pnlInformacion.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_pnlInformacion.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		pnlInformacion.setLayout(gbl_pnlInformacion);
+		
+		JLabel lblTituloQuienes = new JLabel("\u00BFQui\u00E9nes somos?");
+		lblTituloQuienes.setForeground(new Color(81, 43, 55));
+		lblTituloQuienes.setFont(new Font("Goudy Old Style", Font.ITALIC, 30));
+		lblTituloQuienes.setBackground(new Color(206, 219, 197));
+		GridBagConstraints gbc_lblTituloQuienes = new GridBagConstraints();
+		gbc_lblTituloQuienes.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTituloQuienes.gridx = 0;
+		gbc_lblTituloQuienes.gridy = 0;
+		pnlInformacion.add(lblTituloQuienes, gbc_lblTituloQuienes);
+		
+		JLabel lblTituloInformacion = new JLabel("Informaci\u00F3n de contacto");
+		lblTituloInformacion.setForeground(new Color(81, 43, 55));
+		lblTituloInformacion.setFont(new Font("Goudy Old Style", Font.ITALIC, 30));
+		lblTituloInformacion.setBackground(new Color(206, 219, 197));
+		GridBagConstraints gbc_lblTituloInformacion = new GridBagConstraints();
+		gbc_lblTituloInformacion.insets = new Insets(0, 0, 5, 0);
+		gbc_lblTituloInformacion.gridx = 1;
+		gbc_lblTituloInformacion.gridy = 0;
+		pnlInformacion.add(lblTituloInformacion, gbc_lblTituloInformacion);
+		
+		JButton btnFormulario = new JButton("Formulario de contacto");
+		btnFormulario.setOpaque(false);
+		btnFormulario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		GridBagConstraints gbc_btnFormulario = new GridBagConstraints();
+		gbc_btnFormulario.insets = new Insets(0, 0, 5, 0);
+		gbc_btnFormulario.gridx = 1;
+		gbc_btnFormulario.gridy = 1;
+		pnlInformacion.add(btnFormulario, gbc_btnFormulario);
+		
+		JTextPane tPInformacion = new JTextPane();
+		tPInformacion.setOpaque(false);
+		tPInformacion.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tPInformacion.setText("Somos una empresa dedicada a la organizaci\u00F3n de Rutas de Vino por la \r\nprovincia de Ciudad real.\r\n\r\nOfrecemos diferentes rutas para nuestros clientes,  trabajamos con grupos\r\nde cualquier edad y de 2 a 40 personas.\r\n\r\nOfrecemos un servicio profesional con una calidad excepcional, siempre \r\nmanteniendo una atenci\u00F3n personalizada para que ustedes tengan la mejor experiencia.");
+		tPInformacion.setBackground(new Color(206, 219, 197));
+		GridBagConstraints gbc_tPInformacion = new GridBagConstraints();
+		gbc_tPInformacion.anchor = GridBagConstraints.NORTH;
+		gbc_tPInformacion.insets = new Insets(0, 0, 5, 5);
+		gbc_tPInformacion.gridx = 0;
+		gbc_tPInformacion.gridy = 2;
+		pnlInformacion.add(tPInformacion, gbc_tPInformacion);
+		
+		JTextPane txtpnTlcompanygmailcom = new JTextPane();
+		txtpnTlcompanygmailcom.setOpaque(false);
+		txtpnTlcompanygmailcom.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtpnTlcompanygmailcom.setText("tlcompany@gmail.com\r\n926 78 95 45 / 654 525 413\r\nC/ Lirio 2 13005 Ciudad Real");
+		GridBagConstraints gbc_txtpnTlcompanygmailcom = new GridBagConstraints();
+		gbc_txtpnTlcompanygmailcom.insets = new Insets(0, 0, 5, 0);
+		gbc_txtpnTlcompanygmailcom.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtpnTlcompanygmailcom.gridx = 1;
+		gbc_txtpnTlcompanygmailcom.gridy = 2;
+		pnlInformacion.add(txtpnTlcompanygmailcom, gbc_txtpnTlcompanygmailcom);
+		
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/WhatsApp Image 2019-10-16 at 19.26.34.jpeg")));
+		GridBagConstraints gbc_lblLogo = new GridBagConstraints();
+		gbc_lblLogo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLogo.gridx = 0;
+		gbc_lblLogo.gridy = 3;
+		pnlInformacion.add(lblLogo, gbc_lblLogo);
+		
+		JLabel lblMapaCiudadReal = new JLabel("");
+		lblMapaCiudadReal.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/mapa.png")));
+		GridBagConstraints gbc_lblMapaCiudadReal = new GridBagConstraints();
+		gbc_lblMapaCiudadReal.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMapaCiudadReal.gridx = 1;
+		gbc_lblMapaCiudadReal.gridy = 3;
+		pnlInformacion.add(lblMapaCiudadReal, gbc_lblMapaCiudadReal);
 	}
 }
