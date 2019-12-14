@@ -326,16 +326,14 @@ public class VentanaPrincipal {
 		gbc_tPInformacion.gridy = 2;
 		pnlInformacion.add(tPInformacion, gbc_tPInformacion);
 		
-		JTextPane txtpnTlcompanygmailcom = new JTextPane();
-		txtpnTlcompanygmailcom.setOpaque(false);
-		txtpnTlcompanygmailcom.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtpnTlcompanygmailcom.setText("tlcompany@gmail.com\r\n926 78 95 45 / 654 525 413\r\nC/ Lirio 2 13005 Ciudad Real");
-		GridBagConstraints gbc_txtpnTlcompanygmailcom = new GridBagConstraints();
-		gbc_txtpnTlcompanygmailcom.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnTlcompanygmailcom.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtpnTlcompanygmailcom.gridx = 1;
-		gbc_txtpnTlcompanygmailcom.gridy = 2;
-		pnlInformacion.add(txtpnTlcompanygmailcom, gbc_txtpnTlcompanygmailcom);
+		JLabel lblDatos = new JLabel(" ");
+		lblDatos.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDatos.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/datos.png")));
+		GridBagConstraints gbc_lblDatos = new GridBagConstraints();
+		gbc_lblDatos.insets = new Insets(0, 0, 5, 0);
+		gbc_lblDatos.gridx = 1;
+		gbc_lblDatos.gridy = 2;
+		pnlInformacion.add(lblDatos, gbc_lblDatos);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/WhatsApp Image 2019-10-16 at 19.26.34.jpeg")));

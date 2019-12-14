@@ -16,6 +16,7 @@ import java.awt.event.FocusEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class Formulario extends JPanel {
 	private JLabel lblContacto;
@@ -40,8 +41,11 @@ public class Formulario extends JPanel {
 		setLayout(null);
 		{
 			lblContacto = new JLabel("Contacto");
-			lblContacto.setFont(new Font("Goudy Old Style", Font.BOLD, 30));
-			lblContacto.setBounds(20, 26, 171, 43);
+			lblContacto.setHorizontalAlignment(SwingConstants.CENTER);
+			lblContacto.setOpaque(true);
+			lblContacto.setBackground(new Color(240, 240, 240));
+			lblContacto.setFont(new Font("Goudy Old Style", Font.ITALIC, 36));
+			lblContacto.setBounds(20, 26, 141, 43);
 			add(lblContacto);
 		}
 		{
@@ -49,7 +53,7 @@ public class Formulario extends JPanel {
 			txtTexto.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 11));
 			txtTexto.setBackground(new Color(237, 217, 194));
 			txtTexto.setText("Puedes rellenar y enviarnos este formulario para solicitar informaci\u00F3n acerca de nuestras rutas o para realizar una reserva.");
-			txtTexto.setBounds(20, 66, 406, 34);
+			txtTexto.setBounds(20, 75, 406, 34);
 			add(txtTexto);
 		}
 		{
