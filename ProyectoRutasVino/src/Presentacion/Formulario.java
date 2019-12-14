@@ -1,22 +1,16 @@
 package Presentacion;
 
 import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextPane;
-import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.UIManager;
 
 public class Formulario extends JPanel {
 	private JLabel lblContacto;
@@ -42,7 +36,6 @@ public class Formulario extends JPanel {
 		{
 			lblContacto = new JLabel("Contacto");
 			lblContacto.setHorizontalAlignment(SwingConstants.CENTER);
-			lblContacto.setOpaque(true);
 			lblContacto.setBackground(new Color(240, 240, 240));
 			lblContacto.setFont(new Font("Goudy Old Style", Font.ITALIC, 36));
 			lblContacto.setBounds(20, 26, 141, 43);

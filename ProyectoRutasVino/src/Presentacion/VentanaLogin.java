@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -145,7 +144,7 @@ public class VentanaLogin {
 				lblHelp = new JLabel("");
 				lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 				lblHelp.setIcon(new ImageIcon(VentanaLogin.class.getResource("/Presentacion/icons8-ayuda-16.png")));
-				lblHelp.setBounds(332, 153, 25, 20);
+				lblHelp.setBounds(336, 153, 25, 25);
 				panel.add(lblHelp);
 			}
 		}

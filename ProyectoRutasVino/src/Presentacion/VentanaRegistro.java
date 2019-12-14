@@ -80,7 +80,6 @@ public class VentanaRegistro {
 			pnlRegistro.setLayout(null);
 			{
 				lblTitulo = new JLabel("\u00BFA\u00FAn no tienes cuenta?");
-				lblTitulo.setOpaque(true);
 				lblTitulo.setFont(new Font("Goudy Old Style", Font.PLAIN, 26));
 				lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 				lblTitulo.setBounds(127, 11, 217, 44);
@@ -88,7 +87,6 @@ public class VentanaRegistro {
 			}
 			{
 				lblSubtitulo = new JLabel("\u00A1Reg\u00EDstrate!");
-				lblSubtitulo.setOpaque(true);
 				lblSubtitulo.setFont(new Font("Goudy Old Style", Font.PLAIN, 20));
 				lblSubtitulo.setHorizontalAlignment(SwingConstants.CENTER);
 				lblSubtitulo.setBounds(182, 62, 108, 25);
