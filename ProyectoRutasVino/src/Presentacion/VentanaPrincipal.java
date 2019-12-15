@@ -241,7 +241,7 @@ public class VentanaPrincipal {
 		pnlTitulo.setBackground(new Color(237, 217, 194));
 		pnlTitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagLayout gbl_pnlTitulo = new GridBagLayout();
-		gbl_pnlTitulo.columnWidths = new int[] { 1267, 0 };
+		gbl_pnlTitulo.columnWidths = new int[] { 1257, 0 };
 		gbl_pnlTitulo.rowHeights = new int[] { 69, 49, 0, 0, 0, 0 };
 		gbl_pnlTitulo.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_pnlTitulo.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
