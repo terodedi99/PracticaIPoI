@@ -13,6 +13,10 @@ import javax.swing.JButton;
 import java.awt.Color;
 
 public class Formulario extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel lblContacto;
 	private JTextPane txtTexto;
 	private JLabel lblNombre;
