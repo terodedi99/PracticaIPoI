@@ -75,7 +75,7 @@ public class VentanaRegistro {
 		{
 			pnlRegistro = new JPanel();
 			pnlRegistro.setBackground(new Color(237, 217, 194));
-			pnlRegistro.setBounds(0, 0, 469, 514);
+			pnlRegistro.setBounds(0, 0, 461, 491);
 			frame.getContentPane().add(pnlRegistro);
 			pnlRegistro.setLayout(null);
 			{
