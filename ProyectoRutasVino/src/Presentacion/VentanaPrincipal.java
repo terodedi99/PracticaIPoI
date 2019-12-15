@@ -1,6 +1,7 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -52,6 +53,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.Cursor;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class VentanaPrincipal {
 
@@ -69,6 +72,13 @@ public class VentanaPrincipal {
 	private JTextField tFEmail;
 	private JTextField tFAsunto;
 	private JTextField tFComentarios;
+	private JLabel lblContrasena;
+	private JLabel lblMensajes;
+	private Button btnEntrar;
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (206, 207, 210);
+	private final String password = "Lautere";
+
 
 	/**
 	 * Launch the application.
@@ -227,7 +237,7 @@ public class VentanaPrincipal {
 		gbc_lblLupa.gridy = 0;
 		pnlIdioma.add(lblLupa, gbc_lblLupa);
 
-		tFBuscar = new JTextField();
+		JTextField tFBuscar = new JTextField();
 		tFBuscar.setPreferredSize(new Dimension(100, 30));
 		GridBagConstraints gbc_tFBuscar = new GridBagConstraints();
 		gbc_tFBuscar.anchor = GridBagConstraints.WEST;
@@ -416,9 +426,9 @@ public class VentanaPrincipal {
 		pnlCardInformacion.add(pnlRegistro, "Registro");
 		GridBagLayout gbl_pnlRegistro = new GridBagLayout();
 		gbl_pnlRegistro.columnWidths = new int[]{73, 301, 556, 456, 0};
-		gbl_pnlRegistro.rowHeights = new int[]{60, 40, 40, 40, 40, 40, 40, 40, 0};
+		gbl_pnlRegistro.rowHeights = new int[]{60, 40, 40, 40, 40, 40, 40, 40, 0, 0};
 		gbl_pnlRegistro.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlRegistro.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlRegistro.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnlRegistro.setLayout(gbl_pnlRegistro);
 		
 		JLabel label = new JLabel("\u00BFA\u00FAn no tienes cuenta?");
@@ -454,7 +464,8 @@ public class VentanaPrincipal {
 		gbc_label_2.gridy = 2;
 		pnlRegistro.add(label_2, gbc_label_2);
 		
-		tFNombre = new JTextField();
+		JTextField tFNombre = new JTextField();
+		tFNombre.addFocusListener(new MiFocusListener());
 		tFNombre.setFocusTraversalPolicyProvider(true);
 		tFNombre.setColumns(10);
 		tFNombre.setBackground(Color.WHITE);
@@ -475,7 +486,8 @@ public class VentanaPrincipal {
 		gbc_label_3.gridy = 3;
 		pnlRegistro.add(label_3, gbc_label_3);
 		
-		tFApellidos = new JTextField();
+		JTextField tFApellidos = new JTextField();
+		tFApellidos.addFocusListener(new MiFocusListener());
 		tFApellidos.setColumns(10);
 		GridBagConstraints gbc_tFApellidos = new GridBagConstraints();
 		gbc_tFApellidos.fill = GridBagConstraints.HORIZONTAL;
@@ -494,7 +506,8 @@ public class VentanaPrincipal {
 		gbc_label_4.gridy = 4;
 		pnlRegistro.add(label_4, gbc_label_4);
 		
-		tFCorreoElectronico = new JTextField();
+		JTextField tFCorreoElectronico = new JTextField();
+		tFCorreoElectronico.addFocusListener(new MiFocusListener());
 		tFCorreoElectronico.setColumns(10);
 		GridBagConstraints gbc_tFCorreoElectronico = new GridBagConstraints();
 		gbc_tFCorreoElectronico.insets = new Insets(0, 0, 5, 5);
@@ -513,7 +526,8 @@ public class VentanaPrincipal {
 		gbc_label_5.gridy = 5;
 		pnlRegistro.add(label_5, gbc_label_5);
 		
-		tFFechaNacimiento = new JTextField();
+		JTextField tFFechaNacimiento = new JTextField();
+		tFFechaNacimiento.addFocusListener(new MiFocusListener());
 		tFFechaNacimiento.setColumns(10);
 		GridBagConstraints gbc_tFFechaNacimiento = new GridBagConstraints();
 		gbc_tFFechaNacimiento.insets = new Insets(0, 0, 5, 5);
@@ -543,7 +557,8 @@ public class VentanaPrincipal {
 		gbc_label_7.gridy = 6;
 		pnlRegistro.add(label_7, gbc_label_7);
 		
-		pFContrasena = new JPasswordField();
+		JPasswordField pFContrasena = new JPasswordField();
+		pFContrasena.addFocusListener(new MiFocusListener());
 		GridBagConstraints gbc_pFContrasena = new GridBagConstraints();
 		gbc_pFContrasena.insets = new Insets(0, 0, 5, 5);
 		gbc_pFContrasena.fill = GridBagConstraints.HORIZONTAL;
@@ -566,15 +581,16 @@ public class VentanaPrincipal {
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		GridBagConstraints gbc_label_8 = new GridBagConstraints();
 		gbc_label_8.anchor = GridBagConstraints.EAST;
-		gbc_label_8.insets = new Insets(0, 0, 0, 5);
+		gbc_label_8.insets = new Insets(0, 0, 5, 5);
 		gbc_label_8.gridx = 1;
 		gbc_label_8.gridy = 7;
 		pnlRegistro.add(label_8, gbc_label_8);
 		
-		pFrContrasena = new JPasswordField();
+		JPasswordField pFrContrasena = new JPasswordField();
+		pFrContrasena.addFocusListener(new MiFocusListener());
 		GridBagConstraints gbc_pFrContrasena = new GridBagConstraints();
 		gbc_pFrContrasena.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pFrContrasena.insets = new Insets(0, 0, 0, 5);
+		gbc_pFrContrasena.insets = new Insets(0, 0, 5, 5);
 		gbc_pFrContrasena.gridx = 2;
 		gbc_pFrContrasena.gridy = 7;
 		pnlRegistro.add(pFrContrasena, gbc_pFrContrasena);
@@ -583,10 +599,22 @@ public class VentanaPrincipal {
 		lblInfo2.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
 		lblInfo2.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblInfo2 = new GridBagConstraints();
+		gbc_lblInfo2.insets = new Insets(0, 0, 5, 0);
 		gbc_lblInfo2.anchor = GridBagConstraints.WEST;
 		gbc_lblInfo2.gridx = 3;
 		gbc_lblInfo2.gridy = 7;
 		pnlRegistro.add(lblInfo2, gbc_lblInfo2);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBackground(new Color(237, 217, 194));
+		btnAceptar.setForeground(new Color(81, 43, 55));
+		btnAceptar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
+		btnAceptar.setBorder(new RoundedBorder(10));
+		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
+		gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAceptar.gridx = 2;
+		gbc_btnAceptar.gridy = 8;
+		pnlRegistro.add(btnAceptar, gbc_btnAceptar);
 		
 		JPanel pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(new Color(244, 229, 226));
@@ -634,7 +662,8 @@ public class VentanaPrincipal {
 		gbc_lblNombre.gridy = 2;
 		pnlFormulario.add(lblNombre, gbc_lblNombre);
 		
-		tFNombre_1 = new JTextField();
+		JTextField tFNombre_1 = new JTextField();
+		tFNombre_1.addFocusListener(new MiFocusListener());
 		tFNombre_1.setColumns(10);
 		GridBagConstraints gbc_tFNombre_1 = new GridBagConstraints();
 		gbc_tFNombre_1.fill = GridBagConstraints.HORIZONTAL;
@@ -653,7 +682,8 @@ public class VentanaPrincipal {
 		gbc_lblEmail.gridy = 3;
 		pnlFormulario.add(lblEmail, gbc_lblEmail);
 		
-		tFEmail = new JTextField();
+		JTextField tFEmail = new JTextField();
+		tFEmail.addFocusListener(new MiFocusListener());
 		tFEmail.setColumns(10);
 		GridBagConstraints gbc_tFEmail = new GridBagConstraints();
 		gbc_tFEmail.insets = new Insets(0, 0, 5, 5);
@@ -672,7 +702,8 @@ public class VentanaPrincipal {
 		gbc_lblAsunto.gridy = 4;
 		pnlFormulario.add(lblAsunto, gbc_lblAsunto);
 		
-		tFAsunto = new JTextField();
+		JTextField tFAsunto = new JTextField();
+		tFAsunto.addFocusListener(new MiFocusListener());
 		tFAsunto.setColumns(10);
 		GridBagConstraints gbc_tFAsunto = new GridBagConstraints();
 		gbc_tFAsunto.insets = new Insets(0, 0, 5, 5);
@@ -692,7 +723,8 @@ public class VentanaPrincipal {
 		gbc_lblComentarios.gridy = 5;
 		pnlFormulario.add(lblComentarios, gbc_lblComentarios);
 		
-		tFComentarios = new JTextField();
+		JTextField tFComentarios = new JTextField();
+		tFComentarios.addFocusListener(new MiFocusListener());
 		tFComentarios.setColumns(10);
 		GridBagConstraints gbc_tFComentarios = new GridBagConstraints();
 		gbc_tFComentarios.gridheight = 3;
@@ -747,7 +779,9 @@ public class VentanaPrincipal {
 		gbc_lblUsuario.gridy = 1;
 		pnlInicioSesion.add(lblUsuario, gbc_lblUsuario);
 		
-		tFUsuario = new JTextField();
+		JTextField tFUsuario = new JTextField();
+		tFUsuario.addActionListener(new TFUsuarioActionListener());
+		tFUsuario.addFocusListener(new MiFocusListener());
 		tFUsuario.setColumns(10);
 		GridBagConstraints gbc_tFUsuario = new GridBagConstraints();
 		gbc_tFUsuario.fill = GridBagConstraints.HORIZONTAL;
@@ -755,7 +789,7 @@ public class VentanaPrincipal {
 		gbc_tFUsuario.gridx = 3;
 		gbc_tFUsuario.gridy = 1;
 		pnlInicioSesion.add(tFUsuario, gbc_tFUsuario);
-		
+
 		JLabel label_9 = new JLabel(" ");
 		label_9.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
 		label_9.setHorizontalAlignment(SwingConstants.CENTER);
@@ -778,7 +812,8 @@ public class VentanaPrincipal {
 		gbc_lblContrasena.gridy = 2;
 		pnlInicioSesion.add(lblContrasena, gbc_lblContrasena);
 		
-		pFContrasena_1 = new JPasswordField();
+		JPasswordField pFContrasena_1 = new JPasswordField();
+		pFContrasena_1.addFocusListener(new MiFocusListener());
 		pFContrasena_1.setEnabled(false);
 		GridBagConstraints gbc_pFContrasena_1 = new GridBagConstraints();
 		gbc_pFContrasena_1.fill = GridBagConstraints.HORIZONTAL;
@@ -788,10 +823,11 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(pFContrasena_1, gbc_pFContrasena_1);
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new BtnEntrarActionListener());
+		btnEntrar.setEnabled(false);
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnEntrar.setBackground(new Color(237, 217, 194));
 		btnEntrar.setForeground(new Color(81, 43, 55));
-		btnEntrar.setEnabled(false);
 		GridBagConstraints gbc_btnEntrar = new GridBagConstraints();
 		gbc_btnEntrar.anchor = GridBagConstraints.EAST;
 		gbc_btnEntrar.insets = new Insets(0, 0, 5, 5);
@@ -819,7 +855,7 @@ public class VentanaPrincipal {
 		gbc_lblInfo_1.gridy = 3;
 		pnlInicioSesion.add(lblInfo_1, gbc_lblInfo_1);
 		
-		JLabel lblMensajes = new JLabel("Mensajes de aviso");
+		JLabel lblMensajes = new JLabel(" ");
 		lblMensajes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblMensajes.setOpaque(true);
 		lblMensajes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -863,8 +899,37 @@ public class VentanaPrincipal {
 			}
 		});
 		
-		
-		
+	}
+
+	private class TFUsuarioActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			lblMensajes.setText("Usuario correcto");
+			// Activamos los de la contraseña
+			lblContrasena.setEnabled(true);
+			pFContrasena_1.setEnabled(true);
+			// Pasamos el foco (el cursor) al campo de la contraseña
+			pFContrasena_1.requestFocus();
+
+		}
+	}
+
+	private class MiFocusListener extends FocusAdapter {
+		@Override
+		public void focusGained(FocusEvent e) {
+			e.getComponent().setBackground(new Color(206, 207, 210));
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			e.getComponent().setBackground(new Color(250, 250, 250));
+		}
+	}
+
+	private class BtnEntrarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+
+		}
 	}
 
 }
