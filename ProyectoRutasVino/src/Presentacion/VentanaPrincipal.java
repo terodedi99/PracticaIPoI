@@ -1,12 +1,10 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -25,6 +23,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
+<<<<<<< HEAD
+=======
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+import java.beans.PropertyChangeEvent;
+import javax.swing.JTextArea;
+>>>>>>> bcc7e2e77d66093c8988fb0756815ed2607bcbfc
 import java.awt.CardLayout;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
@@ -112,9 +121,8 @@ public class VentanaPrincipal {
 	private JScrollPane scrollPane;
 	private Color colorBlanco = new Color (255,255,255);
 	private Color colorResaltado = new Color (206, 207, 210);
-	private final String password = "Lautere";
+	private final String password = "1234";
 	private final String user = "Admin";
-
 
 	/**
 	 * Launch the application.
@@ -290,7 +298,7 @@ public class VentanaPrincipal {
 		pnlTitulo.setBackground(new Color(237, 217, 194));
 		pnlTitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagLayout gbl_pnlTitulo = new GridBagLayout();
-		gbl_pnlTitulo.columnWidths = new int[] { 1354, 0 };
+		gbl_pnlTitulo.columnWidths = new int[] { 1286, 0 };
 		gbl_pnlTitulo.rowHeights = new int[] { 69, 49, 0, 0, 0, 0 };
 		gbl_pnlTitulo.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_pnlTitulo.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
@@ -894,11 +902,11 @@ public class VentanaPrincipal {
 		gbc_lblInfo_1.gridy = 3;
 		pnlInicioSesion.add(lblInfo_1, gbc_lblInfo_1);
 		
-		lblMensajes = new JLabel(" ");
+		lblMensajes = new JLabel("Mensajes de aviso.");
 		lblMensajes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblMensajes.setOpaque(true);
 		lblMensajes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMensajes.setForeground(Color.WHITE);
+		lblMensajes.setForeground(new Color(81, 43, 55));
 		lblMensajes.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lblMensajes.setBackground(new Color(237, 217, 194));
 		GridBagConstraints gbc_lblMensajes = new GridBagConstraints();
@@ -944,19 +952,22 @@ public class VentanaPrincipal {
 		public void actionPerformed(ActionEvent e) {
 			if (String.valueOf(tFUsuario.getText()).equals(user)) {
 				lblMensajes.setBackground(new Color(151, 168, 142));
+				lblMensajes.setForeground(Color.WHITE);
 				lblMensajes.setText("Usuario correcto.");
 				// Activamos los de la contraseña
 				lblContrasena.setEnabled(true);
 				pwdfContrasena.setEnabled(true);
-				// Pasamos el foco (el cursor) al campo de la contraseña
+				// Pasamos el foco (el cursor) al campo contraseña
 				pwdfContrasena.requestFocus();
+				
 			} else {
 				lblMensajes.setBackground(new Color(130, 46, 59));
-				lblMensajes.setText("Usuario incorrecto.");
+				lblMensajes.setForeground(Color.WHITE);
+				lblMensajes.setText("Usuario incorrecto. Vuelva a intentarlo.");
 				tFUsuario.setText(null);
 
 			}
-
+			
 		}
 	}
 
@@ -974,23 +985,39 @@ public class VentanaPrincipal {
 
 	private class PwdfContrasenaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			// obtenemos la contraseña introducida
+			// Obtenener contraseña introducida
 			if (String.valueOf(pwdfContrasena.getPassword()).equals(password)) {
 				lblMensajes.setBackground(new Color(151, 168, 142));
+				lblMensajes.setForeground(Color.WHITE);
 				lblMensajes.setText("Contraseña correcta, puede entrar.");
-				lblMensajes.setVisible(true);
 				btnEntrar.setEnabled(true);
-				lblContrasena.setEnabled(false);
-				pwdfContrasena.setEnabled(false);
+			
 			} else {
 				lblMensajes.setBackground(new Color(130, 46, 59));
+				lblMensajes.setForeground(Color.WHITE);
 				lblMensajes.setText("Contraseña incorrecta, vuelva a intentarlo.");
-				lblMensajes.setVisible(true);
 				btnEntrar.setEnabled(false);
 				pwdfContrasena.setText(null);
 			}
-
+			
+			try {
+	            TimeUnit.SECONDS.sleep(2);
+	            lblContrasena.setEnabled(false);
+				pwdfContrasena.setEnabled(false);
+				tFUsuario.setText(null);
+				pwdfContrasena.setText(null);
+				lblMensajes.setBackground(new Color(237, 217, 194));
+				lblMensajes.setForeground(new Color(81, 43, 55));
+				lblMensajes.setText("Mensajes de aviso.");
+				lblMensajes.setVisible(true);
+				
+	        } catch (InterruptedException e) {
+	            System.err.format("Error en el temporizador.", e);
+	        
+	        }
+			
 		}
+	
 	}
 
 }

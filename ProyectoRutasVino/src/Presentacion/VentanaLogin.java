@@ -159,13 +159,14 @@ public class VentanaLogin {
 			}
 		}
 	}
+	
 	private class PasswordFieldActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			lblEstado.setText("Evento de Acción: ActionPerformed" + e.getActionCommand());
-			// obtenemos la contraseña introducida
+			// Obtenemos la contraseña introducida
 			if (String.valueOf(passwordField.getPassword()).equals(password)) {
 				lblEstado.setBackground(Color.GREEN);
-				lblEstado.setText("Contraseña correcta. Puede entrar");
+				lblEstado.setText("Contraseña correcta. Puede entrar.");
 				lblEstado.setVisible(true);
 				btnEntrar.setEnabled(true);
 				lblPassword.setEnabled(false);
