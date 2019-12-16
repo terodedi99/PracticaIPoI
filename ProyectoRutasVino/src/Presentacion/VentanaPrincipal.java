@@ -37,6 +37,8 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JTextArea;
@@ -68,28 +70,28 @@ public class VentanaPrincipal {
 	private JPanel pnlRegistro;
 	private JPanel pnlFormulario;
 	private JPanel pnlInicioSesion;
-	private JPasswordField pwdfRContrasena_1;
-	private JPasswordField pwdfContrasena_1;
-	private JPasswordField pwdfContrasena;
+	private JPasswordField pwdfRContrasenaRegistro;
+	private JPasswordField pwdfContrasenaRegistro;
+	private JPasswordField pwdfContrasenaInicioSesion;
 	private JTextField tFBuscar;
-	private JTextField tFNombre;
-	private JTextField tFApellidos;
-	private JTextField tFNombre_1;
-	private JTextField tFUsuario;
-	private JTextField tFCorreoElectronico;
-	private JTextField tFFechaNacimiento;
-	private JTextField tFEmail;
-	private JTextField tFAsunto;
-	private JTextField tFComentarios;
+	private JTextField tFNombreRegistro;
+	private JTextField tFApellidosRegistro;
+	private JTextField tFNombreFormulario;
+	private JTextField tFUsuarioInicioSesion;
+	private JTextField tFCorreoElectronicoRegistro;
+	private JTextField tFFechaNacimientoRegistro;
+	private JTextField tFEmailFormulario;
+	private JTextField tFAsuntoFormulario;
+	private JTextField tFComentariosFormulario;
 	private JTextPane tPInformacion;
-	private JTextPane tPTexto;
-	private JLabel lblContrasena;
-	private JLabel lblMensajes;
-	private JLabel lblUsuario;
-	private JLabel lblTexto;
-	private JLabel lblInfo_1;
+	private JTextPane tPTextoFormulario;
+	private JLabel lblContrasenaInicioSesion;
+	private JLabel lblMensajesInicioSesion;
+	private JLabel lblUsuarioInicioSesion;
+	private JLabel lblTextoInicioSesion;
+	private JLabel lblInfoInicioSesion;
 	private JLabel lblIniciaSesion;
-	private JLabel label_9;
+	private JLabel lblIconoInicioSesion;
 	private JLabel lblBandera;
 	private JLabel lblFlecha;
 	private JLabel lblLupa;
@@ -99,23 +101,23 @@ public class VentanaPrincipal {
 	private JLabel lblDatos;
 	private JLabel lblLogo;
 	private JLabel lblMapaCiudadReal;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
-	private JLabel label_5;
-	private JLabel label_7;
-	private JLabel lblCalendario;
-	private JLabel lblInfo;
-	private JLabel lblInfo2;
-	private JLabel label_8;
-	private JLabel lblContacto;
-	private JLabel lblNombre;
-	private JLabel lblEmail;
-	private JLabel lblAsunto;
-	private JLabel lblComentarios;
-	private JButton btnEntrar;
+	private JLabel lblTituloRegistro_1;
+	private JLabel lblTituloRegistro_2;
+	private JLabel lblNombreRegistro;
+	private JLabel lblApellidosRegistro;
+	private JLabel lblCorreoElectronicoRegistro;
+	private JLabel lblFechaRegistro;
+	private JLabel lblContrasenaRegistro;
+	private JLabel lblCalendarioRegistro;
+	private JLabel lblInfoRegistro;
+	private JLabel lblInfoRegistro_2;
+	private JLabel lblRContrasenaRegistro;
+	private JLabel lblContactoFormulario;
+	private JLabel lblNombreFormulario;
+	private JLabel lblEmailFormulario;
+	private JLabel lblAsuntoFormulario;
+	private JLabel lblComentariosFormulario;
+	private JButton btnEntrarInicioSesion;
 	private JButton btnIniciarSesion;
 	private JButton btnRegistrarse;
 	private JButton btnPrincipal;
@@ -125,15 +127,17 @@ public class VentanaPrincipal {
 	private JButton btnCampo;
 	private JButton btnAlmagro;
 	private JButton btnFormulario;
-	private JButton btnAceptar;
-	private JButton btnEnviar;
+	private JButton btnAceptarRegistro;
+	private JButton btnEnviarFormulario;
 	private JComboBox cBIdiomas;
 	private JToolBar toolBar;
 	private JScrollPane scrollPane;
-	private Color colorBlanco = new Color (255,255,255);
-	private Color colorResaltado = new Color (206, 207, 210);
+	private Color colorBlanco = new Color(255, 255, 255);
+	private Color colorResaltado = new Color(206, 207, 210);
 	private final String password = "admin";
 	private final String user = "Admin";
+	private JButton btnLimpiar;
+	private JButton btnLimpiarCamposRegistro;
 
 	/**
 	 * Launch the application.
@@ -209,7 +213,7 @@ public class VentanaPrincipal {
 		lblFlecha.setFocusTraversalPolicyProvider(true);
 		lblFlecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblFlecha.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/login.png")));
-		
+
 		btnIniciarSesion = new JButton("Iniciar sesi\u00F3n");
 		btnIniciarSesion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnIniciarSesion.setMargin(new Insets(2, 7, 2, 7));
@@ -223,7 +227,7 @@ public class VentanaPrincipal {
 		gbc_btnIniciarSesion.gridx = 3;
 		gbc_btnIniciarSesion.gridy = 0;
 		pnlLogin.add(btnIniciarSesion, gbc_btnIniciarSesion);
-		
+
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRegistrarse.setMargin(new Insets(2, 7, 2, 7));
@@ -252,7 +256,6 @@ public class VentanaPrincipal {
 		gbl_pnlIdioma.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		pnlIdioma.setLayout(gbl_pnlIdioma);
 
-
 		JComboBox cBIdiomas = new JComboBox();
 		cBIdiomas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		cBIdiomas.addActionListener(new ActionListener() {
@@ -272,7 +275,7 @@ public class VentanaPrincipal {
 				lblBandera.repaint();
 			}
 		});
-		
+
 		cBIdiomas.setModel(new DefaultComboBoxModel<Object>(new String[] { "Espa\u00F1ol", "Ingl\u00E9s" }));
 		GridBagConstraints gbc_cBIdiomas = new GridBagConstraints();
 		gbc_cBIdiomas.insets = new Insets(0, 0, 0, 5);
@@ -312,7 +315,7 @@ public class VentanaPrincipal {
 		gbl_pnlTitulo.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_pnlTitulo.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlTitulo.setLayout(gbl_pnlTitulo);
-		
+
 		btnPrincipal = new JButton("Rutas del Vino");
 		btnPrincipal.setBackground(new Color(237, 217, 194));
 		btnPrincipal.setOpaque(false);
@@ -428,7 +431,7 @@ public class VentanaPrincipal {
 		btnFormulario.setForeground(new Color(81, 43, 55));
 		btnFormulario.setBackground(new Color(237, 217, 194));
 		btnFormulario.setBorder(new RoundedBorder(10));
-		btnFormulario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnFormulario.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnFormulario = new GridBagConstraints();
 		gbc_btnFormulario.insets = new Insets(0, 0, 5, 5);
 		gbc_btnFormulario.gridx = 1;
@@ -474,345 +477,361 @@ public class VentanaPrincipal {
 		gbc_lblMapaCiudadReal.gridx = 1;
 		gbc_lblMapaCiudadReal.gridy = 5;
 		pnlInformacion.add(lblMapaCiudadReal, gbc_lblMapaCiudadReal);
-		
+
 		pnlRegistro = new JPanel();
 		pnlRegistro.setMaximumSize(new Dimension(20000, 30000));
 		pnlRegistro.setVisible(false);
 		pnlRegistro.setBackground(new Color(244, 229, 226));
 		pnlCardInformacion.add(pnlRegistro, "Registro");
 		GridBagLayout gbl_pnlRegistro = new GridBagLayout();
-		gbl_pnlRegistro.columnWidths = new int[]{73, 301, 556, 456, 0};
-		gbl_pnlRegistro.rowHeights = new int[]{60, 40, 40, 40, 40, 40, 40, 40, 0, 0};
-		gbl_pnlRegistro.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlRegistro.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlRegistro.columnWidths = new int[] { 73, 301, 556, 456, 0 };
+		gbl_pnlRegistro.rowHeights = new int[] { 60, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0 };
+		gbl_pnlRegistro.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlRegistro.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		pnlRegistro.setLayout(gbl_pnlRegistro);
-		
-		label = new JLabel("\u00BFA\u00FAn no tienes cuenta?");
-		label.setForeground(new Color(81, 43, 55));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Goudy Old Style", Font.PLAIN, 30));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.anchor = GridBagConstraints.SOUTH;
-		gbc_label.fill = GridBagConstraints.HORIZONTAL;
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 2;
-		gbc_label.gridy = 0;
-		pnlRegistro.add(label, gbc_label);
-		
-		label_1 = new JLabel("\u00A1Reg\u00EDstrate!");
-		label_1.setForeground(new Color(81, 43, 55));
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("Goudy Old Style", Font.PLAIN, 28));
-		GridBagConstraints gbc_label_1 = new GridBagConstraints();
-		gbc_label_1.anchor = GridBagConstraints.NORTH;
-		gbc_label_1.insets = new Insets(0, 0, 5, 5);
-		gbc_label_1.gridx = 2;
-		gbc_label_1.gridy = 1;
-		pnlRegistro.add(label_1, gbc_label_1);
-		
-		label_2 = new JLabel("Nombre:");
-		label_2.setForeground(new Color(81, 43, 55));
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label_2 = new GridBagConstraints();
-		gbc_label_2.anchor = GridBagConstraints.EAST;
-		gbc_label_2.insets = new Insets(0, 0, 5, 5);
-		gbc_label_2.gridx = 1;
-		gbc_label_2.gridy = 2;
-		pnlRegistro.add(label_2, gbc_label_2);
-		
-		tFNombre = new JTextField();
-		tFNombre.addFocusListener(new MiFocusListener());
-		tFNombre.setFocusTraversalPolicyProvider(true);
-		tFNombre.setColumns(10);
-		tFNombre.setBackground(Color.WHITE);
-		GridBagConstraints gbc_tFNombre = new GridBagConstraints();
-		gbc_tFNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_tFNombre.gridx = 2;
-		gbc_tFNombre.gridy = 2;
-		pnlRegistro.add(tFNombre, gbc_tFNombre);
-		
-		label_3 = new JLabel("Apellidos:");
-		label_3.setForeground(new Color(81, 43, 55));
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label_3 = new GridBagConstraints();
-		gbc_label_3.anchor = GridBagConstraints.EAST;
-		gbc_label_3.insets = new Insets(0, 0, 5, 5);
-		gbc_label_3.gridx = 1;
-		gbc_label_3.gridy = 3;
-		pnlRegistro.add(label_3, gbc_label_3);
-		
-		tFApellidos = new JTextField();
-		tFApellidos.addFocusListener(new MiFocusListener());
-		tFApellidos.setColumns(10);
-		GridBagConstraints gbc_tFApellidos = new GridBagConstraints();
-		gbc_tFApellidos.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFApellidos.insets = new Insets(0, 0, 5, 5);
-		gbc_tFApellidos.gridx = 2;
-		gbc_tFApellidos.gridy = 3;
-		pnlRegistro.add(tFApellidos, gbc_tFApellidos);
-		
-		label_4 = new JLabel("Correo electr\u00F3nico:");
-		label_4.setForeground(new Color(81, 43, 55));
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label_4 = new GridBagConstraints();
-		gbc_label_4.anchor = GridBagConstraints.EAST;
-		gbc_label_4.insets = new Insets(0, 0, 5, 5);
-		gbc_label_4.gridx = 1;
-		gbc_label_4.gridy = 4;
-		pnlRegistro.add(label_4, gbc_label_4);
-		
-		tFCorreoElectronico = new JTextField();
-		tFCorreoElectronico.addFocusListener(new MiFocusListener());
-		tFCorreoElectronico.setColumns(10);
-		GridBagConstraints gbc_tFCorreoElectronico = new GridBagConstraints();
-		gbc_tFCorreoElectronico.insets = new Insets(0, 0, 5, 5);
-		gbc_tFCorreoElectronico.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFCorreoElectronico.gridx = 2;
-		gbc_tFCorreoElectronico.gridy = 4;
-		pnlRegistro.add(tFCorreoElectronico, gbc_tFCorreoElectronico);
-		
-		label_5 = new JLabel("Fecha de nacimiento:");
-		label_5.setForeground(new Color(81, 43, 55));
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label_5 = new GridBagConstraints();
-		gbc_label_5.anchor = GridBagConstraints.EAST;
-		gbc_label_5.insets = new Insets(0, 0, 5, 5);
-		gbc_label_5.gridx = 1;
-		gbc_label_5.gridy = 5;
-		pnlRegistro.add(label_5, gbc_label_5);
-		
-		tFFechaNacimiento = new JTextField();
-		tFFechaNacimiento.addFocusListener(new MiFocusListener());
-		tFFechaNacimiento.setColumns(10);
-		GridBagConstraints gbc_tFFechaNacimiento = new GridBagConstraints();
-		gbc_tFFechaNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_tFFechaNacimiento.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFFechaNacimiento.gridx = 2;
-		gbc_tFFechaNacimiento.gridy = 5;
-		pnlRegistro.add(tFFechaNacimiento, gbc_tFFechaNacimiento);
-		
-		lblCalendario = new JLabel("");
-		lblCalendario.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-30.png")));
-		lblCalendario.setOpaque(true);
-		lblCalendario.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblCalendario = new GridBagConstraints();
-		gbc_lblCalendario.anchor = GridBagConstraints.WEST;
-		gbc_lblCalendario.insets = new Insets(0, 0, 5, 0);
-		gbc_lblCalendario.gridx = 3;
-		gbc_lblCalendario.gridy = 5;
-		pnlRegistro.add(lblCalendario, gbc_lblCalendario);
-		
-		label_7 = new JLabel("Contrase\u00F1a:");
-		label_7.setForeground(new Color(81, 43, 55));
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label_7 = new GridBagConstraints();
-		gbc_label_7.anchor = GridBagConstraints.EAST;
-		gbc_label_7.insets = new Insets(0, 0, 5, 5);
-		gbc_label_7.gridx = 1;
-		gbc_label_7.gridy = 6;
-		pnlRegistro.add(label_7, gbc_label_7);
-		
-		pwdfContrasena_1 = new JPasswordField();
-		pwdfContrasena_1.addFocusListener(new MiFocusListener());
-		GridBagConstraints gbc_pwdfContrasena_1 = new GridBagConstraints();
-		gbc_pwdfContrasena_1.insets = new Insets(0, 0, 5, 5);
-		gbc_pwdfContrasena_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pwdfContrasena_1.gridx = 2;
-		gbc_pwdfContrasena_1.gridy = 6;
-		pnlRegistro.add(pwdfContrasena_1, gbc_pwdfContrasena_1);
-		
-		lblInfo = new JLabel("");
-		lblInfo.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
-		lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblInfo = new GridBagConstraints();
-		gbc_lblInfo.anchor = GridBagConstraints.WEST;
-		gbc_lblInfo.insets = new Insets(0, 0, 5, 0);
-		gbc_lblInfo.gridx = 3;
-		gbc_lblInfo.gridy = 6;
-		pnlRegistro.add(lblInfo, gbc_lblInfo);
-		
-		label_8 = new JLabel("Repetir contrase\u00F1a:");
-		label_8.setForeground(new Color(81, 43, 55));
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label_8 = new GridBagConstraints();
-		gbc_label_8.anchor = GridBagConstraints.EAST;
-		gbc_label_8.insets = new Insets(0, 0, 5, 5);
-		gbc_label_8.gridx = 1;
-		gbc_label_8.gridy = 7;
-		pnlRegistro.add(label_8, gbc_label_8);
-		
-		pwdfRContrasena_1 = new JPasswordField();
-		pwdfRContrasena_1.addFocusListener(new MiFocusListener());
-		GridBagConstraints gbc_pwdfRContrasena_1 = new GridBagConstraints();
-		gbc_pwdfRContrasena_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pwdfRContrasena_1.insets = new Insets(0, 0, 5, 5);
-		gbc_pwdfRContrasena_1.gridx = 2;
-		gbc_pwdfRContrasena_1.gridy = 7;
-		pnlRegistro.add(pwdfRContrasena_1, gbc_pwdfRContrasena_1);
-		
-		lblInfo2 = new JLabel("");
-		lblInfo2.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
-		lblInfo2.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblInfo2 = new GridBagConstraints();
-		gbc_lblInfo2.insets = new Insets(0, 0, 5, 0);
-		gbc_lblInfo2.anchor = GridBagConstraints.WEST;
-		gbc_lblInfo2.gridx = 3;
-		gbc_lblInfo2.gridy = 7;
-		pnlRegistro.add(lblInfo2, gbc_lblInfo2);
-		
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBackground(new Color(237, 217, 194));
-		btnAceptar.setForeground(new Color(81, 43, 55));
-		btnAceptar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		btnAceptar.setBorder(new RoundedBorder(10));
-		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-		gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAceptar.gridx = 2;
-		gbc_btnAceptar.gridy = 8;
-		pnlRegistro.add(btnAceptar, gbc_btnAceptar);
-		
+
+		lblTituloRegistro_1 = new JLabel("\u00BFA\u00FAn no tienes cuenta?");
+		lblTituloRegistro_1.setForeground(new Color(81, 43, 55));
+		lblTituloRegistro_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTituloRegistro_1.setFont(new Font("Goudy Old Style", Font.PLAIN, 30));
+		GridBagConstraints gbc_lblTituloRegistro_1 = new GridBagConstraints();
+		gbc_lblTituloRegistro_1.anchor = GridBagConstraints.SOUTH;
+		gbc_lblTituloRegistro_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblTituloRegistro_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTituloRegistro_1.gridx = 2;
+		gbc_lblTituloRegistro_1.gridy = 0;
+		pnlRegistro.add(lblTituloRegistro_1, gbc_lblTituloRegistro_1);
+
+		lblTituloRegistro_2 = new JLabel("\u00A1Reg\u00EDstrate!");
+		lblTituloRegistro_2.setForeground(new Color(81, 43, 55));
+		lblTituloRegistro_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTituloRegistro_2.setFont(new Font("Goudy Old Style", Font.PLAIN, 28));
+		GridBagConstraints gbc_lblTituloRegistro_2 = new GridBagConstraints();
+		gbc_lblTituloRegistro_2.anchor = GridBagConstraints.NORTH;
+		gbc_lblTituloRegistro_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTituloRegistro_2.gridx = 2;
+		gbc_lblTituloRegistro_2.gridy = 1;
+		pnlRegistro.add(lblTituloRegistro_2, gbc_lblTituloRegistro_2);
+
+		lblNombreRegistro = new JLabel("Nombre:");
+		lblNombreRegistro.setForeground(new Color(81, 43, 55));
+		lblNombreRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNombreRegistro = new GridBagConstraints();
+		gbc_lblNombreRegistro.anchor = GridBagConstraints.EAST;
+		gbc_lblNombreRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreRegistro.gridx = 1;
+		gbc_lblNombreRegistro.gridy = 2;
+		pnlRegistro.add(lblNombreRegistro, gbc_lblNombreRegistro);
+
+		tFNombreRegistro = new JTextField();
+		tFNombreRegistro.addFocusListener(new MiFocusListener());
+		tFNombreRegistro.setFocusTraversalPolicyProvider(true);
+		tFNombreRegistro.setColumns(10);
+		tFNombreRegistro.setBackground(Color.WHITE);
+		GridBagConstraints gbc_tFNombreRegistro = new GridBagConstraints();
+		gbc_tFNombreRegistro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFNombreRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_tFNombreRegistro.gridx = 2;
+		gbc_tFNombreRegistro.gridy = 2;
+		pnlRegistro.add(tFNombreRegistro, gbc_tFNombreRegistro);
+
+		lblApellidosRegistro = new JLabel("Apellidos:");
+		lblApellidosRegistro.setForeground(new Color(81, 43, 55));
+		lblApellidosRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblApellidosRegistro = new GridBagConstraints();
+		gbc_lblApellidosRegistro.anchor = GridBagConstraints.EAST;
+		gbc_lblApellidosRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblApellidosRegistro.gridx = 1;
+		gbc_lblApellidosRegistro.gridy = 3;
+		pnlRegistro.add(lblApellidosRegistro, gbc_lblApellidosRegistro);
+
+		tFApellidosRegistro = new JTextField();
+		tFApellidosRegistro.addFocusListener(new MiFocusListener());
+		tFApellidosRegistro.setColumns(10);
+		GridBagConstraints gbc_tFApellidosRegistro = new GridBagConstraints();
+		gbc_tFApellidosRegistro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFApellidosRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_tFApellidosRegistro.gridx = 2;
+		gbc_tFApellidosRegistro.gridy = 3;
+		pnlRegistro.add(tFApellidosRegistro, gbc_tFApellidosRegistro);
+
+		lblCorreoElectronicoRegistro = new JLabel("Correo electr\u00F3nico:");
+		lblCorreoElectronicoRegistro.setForeground(new Color(81, 43, 55));
+		lblCorreoElectronicoRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblCorreoElectronicoRegistro = new GridBagConstraints();
+		gbc_lblCorreoElectronicoRegistro.anchor = GridBagConstraints.EAST;
+		gbc_lblCorreoElectronicoRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCorreoElectronicoRegistro.gridx = 1;
+		gbc_lblCorreoElectronicoRegistro.gridy = 4;
+		pnlRegistro.add(lblCorreoElectronicoRegistro, gbc_lblCorreoElectronicoRegistro);
+
+		tFCorreoElectronicoRegistro = new JTextField();
+		tFCorreoElectronicoRegistro.addFocusListener(new MiFocusListener());
+		tFCorreoElectronicoRegistro.setColumns(10);
+		GridBagConstraints gbc_tFCorreoElectronicoRegistro = new GridBagConstraints();
+		gbc_tFCorreoElectronicoRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_tFCorreoElectronicoRegistro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFCorreoElectronicoRegistro.gridx = 2;
+		gbc_tFCorreoElectronicoRegistro.gridy = 4;
+		pnlRegistro.add(tFCorreoElectronicoRegistro, gbc_tFCorreoElectronicoRegistro);
+
+		lblFechaRegistro = new JLabel("Fecha de nacimiento:");
+		lblFechaRegistro.setForeground(new Color(81, 43, 55));
+		lblFechaRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblFechaRegistro = new GridBagConstraints();
+		gbc_lblFechaRegistro.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaRegistro.gridx = 1;
+		gbc_lblFechaRegistro.gridy = 5;
+		pnlRegistro.add(lblFechaRegistro, gbc_lblFechaRegistro);
+
+		tFFechaNacimientoRegistro = new JTextField();
+		tFFechaNacimientoRegistro.addFocusListener(new MiFocusListener());
+		tFFechaNacimientoRegistro.setColumns(10);
+		GridBagConstraints gbc_tFFechaNacimientoRegistro = new GridBagConstraints();
+		gbc_tFFechaNacimientoRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_tFFechaNacimientoRegistro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFFechaNacimientoRegistro.gridx = 2;
+		gbc_tFFechaNacimientoRegistro.gridy = 5;
+		pnlRegistro.add(tFFechaNacimientoRegistro, gbc_tFFechaNacimientoRegistro);
+
+		lblCalendarioRegistro = new JLabel("");
+		lblCalendarioRegistro
+				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-30.png")));
+		lblCalendarioRegistro.setOpaque(true);
+		lblCalendarioRegistro.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblCalendarioRegistro = new GridBagConstraints();
+		gbc_lblCalendarioRegistro.anchor = GridBagConstraints.WEST;
+		gbc_lblCalendarioRegistro.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCalendarioRegistro.gridx = 3;
+		gbc_lblCalendarioRegistro.gridy = 5;
+		pnlRegistro.add(lblCalendarioRegistro, gbc_lblCalendarioRegistro);
+
+		lblContrasenaRegistro = new JLabel("Contrase\u00F1a:");
+		lblContrasenaRegistro.setForeground(new Color(81, 43, 55));
+		lblContrasenaRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblContrasenaRegistro = new GridBagConstraints();
+		gbc_lblContrasenaRegistro.anchor = GridBagConstraints.EAST;
+		gbc_lblContrasenaRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblContrasenaRegistro.gridx = 1;
+		gbc_lblContrasenaRegistro.gridy = 6;
+		pnlRegistro.add(lblContrasenaRegistro, gbc_lblContrasenaRegistro);
+
+		pwdfContrasenaRegistro = new JPasswordField();
+		pwdfContrasenaRegistro.addFocusListener(new MiFocusListener());
+		GridBagConstraints gbc_pwdfContrasenaRegistro = new GridBagConstraints();
+		gbc_pwdfContrasenaRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_pwdfContrasenaRegistro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pwdfContrasenaRegistro.gridx = 2;
+		gbc_pwdfContrasenaRegistro.gridy = 6;
+		pnlRegistro.add(pwdfContrasenaRegistro, gbc_pwdfContrasenaRegistro);
+
+		lblInfoRegistro = new JLabel("");
+		lblInfoRegistro.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfoRegistro.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblInfoRegistro = new GridBagConstraints();
+		gbc_lblInfoRegistro.anchor = GridBagConstraints.WEST;
+		gbc_lblInfoRegistro.insets = new Insets(0, 0, 5, 0);
+		gbc_lblInfoRegistro.gridx = 3;
+		gbc_lblInfoRegistro.gridy = 6;
+		pnlRegistro.add(lblInfoRegistro, gbc_lblInfoRegistro);
+
+		lblRContrasenaRegistro = new JLabel("Repetir contrase\u00F1a:");
+		lblRContrasenaRegistro.setForeground(new Color(81, 43, 55));
+		lblRContrasenaRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblRContrasenaRegistro = new GridBagConstraints();
+		gbc_lblRContrasenaRegistro.anchor = GridBagConstraints.EAST;
+		gbc_lblRContrasenaRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRContrasenaRegistro.gridx = 1;
+		gbc_lblRContrasenaRegistro.gridy = 7;
+		pnlRegistro.add(lblRContrasenaRegistro, gbc_lblRContrasenaRegistro);
+
+		pwdfRContrasenaRegistro = new JPasswordField();
+		pwdfRContrasenaRegistro.addFocusListener(new MiFocusListener());
+		GridBagConstraints gbc_pwdfRContrasenaRegistro = new GridBagConstraints();
+		gbc_pwdfRContrasenaRegistro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pwdfRContrasenaRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_pwdfRContrasenaRegistro.gridx = 2;
+		gbc_pwdfRContrasenaRegistro.gridy = 7;
+		pnlRegistro.add(pwdfRContrasenaRegistro, gbc_pwdfRContrasenaRegistro);
+
+		lblInfoRegistro_2 = new JLabel("");
+		lblInfoRegistro_2
+				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfoRegistro_2.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblInfoRegistro_2 = new GridBagConstraints();
+		gbc_lblInfoRegistro_2.insets = new Insets(0, 0, 5, 0);
+		gbc_lblInfoRegistro_2.anchor = GridBagConstraints.WEST;
+		gbc_lblInfoRegistro_2.gridx = 3;
+		gbc_lblInfoRegistro_2.gridy = 7;
+		pnlRegistro.add(lblInfoRegistro_2, gbc_lblInfoRegistro_2);
+
+		btnAceptarRegistro = new JButton("Aceptar");
+		btnAceptarRegistro.setBackground(new Color(237, 217, 194));
+		btnAceptarRegistro.setForeground(new Color(81, 43, 55));
+		btnAceptarRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnAceptarRegistro.setBorder(new RoundedBorder(10));
+		GridBagConstraints gbc_btnAceptarRegistro = new GridBagConstraints();
+		gbc_btnAceptarRegistro.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAceptarRegistro.gridx = 2;
+		gbc_btnAceptarRegistro.gridy = 8;
+		pnlRegistro.add(btnAceptarRegistro, gbc_btnAceptarRegistro);
+
+		btnLimpiarCamposRegistro = new JButton("Limpiar campos");
+		btnLimpiarCamposRegistro.setForeground(new Color(81, 43, 55));
+		btnLimpiarCamposRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnLimpiarCamposRegistro.setBorder(new RoundedBorder(10));
+		btnLimpiarCamposRegistro.setBackground(new Color(237, 217, 194));
+		GridBagConstraints gbc_btnLimpiarCamposRegistro = new GridBagConstraints();
+		gbc_btnLimpiarCamposRegistro.anchor = GridBagConstraints.EAST;
+		gbc_btnLimpiarCamposRegistro.insets = new Insets(0, 0, 0, 5);
+		gbc_btnLimpiarCamposRegistro.gridx = 2;
+		gbc_btnLimpiarCamposRegistro.gridy = 9;
+		pnlRegistro.add(btnLimpiarCamposRegistro, gbc_btnLimpiarCamposRegistro);
+
 		pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(new Color(244, 229, 226));
 		pnlFormulario.setVisible(false);
 		pnlCardInformacion.add(pnlFormulario, "Formulario");
 		GridBagLayout gbl_pnlFormulario = new GridBagLayout();
-		gbl_pnlFormulario.columnWidths = new int[]{41, 374, 442, 396, 0};
-		gbl_pnlFormulario.rowHeights = new int[]{92, 57, 50, 50, 50, 50, 0, 45, 49, 0};
-		gbl_pnlFormulario.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlFormulario.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlFormulario.columnWidths = new int[] { 41, 374, 442, 396, 0 };
+		gbl_pnlFormulario.rowHeights = new int[] { 92, 57, 50, 50, 50, 50, 0, 45, 49, 0 };
+		gbl_pnlFormulario.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlFormulario.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlFormulario.setLayout(gbl_pnlFormulario);
-		
-		lblContacto = new JLabel("Contacto");
-		lblContacto.setForeground(new Color(81, 43, 55));
-		lblContacto.setHorizontalAlignment(SwingConstants.CENTER);
-		lblContacto.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
-		lblContacto.setBackground(SystemColor.menu);
-		GridBagConstraints gbc_lblContacto = new GridBagConstraints();
-		gbc_lblContacto.insets = new Insets(0, 0, 5, 0);
-		gbc_lblContacto.gridx = 2;
-		gbc_lblContacto.gridy = 0;
-		pnlFormulario.add(lblContacto, gbc_lblContacto);
-		
-		tPTexto = new JTextPane();
-		tPTexto.setForeground(new Color(81, 43, 55));
-		tPTexto.setOpaque(false);
-		tPTexto.setText("Puedes rellenar y enviarnos este formulario para solicitar informaci\u00F3n acerca de nuestras rutas o para realizar una reserva.");
-		tPTexto.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		tPTexto.setBackground(new Color(237, 217, 194));
-		GridBagConstraints gbc_tPTexto = new GridBagConstraints();
-		gbc_tPTexto.anchor = GridBagConstraints.NORTH;
-		gbc_tPTexto.gridwidth = 4;
-		gbc_tPTexto.insets = new Insets(0, 0, 5, 0);
-		gbc_tPTexto.gridx = 0;
-		gbc_tPTexto.gridy = 1;
-		pnlFormulario.add(tPTexto, gbc_tPTexto);
-		
-		lblNombre = new JLabel("Nombre:");
-		lblNombre.setForeground(new Color(81, 43, 55));
-		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-		gbc_lblNombre.anchor = GridBagConstraints.EAST;
-		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombre.gridx = 1;
-		gbc_lblNombre.gridy = 2;
-		pnlFormulario.add(lblNombre, gbc_lblNombre);
-		
-		tFNombre_1 = new JTextField();
-		tFNombre_1.addFocusListener(new MiFocusListener());
-		tFNombre_1.setColumns(10);
-		GridBagConstraints gbc_tFNombre_1 = new GridBagConstraints();
-		gbc_tFNombre_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFNombre_1.insets = new Insets(0, 0, 5, 5);
-		gbc_tFNombre_1.gridx = 2;
-		gbc_tFNombre_1.gridy = 2;
-		pnlFormulario.add(tFNombre_1, gbc_tFNombre_1);
-		
-		lblEmail = new JLabel("Email:");
-		lblEmail.setForeground(new Color(81, 43, 55));
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
-		gbc_lblEmail.anchor = GridBagConstraints.EAST;
-		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmail.gridx = 1;
-		gbc_lblEmail.gridy = 3;
-		pnlFormulario.add(lblEmail, gbc_lblEmail);
-		
-		tFEmail = new JTextField();
-		tFEmail.addFocusListener(new MiFocusListener());
-		tFEmail.setColumns(10);
-		GridBagConstraints gbc_tFEmail = new GridBagConstraints();
-		gbc_tFEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_tFEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFEmail.gridx = 2;
-		gbc_tFEmail.gridy = 3;
-		pnlFormulario.add(tFEmail, gbc_tFEmail);
-		
-		lblAsunto = new JLabel("Asunto:");
-		lblAsunto.setForeground(new Color(81, 43, 55));
-		lblAsunto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblAsunto = new GridBagConstraints();
-		gbc_lblAsunto.anchor = GridBagConstraints.EAST;
-		gbc_lblAsunto.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAsunto.gridx = 1;
-		gbc_lblAsunto.gridy = 4;
-		pnlFormulario.add(lblAsunto, gbc_lblAsunto);
-		
-		tFAsunto = new JTextField();
-		tFAsunto.addFocusListener(new MiFocusListener());
-		tFAsunto.setColumns(10);
-		GridBagConstraints gbc_tFAsunto = new GridBagConstraints();
-		gbc_tFAsunto.insets = new Insets(0, 0, 5, 5);
-		gbc_tFAsunto.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFAsunto.gridx = 2;
-		gbc_tFAsunto.gridy = 4;
-		pnlFormulario.add(tFAsunto, gbc_tFAsunto);
-		
-		lblComentarios = new JLabel("Comentarios:");
-		lblComentarios.setForeground(new Color(81, 43, 55));
-		lblComentarios.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblComentarios = new GridBagConstraints();
-		gbc_lblComentarios.anchor = GridBagConstraints.EAST;
-		gbc_lblComentarios.fill = GridBagConstraints.VERTICAL;
-		gbc_lblComentarios.insets = new Insets(0, 0, 5, 5);
-		gbc_lblComentarios.gridx = 1;
-		gbc_lblComentarios.gridy = 5;
-		pnlFormulario.add(lblComentarios, gbc_lblComentarios);
-		
-		tFComentarios = new JTextField();
-		tFComentarios.addFocusListener(new MiFocusListener());
-		tFComentarios.setColumns(10);
-		GridBagConstraints gbc_tFComentarios = new GridBagConstraints();
-		gbc_tFComentarios.gridheight = 3;
-		gbc_tFComentarios.insets = new Insets(0, 0, 5, 5);
-		gbc_tFComentarios.fill = GridBagConstraints.BOTH;
-		gbc_tFComentarios.gridx = 2;
-		gbc_tFComentarios.gridy = 5;
-		pnlFormulario.add(tFComentarios, gbc_tFComentarios);
-		
-		btnEnviar = new JButton("  Enviar  ");
-		btnEnviar.setBackground(new Color(237, 217, 194));
-		btnEnviar.setForeground(new Color(81, 43, 55));
+
+		lblContactoFormulario = new JLabel("Contacto");
+		lblContactoFormulario.setForeground(new Color(81, 43, 55));
+		lblContactoFormulario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblContactoFormulario.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
+		lblContactoFormulario.setBackground(SystemColor.menu);
+		GridBagConstraints gbc_lblContactoFormulario = new GridBagConstraints();
+		gbc_lblContactoFormulario.insets = new Insets(0, 0, 5, 0);
+		gbc_lblContactoFormulario.gridx = 2;
+		gbc_lblContactoFormulario.gridy = 0;
+		pnlFormulario.add(lblContactoFormulario, gbc_lblContactoFormulario);
+
+		tPTextoFormulario = new JTextPane();
+		tPTextoFormulario.setForeground(new Color(81, 43, 55));
+		tPTextoFormulario.setOpaque(false);
+		tPTextoFormulario.setText(
+				"Puedes rellenar y enviarnos este formulario para solicitar informaci\u00F3n acerca de nuestras rutas o para realizar una reserva.");
+		tPTextoFormulario.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		tPTextoFormulario.setBackground(new Color(237, 217, 194));
+		GridBagConstraints gbc_tPTextoFormulario = new GridBagConstraints();
+		gbc_tPTextoFormulario.anchor = GridBagConstraints.NORTH;
+		gbc_tPTextoFormulario.gridwidth = 4;
+		gbc_tPTextoFormulario.insets = new Insets(0, 0, 5, 0);
+		gbc_tPTextoFormulario.gridx = 0;
+		gbc_tPTextoFormulario.gridy = 1;
+		pnlFormulario.add(tPTextoFormulario, gbc_tPTextoFormulario);
+
+		lblNombreFormulario = new JLabel("Nombre:");
+		lblNombreFormulario.setForeground(new Color(81, 43, 55));
+		lblNombreFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblNombreFormulario = new GridBagConstraints();
+		gbc_lblNombreFormulario.anchor = GridBagConstraints.EAST;
+		gbc_lblNombreFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreFormulario.gridx = 1;
+		gbc_lblNombreFormulario.gridy = 2;
+		pnlFormulario.add(lblNombreFormulario, gbc_lblNombreFormulario);
+
+		tFNombreFormulario = new JTextField();
+		tFNombreFormulario.addFocusListener(new MiFocusListener());
+		tFNombreFormulario.setColumns(10);
+		GridBagConstraints gbc_tFNombreFormulario = new GridBagConstraints();
+		gbc_tFNombreFormulario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFNombreFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_tFNombreFormulario.gridx = 2;
+		gbc_tFNombreFormulario.gridy = 2;
+		pnlFormulario.add(tFNombreFormulario, gbc_tFNombreFormulario);
+
+		lblEmailFormulario = new JLabel("Email:");
+		lblEmailFormulario.setForeground(new Color(81, 43, 55));
+		lblEmailFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblEmailFormulario = new GridBagConstraints();
+		gbc_lblEmailFormulario.anchor = GridBagConstraints.EAST;
+		gbc_lblEmailFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmailFormulario.gridx = 1;
+		gbc_lblEmailFormulario.gridy = 3;
+		pnlFormulario.add(lblEmailFormulario, gbc_lblEmailFormulario);
+
+		tFEmailFormulario = new JTextField();
+		tFEmailFormulario.addFocusListener(new MiFocusListener());
+		tFEmailFormulario.setColumns(10);
+		GridBagConstraints gbc_tFEmailFormulario = new GridBagConstraints();
+		gbc_tFEmailFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_tFEmailFormulario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFEmailFormulario.gridx = 2;
+		gbc_tFEmailFormulario.gridy = 3;
+		pnlFormulario.add(tFEmailFormulario, gbc_tFEmailFormulario);
+
+		lblAsuntoFormulario = new JLabel("Asunto:");
+		lblAsuntoFormulario.setForeground(new Color(81, 43, 55));
+		lblAsuntoFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblAsuntoFormulario = new GridBagConstraints();
+		gbc_lblAsuntoFormulario.anchor = GridBagConstraints.EAST;
+		gbc_lblAsuntoFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAsuntoFormulario.gridx = 1;
+		gbc_lblAsuntoFormulario.gridy = 4;
+		pnlFormulario.add(lblAsuntoFormulario, gbc_lblAsuntoFormulario);
+
+		tFAsuntoFormulario = new JTextField();
+		tFAsuntoFormulario.addFocusListener(new MiFocusListener());
+		tFAsuntoFormulario.setColumns(10);
+		GridBagConstraints gbc_tFAsuntoFormulario = new GridBagConstraints();
+		gbc_tFAsuntoFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_tFAsuntoFormulario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFAsuntoFormulario.gridx = 2;
+		gbc_tFAsuntoFormulario.gridy = 4;
+		pnlFormulario.add(tFAsuntoFormulario, gbc_tFAsuntoFormulario);
+
+		lblComentariosFormulario = new JLabel("Comentarios:");
+		lblComentariosFormulario.setForeground(new Color(81, 43, 55));
+		lblComentariosFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblComentariosFormulario = new GridBagConstraints();
+		gbc_lblComentariosFormulario.anchor = GridBagConstraints.EAST;
+		gbc_lblComentariosFormulario.fill = GridBagConstraints.VERTICAL;
+		gbc_lblComentariosFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblComentariosFormulario.gridx = 1;
+		gbc_lblComentariosFormulario.gridy = 5;
+		pnlFormulario.add(lblComentariosFormulario, gbc_lblComentariosFormulario);
+
+		tFComentariosFormulario = new JTextField();
+		tFComentariosFormulario.addFocusListener(new MiFocusListener());
+		tFComentariosFormulario.setColumns(10);
+		GridBagConstraints gbc_tFComentariosFormulario = new GridBagConstraints();
+		gbc_tFComentariosFormulario.gridheight = 3;
+		gbc_tFComentariosFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_tFComentariosFormulario.fill = GridBagConstraints.BOTH;
+		gbc_tFComentariosFormulario.gridx = 2;
+		gbc_tFComentariosFormulario.gridy = 5;
+		pnlFormulario.add(tFComentariosFormulario, gbc_tFComentariosFormulario);
+
+		btnEnviarFormulario = new JButton("  Enviar  ");
+		btnEnviarFormulario.setBackground(new Color(237, 217, 194));
+		btnEnviarFormulario.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
-		btnEnviar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
-		gbc_btnEnviar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnEnviar.gridx = 2;
-		gbc_btnEnviar.gridy = 8;
-		btnEnviar.setBorder(new RoundedBorder(10));
-		pnlFormulario.add(btnEnviar, gbc_btnEnviar);
-		
+		btnEnviarFormulario.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_btnEnviarFormulario = new GridBagConstraints();
+		gbc_btnEnviarFormulario.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEnviarFormulario.gridx = 2;
+		gbc_btnEnviarFormulario.gridy = 8;
+		btnEnviarFormulario.setBorder(new RoundedBorder(10));
+		pnlFormulario.add(btnEnviarFormulario, gbc_btnEnviarFormulario);
+
 		pnlInicioSesion = new JPanel();
 		pnlInicioSesion.setBorder(null);
 		pnlInicioSesion.setBackground(new Color(244, 229, 226));
 		pnlCardInformacion.add(pnlInicioSesion, "InicioSesion");
 		GridBagLayout gbl_pnlInicioSesion = new GridBagLayout();
-		gbl_pnlInicioSesion.columnWidths = new int[]{0, 234, 116, 301, 261, 85, 83, 0};
-		gbl_pnlInicioSesion.rowHeights = new int[]{142, 50, 50, 67, 55, 0, 0};
-		gbl_pnlInicioSesion.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlInicioSesion.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlInicioSesion.columnWidths = new int[] { 0, 234, 116, 301, 261, 85, 83, 0 };
+		gbl_pnlInicioSesion.rowHeights = new int[] { 142, 50, 50, 67, 55, 0, 0 };
+		gbl_pnlInicioSesion.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlInicioSesion.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlInicioSesion.setLayout(gbl_pnlInicioSesion);
-		
+
 		lblIniciaSesion = new JLabel("Inicia sesi\u00F3n");
 		lblIniciaSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIniciaSesion.setForeground(new Color(81, 43, 55));
@@ -824,160 +843,163 @@ public class VentanaPrincipal {
 		gbc_lblIniciaSesion.gridx = 3;
 		gbc_lblIniciaSesion.gridy = 0;
 		pnlInicioSesion.add(lblIniciaSesion, gbc_lblIniciaSesion);
-		
-		lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setForeground(new Color(81, 43, 55));
-		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
-		gbc_lblUsuario.anchor = GridBagConstraints.EAST;
-		gbc_lblUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsuario.gridx = 2;
-		gbc_lblUsuario.gridy = 1;
-		pnlInicioSesion.add(lblUsuario, gbc_lblUsuario);
-		
-		tFUsuario = new JTextField();
-		tFUsuario.addActionListener(new TFUsuarioActionListener());
-		tFUsuario.addFocusListener(new MiFocusListener());
-		tFUsuario.setColumns(10);
-		GridBagConstraints gbc_tFUsuario = new GridBagConstraints();
-		gbc_tFUsuario.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_tFUsuario.gridx = 3;
-		gbc_tFUsuario.gridy = 1;
-		pnlInicioSesion.add(tFUsuario, gbc_tFUsuario);
 
-		label_9 = new JLabel(" ");
-		label_9.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_label_9 = new GridBagConstraints();
-		gbc_label_9.anchor = GridBagConstraints.EAST;
-		gbc_label_9.gridheight = 2;
-		gbc_label_9.insets = new Insets(0, 0, 5, 5);
-		gbc_label_9.gridx = 1;
-		gbc_label_9.gridy = 1;
-		pnlInicioSesion.add(label_9, gbc_label_9);
-		
-		lblContrasena = new JLabel("Contrase\u00F1a:");
-		lblContrasena.setForeground(new Color(81, 43, 55));
-		lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblContrasena.setEnabled(false);
-		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
-		gbc_lblContrasena.anchor = GridBagConstraints.EAST;
-		gbc_lblContrasena.insets = new Insets(0, 0, 5, 5);
-		gbc_lblContrasena.gridx = 2;
-		gbc_lblContrasena.gridy = 2;
-		pnlInicioSesion.add(lblContrasena, gbc_lblContrasena);
-		
-		pwdfContrasena = new JPasswordField();
-		pwdfContrasena.addActionListener(new PwdfContrasenaActionListener());
-		pwdfContrasena.addFocusListener(new MiFocusListener());
-		pwdfContrasena.setEnabled(false);
-		GridBagConstraints gbc_pwdfContrasena = new GridBagConstraints();
-		gbc_pwdfContrasena.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pwdfContrasena.insets = new Insets(0, 0, 5, 5);
-		gbc_pwdfContrasena.gridx = 3;
-		gbc_pwdfContrasena.gridy = 2;
-		pnlInicioSesion.add(pwdfContrasena, gbc_pwdfContrasena);
-		
-		btnEntrar = new JButton("Entrar");
-		btnEntrar.setEnabled(false);
-		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnEntrar.setBackground(new Color(237, 217, 194));
-		btnEntrar.setForeground(new Color(81, 43, 55));
-		GridBagConstraints gbc_btnEntrar = new GridBagConstraints();
-		gbc_btnEntrar.anchor = GridBagConstraints.EAST;
-		gbc_btnEntrar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEntrar.gridx = 3;
-		gbc_btnEntrar.gridy = 3;
-		btnEntrar.setBorder(new RoundedBorder(10));
-		pnlInicioSesion.add(btnEntrar, gbc_btnEntrar);
-		
-		lblTexto = new JLabel("\u00BFHas olvidado tu contrase\u00F1a?");
-		lblTexto.setForeground(new Color(81, 43, 55));
-		lblTexto.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_lblTexto = new GridBagConstraints();
-		gbc_lblTexto.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTexto.gridx = 4;
-		gbc_lblTexto.gridy = 3;
-		pnlInicioSesion.add(lblTexto, gbc_lblTexto);
-		
-		lblInfo_1 = new JLabel("");
-		lblInfo_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
-		lblInfo_1.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblInfo_1 = new GridBagConstraints();
-		gbc_lblInfo_1.anchor = GridBagConstraints.WEST;
-		gbc_lblInfo_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInfo_1.gridx = 5;
-		gbc_lblInfo_1.gridy = 3;
-		pnlInicioSesion.add(lblInfo_1, gbc_lblInfo_1);
-		
-		lblMensajes = new JLabel("Mensajes de aviso.");
-		lblMensajes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblMensajes.setOpaque(true);
-		lblMensajes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMensajes.setForeground(new Color(81, 43, 55));
-		lblMensajes.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		lblMensajes.setBackground(new Color(237, 217, 194));
-		GridBagConstraints gbc_lblMensajes = new GridBagConstraints();
-		gbc_lblMensajes.insets = new Insets(0, 0, 0, 5);
-		gbc_lblMensajes.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblMensajes.gridwidth = 4;
-		gbc_lblMensajes.gridx = 2;
-		gbc_lblMensajes.gridy = 5;
-		lblMensajes.setBorder(new RoundedBorder(10));
-		pnlInicioSesion.add(lblMensajes, gbc_lblMensajes);
-		
+		lblUsuarioInicioSesion = new JLabel("Usuario:");
+		lblUsuarioInicioSesion.setForeground(new Color(81, 43, 55));
+		lblUsuarioInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblUsuarioInicioSesion = new GridBagConstraints();
+		gbc_lblUsuarioInicioSesion.anchor = GridBagConstraints.EAST;
+		gbc_lblUsuarioInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsuarioInicioSesion.gridx = 2;
+		gbc_lblUsuarioInicioSesion.gridy = 1;
+		pnlInicioSesion.add(lblUsuarioInicioSesion, gbc_lblUsuarioInicioSesion);
+
+		tFUsuarioInicioSesion = new JTextField();
+		tFUsuarioInicioSesion.addActionListener(new TFUsuarioActionListener());
+		tFUsuarioInicioSesion.addFocusListener(new MiFocusListener());
+		tFUsuarioInicioSesion.setColumns(10);
+		GridBagConstraints gbc_tFUsuarioInicioSesion = new GridBagConstraints();
+		gbc_tFUsuarioInicioSesion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFUsuarioInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_tFUsuarioInicioSesion.gridx = 3;
+		gbc_tFUsuarioInicioSesion.gridy = 1;
+		pnlInicioSesion.add(tFUsuarioInicioSesion, gbc_tFUsuarioInicioSesion);
+
+		lblIconoInicioSesion = new JLabel(" ");
+		lblIconoInicioSesion.setIcon(
+				new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
+		lblIconoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblIconoInicioSesion = new GridBagConstraints();
+		gbc_lblIconoInicioSesion.anchor = GridBagConstraints.EAST;
+		gbc_lblIconoInicioSesion.gridheight = 2;
+		gbc_lblIconoInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblIconoInicioSesion.gridx = 1;
+		gbc_lblIconoInicioSesion.gridy = 1;
+		pnlInicioSesion.add(lblIconoInicioSesion, gbc_lblIconoInicioSesion);
+
+		lblContrasenaInicioSesion = new JLabel("Contrase\u00F1a:");
+		lblContrasenaInicioSesion.setForeground(new Color(81, 43, 55));
+		lblContrasenaInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblContrasenaInicioSesion.setEnabled(false);
+		GridBagConstraints gbc_lblContrasenaInicioSesion = new GridBagConstraints();
+		gbc_lblContrasenaInicioSesion.anchor = GridBagConstraints.EAST;
+		gbc_lblContrasenaInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblContrasenaInicioSesion.gridx = 2;
+		gbc_lblContrasenaInicioSesion.gridy = 2;
+		pnlInicioSesion.add(lblContrasenaInicioSesion, gbc_lblContrasenaInicioSesion);
+
+		pwdfContrasenaInicioSesion = new JPasswordField();
+		pwdfContrasenaInicioSesion.addActionListener(new PwdfContrasenaActionListener());
+		pwdfContrasenaInicioSesion.addFocusListener(new MiFocusListener());
+		pwdfContrasenaInicioSesion.setEnabled(false);
+		GridBagConstraints gbc_pwdfContrasenaInicioSesion = new GridBagConstraints();
+		gbc_pwdfContrasenaInicioSesion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pwdfContrasenaInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_pwdfContrasenaInicioSesion.gridx = 3;
+		gbc_pwdfContrasenaInicioSesion.gridy = 2;
+		pnlInicioSesion.add(pwdfContrasenaInicioSesion, gbc_pwdfContrasenaInicioSesion);
+
+		btnLimpiar = new JButton("Limpiar campos");
+		btnLimpiar.setForeground(new Color(81, 43, 55));
+		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnLimpiar.setBorder(new RoundedBorder(10));
+		btnLimpiar.setBackground(new Color(237, 217, 194));
+		GridBagConstraints gbc_btnLimpiar = new GridBagConstraints();
+		gbc_btnLimpiar.gridheight = 2;
+		gbc_btnLimpiar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLimpiar.gridx = 4;
+		gbc_btnLimpiar.gridy = 1;
+		pnlInicioSesion.add(btnLimpiar, gbc_btnLimpiar);
+
+		btnEntrarInicioSesion = new JButton("Entrar");
+		btnEntrarInicioSesion.setEnabled(false);
+		btnEntrarInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnEntrarInicioSesion.setBackground(new Color(237, 217, 194));
+		btnEntrarInicioSesion.setForeground(new Color(81, 43, 55));
+		GridBagConstraints gbc_btnEntrarInicioSesion = new GridBagConstraints();
+		gbc_btnEntrarInicioSesion.anchor = GridBagConstraints.EAST;
+		gbc_btnEntrarInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEntrarInicioSesion.gridx = 3;
+		gbc_btnEntrarInicioSesion.gridy = 3;
+		btnEntrarInicioSesion.setBorder(new RoundedBorder(10));
+		pnlInicioSesion.add(btnEntrarInicioSesion, gbc_btnEntrarInicioSesion);
+
+		lblTextoInicioSesion = new JLabel("\u00BFHas olvidado tu contrase\u00F1a?");
+		lblTextoInicioSesion.setForeground(new Color(81, 43, 55));
+		lblTextoInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblTextoInicioSesion = new GridBagConstraints();
+		gbc_lblTextoInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTextoInicioSesion.gridx = 4;
+		gbc_lblTextoInicioSesion.gridy = 3;
+		pnlInicioSesion.add(lblTextoInicioSesion, gbc_lblTextoInicioSesion);
+
+		lblInfoInicioSesion = new JLabel("");
+		lblInfoInicioSesion
+				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblInfoInicioSesion = new GridBagConstraints();
+		gbc_lblInfoInicioSesion.anchor = GridBagConstraints.WEST;
+		gbc_lblInfoInicioSesion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInfoInicioSesion.gridx = 5;
+		gbc_lblInfoInicioSesion.gridy = 3;
+		pnlInicioSesion.add(lblInfoInicioSesion, gbc_lblInfoInicioSesion);
+
+		lblMensajesInicioSesion = new JLabel("Mensajes del sistema");
+		lblMensajesInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMensajesInicioSesion.setOpaque(true);
+		lblMensajesInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensajesInicioSesion.setForeground(new Color(81, 43, 55));
+		lblMensajesInicioSesion.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		lblMensajesInicioSesion.setBackground(new Color(237, 217, 194));
+		GridBagConstraints gbc_lblMensajesInicioSesion = new GridBagConstraints();
+		gbc_lblMensajesInicioSesion.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMensajesInicioSesion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblMensajesInicioSesion.gridwidth = 4;
+		gbc_lblMensajesInicioSesion.gridx = 2;
+		gbc_lblMensajesInicioSesion.gridy = 5;
+		lblMensajesInicioSesion.setBorder(new RoundedBorder(10));
+		pnlInicioSesion.add(lblMensajesInicioSesion, gbc_lblMensajesInicioSesion);
+
 		btnFormulario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout)(pnlCardInformacion.getLayout());
+				CardLayout cl = (CardLayout) (pnlCardInformacion.getLayout());
 				cl.show(pnlCardInformacion, "Formulario");
 			}
 		});
-		
+
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout)(pnlCardInformacion.getLayout());
+				CardLayout cl = (CardLayout) (pnlCardInformacion.getLayout());
 				cl.show(pnlCardInformacion, "Registro");
 			}
 		});
-		
+
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout)(pnlCardInformacion.getLayout());
+				CardLayout cl = (CardLayout) (pnlCardInformacion.getLayout());
 				cl.show(pnlCardInformacion, "InicioSesion");
 			}
 		});
-		
+
 		btnPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout)(pnlCardInformacion.getLayout());
-				cl.show(pnlCardInformacion,"Principal");
+				CardLayout cl = (CardLayout) (pnlCardInformacion.getLayout());
+				cl.show(pnlCardInformacion, "Principal");
 			}
 		});
-		
-	}
 
-	private class TFUsuarioActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (String.valueOf(tFUsuario.getText()).equals(user)) {
-				lblMensajes.setBackground(new Color(151, 168, 142));
-				lblMensajes.setForeground(Color.WHITE);
-				lblMensajes.setText("Usuario correcto.");
-				// Activamos los de la contraseña
-				lblContrasena.setEnabled(true);
-				pwdfContrasena.setEnabled(true);
-				// Pasamos el foco (el cursor) al campo contraseña
-				pwdfContrasena.requestFocus();
-				
-			} else {
-				lblMensajes.setBackground(new Color(130, 46, 59));
-				lblMensajes.setForeground(Color.WHITE);
-				lblMensajes.setText("Usuario incorrecto. Vuelva a intentarlo.");
-				tFUsuario.setText(null);
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetearLogin();
 
 			}
-			
-		}
+		});
+
+		btnLimpiarCamposRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetearRegistro();
+			}
+		});
 	}
 
 	private class MiFocusListener extends FocusAdapter {
@@ -992,42 +1014,79 @@ public class VentanaPrincipal {
 		}
 	}
 
-	private class PwdfContrasenaActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			// Obtenener contraseña introducida
-			try {
-				if (String.valueOf(pwdfContrasena.getPassword()).equals(password)) {
-					lblMensajes.setBackground(new Color(151, 168, 142));
-					lblMensajes.setForeground(Color.WHITE);
-					lblMensajes.setText("Contraseña correcta, puede entrar.");
-					btnEntrar.setEnabled(true);
-					lblMensajes.repaint();
+	private class TFUsuarioActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (String.valueOf(tFUsuarioInicioSesion.getText()).equals(user)) {
+				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
+				lblMensajesInicioSesion.setForeground(Color.WHITE);
+				lblMensajesInicioSesion.setText("Usuario correcto.");
+				// Activamos los de la contraseña
+				lblContrasenaInicioSesion.setEnabled(true);
+				pwdfContrasenaInicioSesion.setEnabled(true);
+				// Pasamos el foco (el cursor) al campo contraseña
+				pwdfContrasenaInicioSesion.requestFocus();
 
-				} else {
-					lblMensajes.setBackground(new Color(130, 46, 59));
-					lblMensajes.setForeground(Color.WHITE);
-					lblMensajes.setText("Contraseña incorrecta, vuelva a intentarlo.");
-					btnEntrar.setEnabled(false);
-					pwdfContrasena.setText(null);
-				}
-
-				TimeUnit.SECONDS.sleep(2);
-				lblContrasena.setEnabled(false);
-				pwdfContrasena.setEnabled(false);
-				tFUsuario.setText(null);
-				pwdfContrasena.setText(null);
-				lblMensajes.setBackground(new Color(237, 217, 194));
-				lblMensajes.setForeground(new Color(81, 43, 55));
-				lblMensajes.setText("Mensajes de aviso.");
-				lblMensajes.setVisible(true);
-
-			} catch (InterruptedException e) {
-				System.err.format("Error en el temporizador.", e);
-
+			} else {
+				lblMensajesInicioSesion.setBackground(new Color(130, 46, 59));
+				lblMensajesInicioSesion.setForeground(Color.WHITE);
+				lblMensajesInicioSesion.setText("Usuario incorrecto. Vuelva a intentarlo.");
+				tFUsuarioInicioSesion.setText(null);
 			}
-			
+
 		}
-	
 	}
 
+	private class PwdfContrasenaActionListener implements ActionListener {
+		// Obtener contraseña introducida
+		public void actionPerformed(ActionEvent arg0) {
+			if (String.valueOf(pwdfContrasenaInicioSesion.getPassword()).equals(password)) {
+				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
+				lblMensajesInicioSesion.setForeground(Color.WHITE);
+				lblMensajesInicioSesion.setText("Contraseña correcta, puede entrar.");
+				btnEntrarInicioSesion.setEnabled(true);
+
+				// Temporizador para borrar los campos a los 3,5 segundos una vez haya entrado
+				// el usuario
+				Timer timer = new Timer();
+				TimerTask task = new TimerTask() {
+					public void run() {
+						resetearLogin();
+					}
+				};
+
+				timer.schedule(task, 3500);
+
+			} else {
+				lblMensajesInicioSesion.setBackground(new Color(130, 46, 59));
+				lblMensajesInicioSesion.setForeground(Color.WHITE);
+				lblMensajesInicioSesion.setText("Contraseña incorrecta, vuelva a intentarlo.");
+				btnEntrarInicioSesion.setEnabled(false);
+				pwdfContrasenaInicioSesion.setText(null);
+
+			}
+
+		}
+
+	}
+
+	public void resetearLogin() {
+		lblContrasenaInicioSesion.setEnabled(false);
+		pwdfContrasenaInicioSesion.setEnabled(false);
+		tFUsuarioInicioSesion.setText(null);
+		pwdfContrasenaInicioSesion.setText(null);
+		lblMensajesInicioSesion.setBackground(new Color(237, 217, 194));
+		lblMensajesInicioSesion.setForeground(new Color(81, 43, 55));
+		lblMensajesInicioSesion.setText("Mensajes de aviso.");
+		lblMensajesInicioSesion.setVisible(true);
+	}
+
+	public void resetearRegistro() {
+		tFNombreRegistro.setText(null);
+		tFApellidosRegistro.setText(null);
+		tFCorreoElectronicoRegistro.setText(null);
+		tFFechaNacimientoRegistro.setText(null);
+		pwdfContrasenaRegistro.setText(null);
+		pwdfRContrasenaRegistro.setText(null);
+
+	}
 }
