@@ -1,12 +1,10 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Rectangle;
@@ -132,12 +130,21 @@ public class VentanaPrincipal {
 	private JComboBox cBIdiomas;
 	private JToolBar toolBar;
 	private JScrollPane scrollPane;
+<<<<<<< HEAD
 	private Color colorBlanco = new Color(255, 255, 255);
 	private Color colorResaltado = new Color(206, 207, 210);
 	private final String password = "admin";
+=======
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (206, 207, 210);
+	private final String password = "1234";
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 	private final String user = "Admin";
+<<<<<<< HEAD
 	private JButton btnLimpiar;
 	private JButton btnLimpiarCamposRegistro;
+=======
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 
 	/**
 	 * Launch the application.
@@ -844,6 +851,7 @@ public class VentanaPrincipal {
 		gbc_lblIniciaSesion.gridy = 0;
 		pnlInicioSesion.add(lblIniciaSesion, gbc_lblIniciaSesion);
 
+<<<<<<< HEAD
 		lblUsuarioInicioSesion = new JLabel("Usuario:");
 		lblUsuarioInicioSesion.setForeground(new Color(81, 43, 55));
 		lblUsuarioInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -960,6 +968,89 @@ public class VentanaPrincipal {
 		lblMensajesInicioSesion.setBorder(new RoundedBorder(10));
 		pnlInicioSesion.add(lblMensajesInicioSesion, gbc_lblMensajesInicioSesion);
 
+=======
+		label_9 = new JLabel(" ");
+		label_9.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
+		label_9.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_label_9 = new GridBagConstraints();
+		gbc_label_9.anchor = GridBagConstraints.EAST;
+		gbc_label_9.gridheight = 2;
+		gbc_label_9.insets = new Insets(0, 0, 5, 5);
+		gbc_label_9.gridx = 1;
+		gbc_label_9.gridy = 1;
+		pnlInicioSesion.add(label_9, gbc_label_9);
+		
+		lblContrasena = new JLabel("Contrase\u00F1a:");
+		lblContrasena.setForeground(new Color(81, 43, 55));
+		lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblContrasena.setEnabled(false);
+		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
+		gbc_lblContrasena.anchor = GridBagConstraints.EAST;
+		gbc_lblContrasena.insets = new Insets(0, 0, 5, 5);
+		gbc_lblContrasena.gridx = 2;
+		gbc_lblContrasena.gridy = 2;
+		pnlInicioSesion.add(lblContrasena, gbc_lblContrasena);
+		
+		pwdfContrasena = new JPasswordField();
+		pwdfContrasena.addActionListener(new PwdfContrasenaActionListener());
+		pwdfContrasena.addFocusListener(new MiFocusListener());
+		pwdfContrasena.setEnabled(false);
+		GridBagConstraints gbc_pwdfContrasena = new GridBagConstraints();
+		gbc_pwdfContrasena.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pwdfContrasena.insets = new Insets(0, 0, 5, 5);
+		gbc_pwdfContrasena.gridx = 3;
+		gbc_pwdfContrasena.gridy = 2;
+		pnlInicioSesion.add(pwdfContrasena, gbc_pwdfContrasena);
+		
+		btnEntrar = new JButton("Entrar");
+		btnEntrar.setEnabled(false);
+		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnEntrar.setBackground(new Color(237, 217, 194));
+		btnEntrar.setForeground(new Color(81, 43, 55));
+		GridBagConstraints gbc_btnEntrar = new GridBagConstraints();
+		gbc_btnEntrar.anchor = GridBagConstraints.EAST;
+		gbc_btnEntrar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEntrar.gridx = 3;
+		gbc_btnEntrar.gridy = 3;
+		btnEntrar.setBorder(new RoundedBorder(10));
+		pnlInicioSesion.add(btnEntrar, gbc_btnEntrar);
+		
+		lblTexto = new JLabel("\u00BFHas olvidado tu contrase\u00F1a?");
+		lblTexto.setForeground(new Color(81, 43, 55));
+		lblTexto.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblTexto = new GridBagConstraints();
+		gbc_lblTexto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTexto.gridx = 4;
+		gbc_lblTexto.gridy = 3;
+		pnlInicioSesion.add(lblTexto, gbc_lblTexto);
+		
+		lblInfo_1 = new JLabel("");
+		lblInfo_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfo_1.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblInfo_1 = new GridBagConstraints();
+		gbc_lblInfo_1.anchor = GridBagConstraints.WEST;
+		gbc_lblInfo_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInfo_1.gridx = 5;
+		gbc_lblInfo_1.gridy = 3;
+		pnlInicioSesion.add(lblInfo_1, gbc_lblInfo_1);
+		
+		lblMensajes = new JLabel("Mensajes de aviso.");
+		lblMensajes.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMensajes.setOpaque(true);
+		lblMensajes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensajes.setForeground(new Color(81, 43, 55));
+		lblMensajes.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		lblMensajes.setBackground(new Color(237, 217, 194));
+		GridBagConstraints gbc_lblMensajes = new GridBagConstraints();
+		gbc_lblMensajes.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMensajes.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblMensajes.gridwidth = 4;
+		gbc_lblMensajes.gridx = 2;
+		gbc_lblMensajes.gridy = 5;
+		lblMensajes.setBorder(new RoundedBorder(10));
+		pnlInicioSesion.add(lblMensajes, gbc_lblMensajes);
+		
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 		btnFormulario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout) (pnlCardInformacion.getLayout());
@@ -988,11 +1079,32 @@ public class VentanaPrincipal {
 			}
 		});
 
+<<<<<<< HEAD
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resetearLogin();
+=======
+	private class TFUsuarioActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (String.valueOf(tFUsuario.getText()).equals(user)) {
+				lblMensajes.setBackground(new Color(151, 168, 142));
+				lblMensajes.setForeground(Color.WHITE);
+				lblMensajes.setText("Usuario correcto.");
+				// Activamos los de la contraseña
+				lblContrasena.setEnabled(true);
+				pwdfContrasena.setEnabled(true);
+				// Pasamos el foco (el cursor) al campo contraseña
+				pwdfContrasena.requestFocus();
+				
+			} else {
+				lblMensajes.setBackground(new Color(130, 46, 59));
+				lblMensajes.setForeground(Color.WHITE);
+				lblMensajes.setText("Usuario incorrecto. Vuelva a intentarlo.");
+				tFUsuario.setText(null);
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 
 			}
+<<<<<<< HEAD
 		});
 
 		btnLimpiarCamposRegistro.addActionListener(new ActionListener() {
@@ -1000,6 +1112,10 @@ public class VentanaPrincipal {
 				resetearRegistro();
 			}
 		});
+=======
+			
+		}
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 	}
 
 	private class MiFocusListener extends FocusAdapter {
@@ -1014,6 +1130,7 @@ public class VentanaPrincipal {
 		}
 	}
 
+<<<<<<< HEAD
 	private class TFUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (String.valueOf(tFUsuarioInicioSesion.getText()).equals(user)) {
@@ -1026,14 +1143,50 @@ public class VentanaPrincipal {
 				// Pasamos el foco (el cursor) al campo contraseña
 				pwdfContrasenaInicioSesion.requestFocus();
 
+=======
+	private class PwdfContrasenaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			// Obtenener contraseña introducida
+			if (String.valueOf(pwdfContrasena.getPassword()).equals(password)) {
+				lblMensajes.setBackground(new Color(151, 168, 142));
+				lblMensajes.setForeground(Color.WHITE);
+				lblMensajes.setText("Contraseña correcta, puede entrar.");
+				btnEntrar.setEnabled(true);
+			
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 			} else {
+<<<<<<< HEAD
 				lblMensajesInicioSesion.setBackground(new Color(130, 46, 59));
 				lblMensajesInicioSesion.setForeground(Color.WHITE);
 				lblMensajesInicioSesion.setText("Usuario incorrecto. Vuelva a intentarlo.");
 				tFUsuarioInicioSesion.setText(null);
+=======
+				lblMensajes.setBackground(new Color(130, 46, 59));
+				lblMensajes.setForeground(Color.WHITE);
+				lblMensajes.setText("Contraseña incorrecta, vuelva a intentarlo.");
+				btnEntrar.setEnabled(false);
+				pwdfContrasena.setText(null);
+>>>>>>> branch 'master' of https://github.com/lauritajavega99/PracticaIPO1.git
 			}
-
+			
+			try {
+	            TimeUnit.SECONDS.sleep(2);
+	            lblContrasena.setEnabled(false);
+				pwdfContrasena.setEnabled(false);
+				tFUsuario.setText(null);
+				pwdfContrasena.setText(null);
+				lblMensajes.setBackground(new Color(237, 217, 194));
+				lblMensajes.setForeground(new Color(81, 43, 55));
+				lblMensajes.setText("Mensajes de aviso.");
+				lblMensajes.setVisible(true);
+				
+	        } catch (InterruptedException e) {
+	            System.err.format("Error en el temporizador.", e);
+	        
+	        }
+			
 		}
+	
 	}
 
 	private class PwdfContrasenaActionListener implements ActionListener {
