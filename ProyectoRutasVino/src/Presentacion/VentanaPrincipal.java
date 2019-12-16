@@ -1,12 +1,18 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.Rectangle;
+import javax.swing.JDesktopPane;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -14,32 +20,37 @@ import javax.swing.SwingConstants;
 import javax.swing.JToolBar;
 import java.awt.ComponentOrientation;
 import java.awt.Component;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Dialog.ModalExclusionType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Point;
 import java.awt.Font;
-<<<<<<< HEAD
-=======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JTextArea;
->>>>>>> bcc7e2e77d66093c8988fb0756815ed2607bcbfc
 import java.awt.CardLayout;
+import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
+import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.HierarchyListener;
+import java.awt.event.HierarchyEvent;
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
+import javax.swing.border.TitledBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.Cursor;
@@ -121,7 +132,7 @@ public class VentanaPrincipal {
 	private JScrollPane scrollPane;
 	private Color colorBlanco = new Color (255,255,255);
 	private Color colorResaltado = new Color (206, 207, 210);
-	private final String password = "1234";
+	private final String password = "admin";
 	private final String user = "Admin";
 
 	/**
@@ -243,8 +254,6 @@ public class VentanaPrincipal {
 
 
 		JComboBox cBIdiomas = new JComboBox();
-		cBIdiomas = new JComboBox();
-
 		cBIdiomas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		cBIdiomas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -986,23 +995,24 @@ public class VentanaPrincipal {
 	private class PwdfContrasenaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			// Obtenener contraseña introducida
-			if (String.valueOf(pwdfContrasena.getPassword()).equals(password)) {
-				lblMensajes.setBackground(new Color(151, 168, 142));
-				lblMensajes.setForeground(Color.WHITE);
-				lblMensajes.setText("Contraseña correcta, puede entrar.");
-				btnEntrar.setEnabled(true);
-			
-			} else {
-				lblMensajes.setBackground(new Color(130, 46, 59));
-				lblMensajes.setForeground(Color.WHITE);
-				lblMensajes.setText("Contraseña incorrecta, vuelva a intentarlo.");
-				btnEntrar.setEnabled(false);
-				pwdfContrasena.setText(null);
-			}
-			
 			try {
-	            TimeUnit.SECONDS.sleep(2);
-	            lblContrasena.setEnabled(false);
+				if (String.valueOf(pwdfContrasena.getPassword()).equals(password)) {
+					lblMensajes.setBackground(new Color(151, 168, 142));
+					lblMensajes.setForeground(Color.WHITE);
+					lblMensajes.setText("Contraseña correcta, puede entrar.");
+					btnEntrar.setEnabled(true);
+					lblMensajes.repaint();
+
+				} else {
+					lblMensajes.setBackground(new Color(130, 46, 59));
+					lblMensajes.setForeground(Color.WHITE);
+					lblMensajes.setText("Contraseña incorrecta, vuelva a intentarlo.");
+					btnEntrar.setEnabled(false);
+					pwdfContrasena.setText(null);
+				}
+
+				TimeUnit.SECONDS.sleep(2);
+				lblContrasena.setEnabled(false);
 				pwdfContrasena.setEnabled(false);
 				tFUsuario.setText(null);
 				pwdfContrasena.setText(null);
@@ -1010,11 +1020,11 @@ public class VentanaPrincipal {
 				lblMensajes.setForeground(new Color(81, 43, 55));
 				lblMensajes.setText("Mensajes de aviso.");
 				lblMensajes.setVisible(true);
-				
-	        } catch (InterruptedException e) {
-	            System.err.format("Error en el temporizador.", e);
-	        
-	        }
+
+			} catch (InterruptedException e) {
+				System.err.format("Error en el temporizador.", e);
+
+			}
 			
 		}
 	
