@@ -128,7 +128,6 @@ public class VentanaPrincipal {
 	private JButton btnFormulario;
 	private JButton btnAceptarRegistro;
 	private JButton btnEnviarFormulario;
-	private JComboBox cBIdiomas;
 	private JToolBar toolBar;
 	private JScrollPane scrollPane;
 	private final String user = "Admin";
@@ -253,33 +252,6 @@ public class VentanaPrincipal {
 		gbl_pnlIdioma.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		pnlIdioma.setLayout(gbl_pnlIdioma);
 
-		cBIdiomas = new JComboBox();
-		cBIdiomas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cBIdiomas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(
-						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
-				String idiomaSeleccionado = cBIdiomas.getSelectedItem().toString();
-
-				if (idiomaSeleccionado.contentEquals("Español")) {
-					lblBandera.setIcon(imagenSpain);
-
-				} else {
-					lblBandera.setIcon(imagenEnglish);
-				}
-
-				lblBandera.repaint();
-			}
-		});
-
-		cBIdiomas.setModel(new DefaultComboBoxModel(new String[] { "Espa\u00F1ol", "Ingl\u00E9s" }));
-		GridBagConstraints gbc_cBIdiomas = new GridBagConstraints();
-		gbc_cBIdiomas.insets = new Insets(0, 0, 0, 5);
-		gbc_cBIdiomas.gridx = 0;
-		gbc_cBIdiomas.gridy = 0;
-		pnlIdioma.add(cBIdiomas, gbc_cBIdiomas);
-
 		lblLupa = new JLabel("");
 		lblLupa.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/lupa.png")));
 		lblLupa.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -333,6 +305,10 @@ public class VentanaPrincipal {
 		pnlTitulo.add(toolBar, gbc_toolBar);
 
 		btnCiudadReal = new JButton("CiudadReal");
+		btnCiudadReal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCiudadReal.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
@@ -997,6 +973,24 @@ public class VentanaPrincipal {
 			}
 		});
 
+		lblBandera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
+				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				//String idiomaSeleccionado = cBIdiomas.getSelectedItem().toString();
+				
+				if(lblBandera.getIcon().equals(imagenSpain)) {
+					lblBandera.setIcon(imagenEnglish);
+					lblBandera.repaint();
+				}
+				
+				else {
+					lblBandera.setIcon(imagenSpain);
+					lblBandera.repaint(); 
+				}
+			}
+		});
 	}
 
 	private class TFUsuarioActionListener implements ActionListener {
