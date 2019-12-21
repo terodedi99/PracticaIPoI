@@ -978,17 +978,11 @@ public class VentanaPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(
-						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 				// String idiomaSeleccionado = cBIdiomas.getSelectedItem().toString();
-
+				lblBandera.setIcon(imagenSpain);
 				if (lblBandera.getIcon().equals(imagenSpain)) {
 					lblBandera.setIcon(imagenEnglish);
-					lblBandera.repaint();
-				}
-
-				else {
-					lblBandera.setIcon(imagenSpain);
 					lblBandera.repaint();
 				}
 			}
@@ -1025,7 +1019,6 @@ public class VentanaPrincipal {
 				timer.schedule(task, 10000);
 
 			}
-
 		}
 	}
 
