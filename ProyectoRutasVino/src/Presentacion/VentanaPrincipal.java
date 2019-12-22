@@ -1077,7 +1077,7 @@ public class VentanaPrincipal {
 	private class BtnCiudadRealActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			VentanaCiudades ciudad = new VentanaCiudades();
-			ciudad.frame.setVisible(true); //Hace visible la VentanaCiudades
+			ciudad.frame.setVisible(true); //Hacer visible la ventanaCiudades
 		}
 	}
 
