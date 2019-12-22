@@ -62,7 +62,7 @@ public class VentanaPrincipal {
 
 	private JFrame frame;
 	private JPanel pnlLogin;
-	private JPanel pnlIdioma;
+	private JPanel pnlBuscar;
 	private JPanel pnlTitulo;
 	private JPanel pnlCardInformacion;
 	private JPanel pnlInformacion;
@@ -179,7 +179,7 @@ public class VentanaPrincipal {
 		pnlLogin.setInheritsPopupMenu(true);
 		frame.getContentPane().add(pnlLogin, BorderLayout.NORTH);
 		GridBagLayout gbl_pnlLogin = new GridBagLayout();
-		gbl_pnlLogin.columnWidths = new int[] { 187, 600, 273, 107, 151, 0 };
+		gbl_pnlLogin.columnWidths = new int[] { 190, 600, 273, 107, 151, 0 };
 		gbl_pnlLogin.rowHeights = new int[] { 63, 0 };
 		gbl_pnlLogin.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_pnlLogin.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
@@ -240,17 +240,17 @@ public class VentanaPrincipal {
 		btnRegistrarse.setForeground(new Color(81, 43, 55));
 		btnRegistrarse.setBackground(new Color(206, 219, 197));
 
-		pnlIdioma = new JPanel();
-		pnlIdioma.setBackground(new Color(237, 217, 194));
-		pnlIdioma.setFocusTraversalPolicyProvider(true);
-		pnlIdioma.setFocusCycleRoot(true);
-		frame.getContentPane().add(pnlIdioma, BorderLayout.SOUTH);
-		GridBagLayout gbl_pnlIdioma = new GridBagLayout();
-		gbl_pnlIdioma.columnWidths = new int[] { 145, 325, 650, 96, 0 };
-		gbl_pnlIdioma.rowHeights = new int[] { 58, 0 };
-		gbl_pnlIdioma.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_pnlIdioma.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
-		pnlIdioma.setLayout(gbl_pnlIdioma);
+		pnlBuscar = new JPanel();
+		pnlBuscar.setBackground(new Color(237, 217, 194));
+		pnlBuscar.setFocusTraversalPolicyProvider(true);
+		pnlBuscar.setFocusCycleRoot(true);
+		frame.getContentPane().add(pnlBuscar, BorderLayout.SOUTH);
+		GridBagLayout gbl_pnlBuscar = new GridBagLayout();
+		gbl_pnlBuscar.columnWidths = new int[] { 145, 325, 650, 96, 0 };
+		gbl_pnlBuscar.rowHeights = new int[] { 58, 0 };
+		gbl_pnlBuscar.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_pnlBuscar.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		pnlBuscar.setLayout(gbl_pnlBuscar);
 
 		lblLupa = new JLabel("");
 		lblLupa.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/lupa.png")));
@@ -260,10 +260,10 @@ public class VentanaPrincipal {
 		lblLupa.setAlignmentX(1.0f);
 		GridBagConstraints gbc_lblLupa = new GridBagConstraints();
 		gbc_lblLupa.insets = new Insets(0, 0, 0, 5);
-		gbc_lblLupa.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblLupa.anchor = GridBagConstraints.EAST;
 		gbc_lblLupa.gridx = 2;
 		gbc_lblLupa.gridy = 0;
-		pnlIdioma.add(lblLupa, gbc_lblLupa);
+		pnlBuscar.add(lblLupa, gbc_lblLupa);
 
 		tFBuscar = new JTextField();
 		tFBuscar.setPreferredSize(new Dimension(100, 30));
@@ -271,7 +271,7 @@ public class VentanaPrincipal {
 		gbc_tFBuscar.anchor = GridBagConstraints.WEST;
 		gbc_tFBuscar.gridx = 3;
 		gbc_tFBuscar.gridy = 0;
-		pnlIdioma.add(tFBuscar, gbc_tFBuscar);
+		pnlBuscar.add(tFBuscar, gbc_tFBuscar);
 		tFBuscar.setColumns(10);
 
 		pnlTitulo = new JPanel();
