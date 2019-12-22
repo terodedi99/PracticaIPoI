@@ -20,7 +20,7 @@ import java.awt.Insets;
 
 public class VentanaCiudades {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JLabel lblCiudadReal;
 	private JToolBar toolBar;
 	private JButton btnOpiniones;
