@@ -305,10 +305,7 @@ public class VentanaPrincipal {
 		pnlTitulo.add(toolBar, gbc_toolBar);
 
 		btnCiudadReal = new JButton("CiudadReal");
-		btnCiudadReal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnCiudadReal.addActionListener(new BtnCiudadRealActionListener());
 		btnCiudadReal.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
@@ -1076,6 +1073,12 @@ public class VentanaPrincipal {
 
 		}
 
+	}
+	private class BtnCiudadRealActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			VentanaCiudades ciudad = new VentanaCiudades();
+			ciudad.setVisible(true);
+		}
 	}
 
 	public void resetearInicioSesion() {
