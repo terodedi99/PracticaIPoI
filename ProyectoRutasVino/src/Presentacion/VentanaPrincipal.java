@@ -52,6 +52,9 @@ import java.awt.event.HierarchyEvent;
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
+
+import Dominio.Localidad;
+
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.Cursor;
@@ -60,7 +63,7 @@ import java.awt.event.FocusEvent;
 
 public class VentanaPrincipal {
 
-	private JFrame frame;
+	JFrame frame;
 	private JPanel pnlLogin;
 	private JPanel pnlBuscar;
 	private JPanel pnlTitulo;
@@ -279,7 +282,7 @@ public class VentanaPrincipal {
 		pnlTitulo.setBackground(new Color(237, 217, 194));
 		pnlTitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagLayout gbl_pnlTitulo = new GridBagLayout();
-		gbl_pnlTitulo.columnWidths = new int[] { 1351, 0 };
+		gbl_pnlTitulo.columnWidths = new int[] { 1266, 0 };
 		gbl_pnlTitulo.rowHeights = new int[] { 69, 49, 0, 0, 0, 0 };
 		gbl_pnlTitulo.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_pnlTitulo.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
@@ -304,8 +307,7 @@ public class VentanaPrincipal {
 		gbc_toolBar.gridy = 1;
 		pnlTitulo.add(toolBar, gbc_toolBar);
 
-		btnCiudadReal = new JButton("CiudadReal");
-		btnCiudadReal.addActionListener(new BtnCiudadRealActionListener());
+		btnCiudadReal = new JButton("Ciudad Real");
 		btnCiudadReal.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
@@ -976,15 +978,57 @@ public class VentanaPrincipal {
 			public void mouseClicked(MouseEvent e) {
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
-				// String idiomaSeleccionado = cBIdiomas.getSelectedItem().toString();
-				lblBandera.setIcon(imagenSpain);
-				if (lblBandera.getIcon().equals(imagenSpain)) {
+
+				if (spain) {
+					lblBandera.setIcon(imagenSpain);
+					lblBandera.repaint();
+					spain = false;
+				} else {
 					lblBandera.setIcon(imagenEnglish);
 					lblBandera.repaint();
+					spain = true;
 				}
+
+			}
+		});
+
+		btnCiudadReal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Ciudad Real"), !spain);
+				ciudad.frame.setVisible(true);
+			}
+		});
+
+		btnValdepenas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Valdepeñas"), !spain);
+				ciudad.frame.setVisible(true);
+			}
+		});
+
+		btnAlmagro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Almagro"), !spain);
+				ciudad.frame.setVisible(true);
+			}
+		});
+
+		btnAlcazar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain);
+				ciudad.frame.setVisible(true);
+			}
+		});
+
+		btnCampo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Campo de Criptana"), !spain);
+				ciudad.frame.setVisible(true);
 			}
 		});
 	}
+
+	private boolean spain = false;
 
 	private class TFUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -1073,12 +1117,6 @@ public class VentanaPrincipal {
 
 		}
 
-	}
-	private class BtnCiudadRealActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			VentanaCiudades ciudad = new VentanaCiudades();
-			ciudad.frame.setVisible(true); //Hacer visible la ventanaCiudades
-		}
 	}
 
 	public void resetearInicioSesion() {
