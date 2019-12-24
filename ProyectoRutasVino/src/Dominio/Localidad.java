@@ -31,7 +31,7 @@ public class Localidad {
 			this.descripcion = "Valdepeñas es una de las ciudades más importante de la provincia de Ciudad Real, está situada al sudeste y cerca de Sierra Morena. A su término municipal se anexionó en 1949 la pedanía llamada Consolación.\r\n"
 					+ " En suma cuenta con más de 30.000 habitantes. \r\n"
 					+ "Haciendo honor a su rica historia, el municipio cuenta con varios focos de interés para sus visitantes dominados por la gran belleza y valor patrimonial de sus edificios religiosos, de los que destacaremos algunos; sin olvidar su conjunto urbano con la Plaza de España como núcleo de la vida y el comercio de la ciudad.";
-			this.ruta_imagen_localidad = "/Presentacion/ayunta1.png";
+			this.ruta_imagen_localidad = "/Presentacion/Valde.png";
 			this.precio_persona = "Precio por persona = 25€";
 			this.precio_grupo1 = "Precio para grupos entre 10 - 20 personas = 20€ por persona"; 
 			this.precio_grupo2 = "Precio para grupos entre 20 - 40 personas = 18€ por persona";
@@ -40,7 +40,7 @@ public class Localidad {
 			this.nombre = "Almagro";
 			this.descripcion = "Almagro, en el Campo de Calatrava, en el centro mismo de la provincia, cuenta con una posición estratégica en su entorno físico y cultural. La ciudad del teatro de corral, alberga el único Corral de Comedias que se ha mantenido intacto y en activo desde principios del siglo XVII hasta nuestros días, y que es, en buena parte, el emblema de la ciudad.\r\n" + 
 					"Mantiene todas sus partes: zaguán, alojería, patio, cazuela, galerías y tablado, así como una intensa actividad que hace crecer la ciudad, especialmente durante el Festival Internacional de Teatro Clásico.";
-			this.ruta_imagen_localidad = "/Presentacion/ayunta1.png";
+			this.ruta_imagen_localidad = "/Presentacion/almagro.png";
 			this.precio_persona = "Precio por persona = 30€";
 			this.precio_grupo1 = "Precio para grupos entre 10 - 20 personas = 25€ por persona";
 			this.precio_grupo2 = "Precio para grupos entre 20 - 40 personas = 20€ por persona";
@@ -51,7 +51,7 @@ public class Localidad {
 			this.descripcion = "Este municipio rivaliza con Alcalá de Henares por ser el lugar de nacimiento del célebre autor del Quijote, desde que en 1748 fue encontrada en la iglesia de Santa María la Mayor la partida de bautismo de \"Miguel de Cervantes Saavedra\". Esto hace que la ciudad esté impregnada de la presencia cervantina.  \r\n" + 
 					" \r\n" + 
 					"La visita a Alcázar de San Juan está llena de lugares de interés turístico y patrimonial como las calles del casco antiguo que nos llevarán a la Plaza de Santa María, presidida por una estatua de Miguel de Cervantes.Se conservan también viejas construcciones y casonas de piedra rosada como la Posada de Santo Domingo o el Palacio del Gran Prior, construido entre 1235 y 1237.";
-			this.ruta_imagen_localidad = "/Presentacion/ayunta1.png";
+			this.ruta_imagen_localidad = "/Presentacion/sanjuan.png";
 			this.precio_persona = "Precio por persona = 25€";
 			this.precio_grupo1 = "Precio para grupos entre 10 - 20 personas = 20€ por persona";
 			this.precio_grupo2 = "Precio para grupos entre 20 - 40 personas = 18€ por persona";
@@ -65,7 +65,7 @@ public class Localidad {
 					"En la localidad se conserva una amplia muestra de los típicos molinos contra los que luchó Don Quijote en el capítulo VIII del libro universal de Cervantes, convertidos así en seña de identidad de La Mancha. De un total de diez molinos, tres datan del siglo XVI: Molino Burleta, Molino Infanto y Molino Sardinero.​\r\n" + 
 					" \r\n" + 
 					"Es el lugar de nacimiento de la actriz y cantante Sara Montiel (1928-2013).";
-			this.ruta_imagen_localidad = "/Presentacion/ayunta1.png";
+			this.ruta_imagen_localidad = "/Presentacion/campo.png";
 			this.precio_persona = "Precio por persona = 30€";
 			this.precio_grupo1 = "Precio para grupos entre 10 - 20 personas = 25€ por persona";
 			this.precio_grupo2 = "Precio para grupos entre 20 - 40 personas = 20€ por persona";
@@ -92,7 +92,7 @@ public class Localidad {
 		opiniones[8] = "César: \r\n" + 
 				"Hicimos dos rutas, y ambas genial. Repetiremos. (***)";
 		opiniones[9] = "Noelia: \r\n" + 
-				"Una experiencia genia!! (****F)";
+				"Una experiencia genia!! (****)";
 
 		opiniones_usuarios = new int[4];
 		opiniones_usuarios[0] = -1;

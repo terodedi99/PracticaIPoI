@@ -996,13 +996,16 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Ciudad Real"), !spain);
 				ciudad.frame.setVisible(true);
+				frame.dispose();
 			}
+
 		});
 
 		btnValdepenas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Valdepeñas"), !spain);
 				ciudad.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 
@@ -1010,6 +1013,7 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Almagro"), !spain);
 				ciudad.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 
@@ -1017,6 +1021,7 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain);
 				ciudad.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 
@@ -1024,6 +1029,7 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Campo de Criptana"), !spain);
 				ciudad.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 	}
