@@ -335,6 +335,7 @@ public class VentanaLocalidades {
 		pnlPrecio.add(lblIconoRuta, gbc_lblIconoRuta);
 
 		JButton btnPersonalizarRuta = new JButton("\u00BFPrefieres personalizar tu ruta?");
+		btnPersonalizarRuta.addActionListener(new BtnPersonalizarRutaActionListener());
 		btnPersonalizarRuta.setBackground(new Color(244, 229, 226));
 		btnPersonalizarRuta.setBorder(new RoundedBorder(10));
 		btnPersonalizarRuta.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -442,6 +443,7 @@ public class VentanaLocalidades {
 			public void actionPerformed(ActionEvent e) {
 				VentanaPrincipal principal = new VentanaPrincipal();
 				principal.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 
@@ -464,5 +466,11 @@ public class VentanaLocalidades {
 				}
 			}
 		});
+	}
+	private class BtnPersonalizarRutaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			VentanaPersonalizarRuta personalizar = new VentanaPersonalizarRuta();
+			personalizar.frame.setVisible(true);
+		}
 	}
 }
