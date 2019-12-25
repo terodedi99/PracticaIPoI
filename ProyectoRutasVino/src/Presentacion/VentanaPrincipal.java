@@ -53,6 +53,8 @@ import javax.swing.JPasswordField;
 import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import Dominio.Localidad;
 
 import javax.swing.border.SoftBevelBorder;
@@ -110,7 +112,6 @@ public class VentanaPrincipal {
 	private JLabel lblCorreoElectronicoRegistro;
 	private JLabel lblFechaNacimientoRegistro;
 	private JLabel lblContrasenaRegistro;
-	private JLabel lblCalendarioRegistro;
 	private JLabel lblInfoRegistro;
 	private JLabel lblInfo2Registro;
 	private JLabel lblRContrasenaRegistro;
@@ -137,6 +138,7 @@ public class VentanaPrincipal {
 	private final String password = "1234";
 	private JButton btnLimpiarCamposRegistro;
 	private JButton btnLimpiarCamposInicioSesion;
+	private JDateChooser dateChooser; //Añadir el calendario
 
 	/**
 	 * Launch the application.
@@ -456,7 +458,7 @@ public class VentanaPrincipal {
 		pnlRegistro.setBackground(new Color(244, 229, 226));
 		pnlCardInformacion.add(pnlRegistro, "Registro");
 		GridBagLayout gbl_pnlRegistro = new GridBagLayout();
-		gbl_pnlRegistro.columnWidths = new int[] { 73, 301, 215, 197, 100, 93, 287, 0 };
+		gbl_pnlRegistro.columnWidths = new int[] { 73, 301, 215, 227, 100, 93, 287, 0 };
 		gbl_pnlRegistro.rowHeights = new int[] { 60, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0 };
 		gbl_pnlRegistro.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_pnlRegistro.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -548,10 +550,11 @@ public class VentanaPrincipal {
 		gbc_tFCorreoElectronicoRegistro.gridx = 3;
 		gbc_tFCorreoElectronicoRegistro.gridy = 4;
 		pnlRegistro.add(tFCorreoElectronicoRegistro, gbc_tFCorreoElectronicoRegistro);
-
-		tFFechaNacimientoRegistro = new JTextField();
-		tFFechaNacimientoRegistro.addFocusListener(new MiFocusListener());
-
+		
+		// Instanciar Componente calendario, con máscara para que el usuario pueda meterlo de forma manual si quiere
+		// Se pondrá en rojo si el usuario mete una fecha inválida
+		dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dateChooser.getCalendarButton().setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
 		lblFechaNacimientoRegistro = new JLabel("Fecha de nacimiento:");
 		lblFechaNacimientoRegistro.setForeground(new Color(81, 43, 55));
 		lblFechaNacimientoRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -561,25 +564,14 @@ public class VentanaPrincipal {
 		gbc_lblFechaNacimientoRegistro.gridx = 2;
 		gbc_lblFechaNacimientoRegistro.gridy = 5;
 		pnlRegistro.add(lblFechaNacimientoRegistro, gbc_lblFechaNacimientoRegistro);
-		tFFechaNacimientoRegistro.setColumns(10);
-		GridBagConstraints gbc_tFFechaNacimientoRegistro = new GridBagConstraints();
-		gbc_tFFechaNacimientoRegistro.insets = new Insets(0, 0, 5, 5);
-		gbc_tFFechaNacimientoRegistro.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tFFechaNacimientoRegistro.gridx = 3;
-		gbc_tFFechaNacimientoRegistro.gridy = 5;
-		pnlRegistro.add(tFFechaNacimientoRegistro, gbc_tFFechaNacimientoRegistro);
-
-		lblCalendarioRegistro = new JLabel("");
-		lblCalendarioRegistro
-				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-30.png")));
-		lblCalendarioRegistro.setOpaque(true);
-		lblCalendarioRegistro.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblCalendarioRegistro = new GridBagConstraints();
-		gbc_lblCalendarioRegistro.anchor = GridBagConstraints.WEST;
-		gbc_lblCalendarioRegistro.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCalendarioRegistro.gridx = 4;
-		gbc_lblCalendarioRegistro.gridy = 5;
-		pnlRegistro.add(lblCalendarioRegistro, gbc_lblCalendarioRegistro);
+		
+		//dateChooser.setColumns(10);
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
+		gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
+		gbc_dateChooser.gridx = 3;
+		gbc_dateChooser.gridy = 5;
+		pnlRegistro.add(dateChooser, gbc_dateChooser);
 
 		pwdfContrasenaRegistro = new JPasswordField();
 		pwdfContrasenaRegistro.addFocusListener(new MiFocusListener());
