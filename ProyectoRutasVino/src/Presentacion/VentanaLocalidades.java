@@ -24,20 +24,26 @@ import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
 import Dominio.Localidad;
+import Dominio.Usuario;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextPane;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.BevelBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.ImageObserver;
+import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JSpinner;
@@ -84,10 +90,6 @@ public class VentanaLocalidades {
 	private boolean spain;
 	private JLabel lblNumPersonas;
 	private JSpinner spinnerPersonas;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JLabel lblHola;
-	private JTextField textFieldFecha;
 	private JButton btnBorrarCambios;
 	private JButton btnGuardarCambios;
 
@@ -132,10 +134,10 @@ public class VentanaLocalidades {
 		pnlLogin.setBackground(new Color(237, 217, 194));
 		frame.getContentPane().add(pnlLogin, BorderLayout.NORTH);
 		GridBagLayout gbl_pnlLogin = new GridBagLayout();
-		gbl_pnlLogin.columnWidths = new int[] { 195, 379, 405, 130, 155, 0 };
-		gbl_pnlLogin.rowHeights = new int[] { 48, 0 };
+		gbl_pnlLogin.columnWidths = new int[] { 195, 379, 405, 151, 155, 0 };
+		gbl_pnlLogin.rowHeights = new int[] { 15, 48, 0 };
 		gbl_pnlLogin.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_pnlLogin.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gbl_pnlLogin.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		pnlLogin.setLayout(gbl_pnlLogin);
 
 		lblBandera_2.setIcon(new ImageIcon(VentanaLocalidades.class.getResource(this.localidad.getRutaImagen())));
@@ -145,7 +147,7 @@ public class VentanaLocalidades {
 		GridBagConstraints gbc_lblBandera_2 = new GridBagConstraints();
 		gbc_lblBandera_2.insets = new Insets(0, 0, 0, 5);
 		gbc_lblBandera_2.gridx = 0;
-		gbc_lblBandera_2.gridy = 0;
+		gbc_lblBandera_2.gridy = 1;
 		pnlLogin.add(lblBandera_2, gbc_lblBandera_2);
 
 		JLabel lblUsuario = new JLabel("");
@@ -154,15 +156,15 @@ public class VentanaLocalidades {
 		gbc_lblUsuario.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_lblUsuario.insets = new Insets(0, 0, 0, 5);
 		gbc_lblUsuario.gridx = 3;
-		gbc_lblUsuario.gridy = 0;
+		gbc_lblUsuario.gridy = 1;
 		pnlLogin.add(lblUsuario, gbc_lblUsuario);
 
-		JButton btnUsuario = new JButton("@nombreusuario");
+		JButton btnUsuario = new JButton("   Tu cuenta   ");
 		btnUsuario.setBackground(new Color(237, 217, 194));
 		GridBagConstraints gbc_btnUsuario = new GridBagConstraints();
 		gbc_btnUsuario.anchor = GridBagConstraints.WEST;
 		gbc_btnUsuario.gridx = 4;
-		gbc_btnUsuario.gridy = 0;
+		gbc_btnUsuario.gridy = 1;
 		pnlLogin.add(btnUsuario, gbc_btnUsuario);
 		btnUsuario.setBorder(new RoundedBorder(10));
 
@@ -222,10 +224,10 @@ public class VentanaLocalidades {
 		pnlLocalidad.setName("");
 		tBOpciones.addTab("Localidad", null, pnlLocalidad, null);
 		GridBagLayout gbl_pnlLocalidad = new GridBagLayout();
-		gbl_pnlLocalidad.columnWidths = new int[] { 58, 423, 218, 550, 0 };
-		gbl_pnlLocalidad.rowHeights = new int[] { 57, 79, 56, 269, 146, 0, 0 };
-		gbl_pnlLocalidad.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_pnlLocalidad.rowWeights = new double[] { 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlLocalidad.columnWidths = new int[] { 104, 423, 550, 48, 0 };
+		gbl_pnlLocalidad.rowHeights = new int[] { 57, 89, 56, 275, 146, 0, 0 };
+		gbl_pnlLocalidad.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_pnlLocalidad.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		pnlLocalidad.setLayout(gbl_pnlLocalidad);
 
 		JLabel lblLocalidad = new JLabel(this.localidad.getNombre());
@@ -238,16 +240,18 @@ public class VentanaLocalidades {
 		gbc_lblLocalidad.gridy = 1;
 		pnlLocalidad.add(lblLocalidad, gbc_lblLocalidad);
 
-		JLabel lblDescriocin = new JLabel("Descripci\u00F3n");
-		lblDescriocin.setForeground(new Color(81, 43, 55));
-		lblDescriocin.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
-		GridBagConstraints gbc_lblDescriocin = new GridBagConstraints();
-		gbc_lblDescriocin.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescriocin.gridx = 1;
-		gbc_lblDescriocin.gridy = 2;
-		pnlLocalidad.add(lblDescriocin, gbc_lblDescriocin);
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
+		lblDescripcion.setForeground(new Color(81, 43, 55));
+		lblDescripcion.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
+		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
+		gbc_lblDescripcion.anchor = GridBagConstraints.NORTH;
+		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDescripcion.gridx = 1;
+		gbc_lblDescripcion.gridy = 2;
+		pnlLocalidad.add(lblDescripcion, gbc_lblDescripcion);
 
 		JTextPane txtpnTextoDescripcion = new JTextPane();
+		txtpnTextoDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtpnTextoDescripcion.setOpaque(false);
 		txtpnTextoDescripcion.setText(this.localidad.getDescripcion());
 		GridBagConstraints gbc_txtpnTextoDescripcion = new GridBagConstraints();
@@ -257,12 +261,13 @@ public class VentanaLocalidades {
 		gbc_txtpnTextoDescripcion.gridy = 3;
 		pnlLocalidad.add(txtpnTextoDescripcion, gbc_txtpnTextoDescripcion);
 
-		JLabel lblImagen = new JLabel(this.localidad.getRutaImagenLocalidad());
+		JLabel lblImagen = new JLabel("");
 		lblImagen.setIcon(new ImageIcon(VentanaLocalidades.class.getResource(this.localidad.getRutaImagenLocalidad())));
 		GridBagConstraints gbc_lblImagen = new GridBagConstraints();
+		gbc_lblImagen.anchor = GridBagConstraints.WEST;
 		gbc_lblImagen.gridheight = 3;
-		gbc_lblImagen.insets = new Insets(0, 0, 5, 0);
-		gbc_lblImagen.gridx = 3;
+		gbc_lblImagen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblImagen.gridx = 2;
 		gbc_lblImagen.gridy = 2;
 		pnlLocalidad.add(lblImagen, gbc_lblImagen);
 
@@ -272,7 +277,7 @@ public class VentanaLocalidades {
 		pnlFechas.setLayout(null);
 
 		JLabel lblFechasDisponibles = new JLabel("Fechas disponibles");
-		lblFechasDisponibles.setBounds(30, 42, 319, 61);
+		lblFechasDisponibles.setBounds(30, 42, 360, 61);
 		lblFechasDisponibles.setForeground(new Color(81, 43, 55));
 		lblFechasDisponibles.setFont(new Font("Goudy Old Style", Font.PLAIN, 50));
 		pnlFechas.add(lblFechasDisponibles);
@@ -282,9 +287,9 @@ public class VentanaLocalidades {
 		pnlCalendario.setOpaque(false);
 		pnlFechas.add(pnlCalendario);
 		GridBagLayout gbl_pnlCalendario = new GridBagLayout();
-		gbl_pnlCalendario.columnWidths = new int[]{0, 0, 160, 100, 86, 56, 236, 156, 0, 0};
-		gbl_pnlCalendario.rowHeights = new int[]{42, 59, 0, 240, 0, 0};
-		gbl_pnlCalendario.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlCalendario.columnWidths = new int[]{49, 226, 240, 171, 240, 0, 0};
+		gbl_pnlCalendario.rowHeights = new int[]{67, 35, 0, 202, 0, 0};
+		gbl_pnlCalendario.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_pnlCalendario.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnlCalendario.setLayout(gbl_pnlCalendario);
 		{
@@ -292,7 +297,7 @@ public class VentanaLocalidades {
 			lblNumPersonas.setForeground(new Color(81, 43, 55));
 			lblNumPersonas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			GridBagConstraints gbc_lblNumPersonas = new GridBagConstraints();
-			gbc_lblNumPersonas.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_lblNumPersonas.anchor = GridBagConstraints.EAST;
 			gbc_lblNumPersonas.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNumPersonas.gridx = 1;
 			gbc_lblNumPersonas.gridy = 0;
@@ -302,7 +307,7 @@ public class VentanaLocalidades {
 			spinnerPersonas = new JSpinner();
 			spinnerPersonas.setModel(new SpinnerNumberModel(0, 0, 40, 1)); //Valor máximo de 40 personas
 			GridBagConstraints gbc_spinnerPersonas = new GridBagConstraints();
-			gbc_spinnerPersonas.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_spinnerPersonas.anchor = GridBagConstraints.WEST;
 			gbc_spinnerPersonas.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerPersonas.gridx = 2;
 			gbc_spinnerPersonas.gridy = 0;
@@ -313,7 +318,7 @@ public class VentanaLocalidades {
 		lblFechaEntrada.setForeground(new Color(81, 43, 55));
 		lblFechaEntrada.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblFechaEntrada = new GridBagConstraints();
-		gbc_lblFechaEntrada.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_lblFechaEntrada.anchor = GridBagConstraints.EAST;
 		gbc_lblFechaEntrada.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFechaEntrada.gridx = 1;
 		gbc_lblFechaEntrada.gridy = 1;
@@ -323,82 +328,84 @@ public class VentanaLocalidades {
 		// Se pondrá en rojo si el usuario mete una fecha inválida
 		dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dateChooser.getCalendarButton().setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
-		
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
-		gbc_dateChooser.anchor = GridBagConstraints.SOUTH;
 		gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
 		gbc_dateChooser.gridx = 2;
 		gbc_dateChooser.gridy = 1;
 		pnlCalendario.add(dateChooser, gbc_dateChooser);
 		
-		
 		lblFechaDeSalida = new JLabel("Fecha de salida:");
 		lblFechaDeSalida.setForeground(new Color(81, 43, 55));
 		lblFechaDeSalida.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblFechaDeSalida = new GridBagConstraints();
 		gbc_lblFechaDeSalida.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaDeSalida.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_lblFechaDeSalida.gridx = 6;
+		gbc_lblFechaDeSalida.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaDeSalida.gridx = 3;
 		gbc_lblFechaDeSalida.gridy = 1;
 		pnlCalendario.add(lblFechaDeSalida, gbc_lblFechaDeSalida);
 		
 		dateChooser_1 = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dateChooser_1.getCalendarButton().setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
 		GridBagConstraints gbc_dateChooser_1 = new GridBagConstraints();
-		gbc_dateChooser_1.anchor = GridBagConstraints.SOUTH;
 		gbc_dateChooser_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooser_1.insets = new Insets(0, 0, 5, 5);
-		gbc_dateChooser_1.gridx = 7;
+		gbc_dateChooser_1.gridx = 4;
 		gbc_dateChooser_1.gridy = 1;
 		pnlCalendario.add(dateChooser_1, gbc_dateChooser_1);
+
 		{
 			//Instanciar Componente de calendario de fecha de entrada
-			calendar_entrada = new JCalendar();
+			/*calendar_entrada = new JCalendar();
 			calendar_entrada.setTodayButtonVisible(true); //Agregar botón de ''Día de hoy''
 			calendar_entrada.setWeekOfYearVisible(false); //Quitar número de semanas
 			GridBagConstraints gbc_calendar_entrada = new GridBagConstraints();
 			gbc_calendar_entrada.insets = new Insets(0, 0, 5, 5);
 			gbc_calendar_entrada.gridx = 2;
 			gbc_calendar_entrada.gridy = 3;
-			pnlCalendario.add(calendar_entrada, gbc_calendar_entrada);
+			pnlCalendario.add(calendar_entrada, gbc_calendar_entrada);*/
 		}
 		
 		// Instanciar Componente de calendario de fecha de salida
-		calendar_salida = new JCalendar();
+		/*calendar_salida = new JCalendar();
 		calendar_salida.getDate();
 		calendar_salida.setTodayButtonVisible(true); //Agregar botón de ''Día de hoy''
 		calendar_salida.setWeekOfYearVisible(false); //Quitar número de semanas
 		GridBagConstraints gbc_calendar_salida = new GridBagConstraints();
 		gbc_calendar_salida.insets = new Insets(0, 0, 5, 5);
-		gbc_calendar_salida.gridx = 7;
+		gbc_calendar_salida.gridx = 5;
 		gbc_calendar_salida.gridy = 3;
-		pnlCalendario.add(calendar_salida, gbc_calendar_salida);
+		pnlCalendario.add(calendar_salida, gbc_calendar_salida);*/
 		{
 			btnBorrarCambios = new JButton("Borrar cambios");
-			btnBorrarCambios.addActionListener(new BtnBorrarCambiosActionListener());
 			btnBorrarCambios.setOpaque(false);
+			btnBorrarCambios.setBackground(new Color(244, 229, 226));
+			btnBorrarCambios.addActionListener(new BtnBorrarCambiosActionListener());
+			{
+				btnGuardarCambios = new JButton("Guardar cambios");
+				btnGuardarCambios.setBackground(new Color(244, 229, 226));
+				btnGuardarCambios.addActionListener(new BtnGuardarCambiosActionListener());
+				btnGuardarCambios.setOpaque(false);
+				btnGuardarCambios.setForeground(new Color(81, 43, 55));
+				btnGuardarCambios.setBorder(new RoundedBorder(10));
+				btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				GridBagConstraints gbc_btnGuardarCambios = new GridBagConstraints();
+				gbc_btnGuardarCambios.anchor = GridBagConstraints.EAST;
+				gbc_btnGuardarCambios.insets = new Insets(0, 0, 0, 5);
+				gbc_btnGuardarCambios.gridx = 2;
+				gbc_btnGuardarCambios.gridy = 4;
+				pnlCalendario.add(btnGuardarCambios, gbc_btnGuardarCambios);
+				
+			}
 			btnBorrarCambios.setForeground(new Color(81, 43, 55));
 			btnBorrarCambios.setBorder(new RoundedBorder(10));
 			btnBorrarCambios.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			GridBagConstraints gbc_btnBorrarCambios = new GridBagConstraints();
+			gbc_btnBorrarCambios.anchor = GridBagConstraints.WEST;
 			gbc_btnBorrarCambios.insets = new Insets(0, 0, 0, 5);
-			gbc_btnBorrarCambios.gridx = 4;
+			gbc_btnBorrarCambios.gridx = 3;
 			gbc_btnBorrarCambios.gridy = 4;
 			pnlCalendario.add(btnBorrarCambios, gbc_btnBorrarCambios);
-		}
-		{
-			btnGuardarCambios = new JButton("Guardar cambios");
-			btnGuardarCambios.addActionListener(new BtnGuardarCambiosActionListener());
-			btnGuardarCambios.setOpaque(false);
-			btnGuardarCambios.setForeground(new Color(81, 43, 55));
-			btnGuardarCambios.setBorder(new RoundedBorder(10));
-			btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			GridBagConstraints gbc_btnGuardarCambios = new GridBagConstraints();
-			gbc_btnGuardarCambios.insets = new Insets(0, 0, 0, 5);
-			gbc_btnGuardarCambios.gridx = 5;
-			gbc_btnGuardarCambios.gridy = 4;
-			pnlCalendario.add(btnGuardarCambios, gbc_btnGuardarCambios);
 		}
 		
 		
@@ -586,7 +593,15 @@ public class VentanaLocalidades {
 				frame.dispose();
 			}
 		});
-
+		
+		/*btnUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaUsuario usuario = new VentanaUsuario(Usuario usuario, boolean spain);
+				usuario.frame.setVisible(true);
+				frame.dispose();
+			}
+		});*/
+		
 		lblBandera_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -607,12 +622,14 @@ public class VentanaLocalidades {
 			}
 		});
 	}
+	
 	private class BtnPersonalizarRutaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			VentanaPersonalizarRuta personalizar = new VentanaPersonalizarRuta();
 			personalizar.frame.setVisible(true);
 		}
 	}
+	
 	private class BtnBorrarCambiosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			spinnerPersonas.setModel(new SpinnerNumberModel(0, 0, 40, 1));
@@ -621,6 +638,7 @@ public class VentanaLocalidades {
 			
 		}
 	}
+	
 	private class BtnGuardarCambiosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			frame.dispose();

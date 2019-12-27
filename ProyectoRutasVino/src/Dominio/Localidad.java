@@ -1,7 +1,5 @@
 package Dominio;
 
-import javax.swing.ImageIcon;
-
 public class Localidad {
 	private String nombre;
 	private String descripcion;

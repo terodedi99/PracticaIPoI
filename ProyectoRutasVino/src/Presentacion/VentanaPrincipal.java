@@ -56,6 +56,7 @@ import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JDateChooser;
 
 import Dominio.Localidad;
+import Dominio.Usuario;
 
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
@@ -134,11 +135,11 @@ public class VentanaPrincipal {
 	private JButton btnEnviarFormulario;
 	private JToolBar toolBar;
 	private JScrollPane scrollPane;
-	private final String user = "Admin";
-	private final String password = "1234";
 	private JButton btnLimpiarCamposRegistro;
 	private JButton btnLimpiarCamposInicioSesion;
 	private JDateChooser dateChooser; //Añadir el calendario
+	private final String user = "Admin";
+	private final String password = "1234";
 
 	/**
 	 * Launch the application.
@@ -415,8 +416,7 @@ public class VentanaPrincipal {
 		tPInformacion = new JTextPane();
 		tPInformacion.setOpaque(false);
 		tPInformacion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		tPInformacion.setText(
-				"Somos una empresa dedicada a la organizaci\u00F3n de Rutas de Vino por la \r\nprovincia de Ciudad real.\r\n\r\nOfrecemos diferentes rutas para nuestros clientes, trabajamos con grupos\r\nde cualquier edad y de 2 a 40 personas.\r\n\r\nOfrecemos un servicio profesional con una calidad excepcional, siempre \r\nmanteniendo una atenci\u00F3n personalizada para que ustedes tengan la mejor experiencia.");
+		tPInformacion.setText("Somos una empresa dedicada a la organizaci\u00F3n de Rutas de Vino por la \r\nprovincia de Ciudad real.\r\n\r\nOfrecemos diferentes rutas para nuestros clientes, trabajamos con grupos\r\nde cualquier edad y de 2 a 40 personas.\r\n\r\nOfrecemos un servicio profesional con una calidad excepcional, siempre \r\nmanteniendo una atenci\u00F3n personalizada para que ustedes tengan la mejor experiencia.");
 		tPInformacion.setBackground(new Color(206, 219, 197));
 		GridBagConstraints gbc_tPInformacion = new GridBagConstraints();
 		gbc_tPInformacion.anchor = GridBagConstraints.NORTH;
@@ -655,12 +655,6 @@ public class VentanaPrincipal {
 		gbc_btnLimpiarCamposRegistro.gridy = 8;
 		pnlRegistro.add(btnLimpiarCamposRegistro, gbc_btnLimpiarCamposRegistro);
 
-		btnLimpiarCamposRegistro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetearRegistro();
-			}
-		});
-
 		pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(new Color(244, 229, 226));
 		pnlFormulario.setVisible(false);
@@ -837,8 +831,7 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(tFUsuarioInicioSesion, gbc_tFUsuarioInicioSesion);
 
 		lblIconoInicioSesion = new JLabel(" ");
-		lblIconoInicioSesion.setIcon(
-				new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
+		lblIconoInicioSesion.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
 		lblIconoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblIconoInicioSesion = new GridBagConstraints();
 		gbc_lblIconoInicioSesion.anchor = GridBagConstraints.EAST;
@@ -905,8 +898,7 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(lblTextoInicioSesion, gbc_lblTextoInicioSesion);
 
 		lblInfoInicioSesion = new JLabel("");
-		lblInfoInicioSesion
-				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfoInicioSesion.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
 		lblInfoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblInfoInicioSesion = new GridBagConstraints();
 		gbc_lblInfoInicioSesion.anchor = GridBagConstraints.WEST;
@@ -1024,13 +1016,27 @@ public class VentanaPrincipal {
 				frame.dispose();
 			}
 		});
+		
+		btnLimpiarCamposRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetearRegistro();
+			}
+		});
+		
+		btnEntrarInicioSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaUsuario usuario = new VentanaUsuario(new Usuario(tFUsuarioInicioSesion.getText()), !spain);
+				usuario.frame.setVisible(true);
+				frame.dispose();
+			}
+		});
 	}
 
 	private boolean spain = false;
 
 	private class TFUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (String.valueOf(tFUsuarioInicioSesion.getText()).equals(user)) {
+			if (String.valueOf(tFUsuarioInicioSesion.getText()).equals("Teresa") || String.valueOf(tFUsuarioInicioSesion.getText()).equals("Laura")) {
 				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
 				lblMensajesInicioSesion.setForeground(Color.WHITE);
 				lblMensajesInicioSesion.setText("Usuario correcto, introduzca la contraseña");
@@ -1132,9 +1138,10 @@ public class VentanaPrincipal {
 		tFNombreRegistro.setText(null);
 		tFApellidosRegistro.setText(null);
 		tFCorreoElectronicoRegistro.setText(null);
-		tFFechaNacimientoRegistro.setText(null);
 		pwdfContrasenaRegistro.setText(null);
 		pwdfRContrasenaRegistro.setText(null);
+		dateChooser.setDate(null);
+		
 
 	}
 }
