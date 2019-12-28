@@ -196,6 +196,7 @@ public class VentanaPersonalizarRuta {
 
 			areaDibujo = new AreaDibujo();
 			areaDibujo.addMouseListener(new AreaDibujoMouseListener());
+			imagen = new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg"));
 			areaDibujo.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg")));
 			GridBagConstraints gbc_areaDibujo = new GridBagConstraints();
 			gbc_areaDibujo.insets = new Insets(0, 0, 5, 5);
@@ -215,7 +216,7 @@ public class VentanaPersonalizarRuta {
 					btnSalir = new JButton("Salir");
 					btnSalir.addActionListener(new BtnSalir());
 					pnlBotones.add(btnSalir);
-					btnSalir.setBackground(Color.WHITE);
+					btnSalir.setBackground(new Color(237, 217, 194));
 					btnSalir.setForeground(new Color(81, 43, 55));
 					btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 17));
 					btnSalir.setBorder(new RoundedBorder(10));
@@ -224,7 +225,7 @@ public class VentanaPersonalizarRuta {
 					btnGuardar = new JButton("Guardar");
 					btnGuardar.addActionListener(new BtnSalir());
 					pnlBotones.add(btnGuardar);
-					btnGuardar.setBackground(Color.WHITE);
+					btnGuardar.setBackground(new Color(237, 217, 194));
 					btnGuardar.setForeground(new Color(81, 43, 55));
 					btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 					btnGuardar.setBorder(new RoundedBorder(10));
