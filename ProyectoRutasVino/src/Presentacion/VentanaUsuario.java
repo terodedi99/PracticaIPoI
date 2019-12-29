@@ -58,6 +58,8 @@ public class VentanaUsuario {
 	private JCalendar calendar_entrada;
 	private JCalendar calendar_salida;
 	private JTextFieldDateEditor textFieldDateEditor;
+	private JLabel lblAlmagro;
+	private JLabel lblCampoDeCriptana;
 	JLabel lblBandera_2 = new JLabel("");
 	private boolean spain;
 	private Usuario usuario;
@@ -224,7 +226,70 @@ public class VentanaUsuario {
 		JPanel pnlRutasTematicas = new JPanel();
 		pnlRutasTematicas.setBackground(new Color(244, 229, 226));
 		tBOpciones.addTab("Rutas temáticas", null, pnlRutasTematicas, null);
-		pnlRutasTematicas.setLayout(null);
+		GridBagLayout gbl_pnlRutasTematicas = new GridBagLayout();
+		gbl_pnlRutasTematicas.columnWidths = new int[]{332, 298, 361, 351, 0};
+		gbl_pnlRutasTematicas.rowHeights = new int[]{20, 78, 312, 110, 0};
+		gbl_pnlRutasTematicas.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_pnlRutasTematicas.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		pnlRutasTematicas.setLayout(gbl_pnlRutasTematicas);
+		
+		lblAlmagro = new JLabel("Almagro");
+		lblAlmagro.setForeground(new Color(81, 43, 55));
+		lblAlmagro.setFont(new Font("Goudy Old Style", Font.ITALIC, 40));
+		GridBagConstraints gbc_lblAlmagro = new GridBagConstraints();
+		gbc_lblAlmagro.anchor = GridBagConstraints.SOUTH;
+		gbc_lblAlmagro.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAlmagro.gridx = 0;
+		gbc_lblAlmagro.gridy = 1;
+		pnlRutasTematicas.add(lblAlmagro, gbc_lblAlmagro);
+		
+		lblCampoDeCriptana = new JLabel("Campo de Criptana");
+		lblCampoDeCriptana.setForeground(new Color(81, 43, 55));
+		lblCampoDeCriptana.setFont(new Font("Goudy Old Style", Font.PLAIN, 40));
+		GridBagConstraints gbc_lblCampoDeCriptana = new GridBagConstraints();
+		gbc_lblCampoDeCriptana.anchor = GridBagConstraints.SOUTH;
+		gbc_lblCampoDeCriptana.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCampoDeCriptana.gridx = 2;
+		gbc_lblCampoDeCriptana.gridy = 1;
+		pnlRutasTematicas.add(lblCampoDeCriptana, gbc_lblCampoDeCriptana);
+		
+		JLabel lblFotoAlm = new JLabel(" ");
+		lblFotoAlm.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/RutaAlm.png")));
+		GridBagConstraints gbc_lblFotoAlm = new GridBagConstraints();
+		gbc_lblFotoAlm.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFotoAlm.gridx = 0;
+		gbc_lblFotoAlm.gridy = 2;
+		pnlRutasTematicas.add(lblFotoAlm, gbc_lblFotoAlm);
+		
+		JTextPane txtpnPasaUnaAnimada = new JTextPane();
+		txtpnPasaUnaAnimada.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnPasaUnaAnimada.setOpaque(false);
+		txtpnPasaUnaAnimada.setText("Pasa una animada ruta de vinos con nosotros escuchando \r\nlas m\u00E1s divertidas an\u00E9cdotas enol\u00F3gicas y \r\ndeleit\u00E1ndote con los sabores de los afamados caldos de nuestra tierra.");
+		GridBagConstraints gbc_txtpnPasaUnaAnimada = new GridBagConstraints();
+		gbc_txtpnPasaUnaAnimada.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtpnPasaUnaAnimada.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnPasaUnaAnimada.gridx = 1;
+		gbc_txtpnPasaUnaAnimada.gridy = 2;
+		pnlRutasTematicas.add(txtpnPasaUnaAnimada, gbc_txtpnPasaUnaAnimada);
+		
+		JLabel lblFotoCamp = new JLabel(" ");
+		lblFotoCamp.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/RutaCamp.png")));
+		GridBagConstraints gbc_lblFotoCamp = new GridBagConstraints();
+		gbc_lblFotoCamp.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFotoCamp.gridx = 2;
+		gbc_lblFotoCamp.gridy = 2;
+		pnlRutasTematicas.add(lblFotoCamp, gbc_lblFotoCamp);
+		
+		JTextPane txtpnEstaEscapadaEn = new JTextPane();
+		txtpnEstaEscapadaEn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnEstaEscapadaEn.setOpaque(false);
+		txtpnEstaEscapadaEn.setText("Esta escapada en es perfecta para conocer las tierras manchegas\r\ndel famoso Hidalgo Don Quijote.\r\nDe Baco a Don Quijote, en esta ruta disfrutar\u00E1s de un divertido recorrido por el pasado vitivin\u00EDcola. Escuchar\u00E1s leyendas, relatos y curiosidades. \r\nTodo para que pases un buen rato porque, recuerda, \r\n\"con pan y vino se anda el camino\".");
+		GridBagConstraints gbc_txtpnEstaEscapadaEn = new GridBagConstraints();
+		gbc_txtpnEstaEscapadaEn.insets = new Insets(0, 0, 5, 0);
+		gbc_txtpnEstaEscapadaEn.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtpnEstaEscapadaEn.gridx = 3;
+		gbc_txtpnEstaEscapadaEn.gridy = 2;
+		pnlRutasTematicas.add(txtpnEstaEscapadaEn, gbc_txtpnEstaEscapadaEn);
 		
 		JPanel pnlGruposTuristas = new JPanel();
 		pnlGruposTuristas.setBackground(new Color(244, 229, 226));
