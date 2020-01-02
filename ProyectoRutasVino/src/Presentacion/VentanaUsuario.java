@@ -49,6 +49,11 @@ import java.util.Date;
 import javax.swing.JSpinner;
 import java.awt.FlowLayout;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JDesktopPane;
+import javax.swing.JToolBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaUsuario {
 
@@ -63,6 +68,7 @@ public class VentanaUsuario {
 	JLabel lblBandera_2 = new JLabel("");
 	private boolean spain;
 	private Usuario usuario;
+	private JTable tablaGuias;
 
 	/**
 	 * Launch the application.
@@ -307,12 +313,40 @@ public class VentanaUsuario {
 		pnlGuias.setBackground(new Color(244, 229, 226));
 		pnlGuias.setToolTipText("");
 		tBOpciones.addTab("Guías", null, pnlGuias, null);
-		GridBagLayout gbl_pnlGuias = new GridBagLayout();
-		gbl_pnlGuias.columnWidths = new int[] { 43, 283, 496, 266, 0 };
-		gbl_pnlGuias.rowHeights = new int[] { 39, 80, 75, 23, 75, 23, 75, 23, 75, 0 };
-		gbl_pnlGuias.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_pnlGuias.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		pnlGuias.setLayout(gbl_pnlGuias);
+		pnlGuias.setLayout(new BorderLayout(0, 0));
+		
+		JToolBar toolBar = new JToolBar();
+		pnlGuias.add(toolBar, BorderLayout.NORTH);
+		
+		JButton btnAadir = new JButton("A\u00F1adir");
+		btnAadir.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
+		toolBar.add(btnAadir);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
+		toolBar.add(btnModificar);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
+		toolBar.add(btnEliminar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		pnlGuias.add(scrollPane, BorderLayout.CENTER);
+		
+		tablaGuias = new JTable();
+		tablaGuias.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Nombre", "Apellidos", "Foto", "Idiomas", "Disponible"
+			}
+		));
+		scrollPane.setViewportView(tablaGuias);
+		
+		JLabel lblFotoGuia = new JLabel("New label");
+		pnlGuias.add(lblFotoGuia, BorderLayout.SOUTH);
 
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
