@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -54,6 +56,8 @@ import javax.swing.JToolBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.ListSelectionModel;
 
 public class VentanaUsuario {
 
@@ -68,7 +72,9 @@ public class VentanaUsuario {
 	JLabel lblBandera_2 = new JLabel("");
 	private boolean spain;
 	private Usuario usuario;
-	private JTable tablaGuias;
+	private JTable tabla_Guias;
+	private JTextField taFilaSeleccionada;
+	private JLabel lblFotoGuia;
 
 	/**
 	 * Launch the application.
@@ -319,6 +325,7 @@ public class VentanaUsuario {
 		pnlGuias.add(toolBar, BorderLayout.NORTH);
 		
 		JButton btnAadir = new JButton("A\u00F1adir");
+		btnAadir.addActionListener(new BtnAadirActionListener());
 		btnAadir.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
 		toolBar.add(btnAadir);
 		
@@ -327,26 +334,79 @@ public class VentanaUsuario {
 		toolBar.add(btnModificar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new BtnEliminarActionListener());
 		btnEliminar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
 		toolBar.add(btnEliminar);
+		
+		TablaGuias tabGuias = new TablaGuias();
+		
+		Object[] fila1 = { "Marta", "Lopez Canales",
+				new ImageIcon(getClass().getClassLoader().getResource
+				("Presentacion/foto1.jpg")),"Español-Inglés", true};
+		tabGuias.aniadeFila(fila1);
+		Object[] fila2 = { "Jesus", "Fernandez Gamero",
+				new ImageIcon(getClass().getClassLoader().getResource
+						("Presentacion/foto3.jpg")),"Español-Francés", true};
+		tabGuias.aniadeFila(fila2);
+		Object[] fila3 = { "Julia", "Granados Velasco",
+				new ImageIcon(getClass().getClassLoader().getResource
+						("Presentacion/foto2.jpg")),"Español-Chino", false};
+		tabGuias.aniadeFila(fila3);
+		Object[] fila4 = { "Raul", "Peco Lozano",
+				new ImageIcon(getClass().getClassLoader().getResource
+						("Presentacion/foto4.jpg")),"Español", false};
+		tabGuias.aniadeFila(fila4);
+		Object[] fila5 = { "Stephanie", "Harris",
+				new ImageIcon(getClass().getClassLoader().getResource
+						("Presentacion/foto5.jpg")),"Inglés-Italiano", true};
+		tabGuias.aniadeFila(fila5);
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		pnlGuias.add(scrollPane, BorderLayout.CENTER);
 		
-		tablaGuias = new JTable();
-		tablaGuias.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Nombre", "Apellidos", "Foto", "Idiomas", "Disponible"
+		tabla_Guias = new JTable();
+		tabla_Guias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel rowSM = tabla_Guias.getSelectionModel();
+		rowSM.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				if (!lsm.isSelectionEmpty()) {
+
+					TablaGuias modeloTabla = (TablaGuias) tabla_Guias.getModel();
+					int n = tabla_Guias.getSelectedRow();
+					if (n != -1) {
+						String contenido = "Nombre: " + modeloTabla.getValueAt(n, 0) + "\n" +
+								"Apellidos: "
+								+ modeloTabla.getValueAt(n, 1) 
+								+ "\n" +"Idiomas: "+ modeloTabla.getValueAt(n, 3) + "\n";
+						contenido += (Boolean) modeloTabla.getValueAt(n,4) ? "Disponible " : "No Disponible\n";
+						taFilaSeleccionada.setText(contenido);
+						lblFotoGuia.setIcon((ImageIcon) modeloTabla.getValueAt(n, 2));
+					}
+				}
 			}
-		));
-		scrollPane.setViewportView(tablaGuias);
+
+		});
 		
-		JLabel lblFotoGuia = new JLabel("New label");
-		pnlGuias.add(lblFotoGuia, BorderLayout.SOUTH);
+		tabla_Guias.setModel(tabGuias);
+		TableColumn columnaFoto = tabla_Guias.getColumnModel().getColumn(2);
+		columnaFoto.setCellEditor(new ColumnaFotoEditor());
+		
+		
+		
+		scrollPane.setViewportView(tabla_Guias);
+		
+		JPanel pnl1 = new JPanel();
+		pnlGuias.add(pnl1, BorderLayout.SOUTH);
+		pnl1.setLayout(new GridLayout(1, 2, 0, 0));
+		
+		lblFotoGuia = new JLabel(" ");
+		pnl1.add(lblFotoGuia);
+		
+		taFilaSeleccionada = new JTextField();
+		pnl1.add(taFilaSeleccionada);
+		taFilaSeleccionada.setColumns(10);
 
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -371,9 +431,28 @@ public class VentanaUsuario {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();
 					spain = true;
+					
 
 				}
 			}
 		});
+	}
+	private class BtnAadirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			TablaGuias tab = (TablaGuias) tabla_Guias.getModel();
+			Object[] nuevaFila = {"...", "...", new 
+			ImageIcon(getClass().getClassLoader().getResource("Presentacion/iconoPersona.png")),false};
+			tab.aniadeFila(nuevaFila);
+			tab.fireTableDataChanged();
+
+		}
+	}
+	private class BtnEliminarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			TablaGuias tab = (TablaGuias) tabla_Guias.getModel();
+			int n= tabla_Guias.getSelectedRow();
+			if (n != -1) tab.eliminaFila(tabla_Guias.getSelectedRow());
+			tab.fireTableDataChanged();
+		}
 	}
 }
