@@ -75,6 +75,7 @@ public class VentanaUsuario {
 	private JTable tabla_Guias;
 	private JTextField taFilaSeleccionada;
 	private JLabel lblFotoGuia;
+	private JLabel lblUsuario;
 
 	/**
 	 * Launch the application.
@@ -105,6 +106,7 @@ public class VentanaUsuario {
 	public VentanaUsuario(Usuario usuario, boolean spain) {
 		this.spain = spain;
 		this.usuario = usuario;
+		
 
 		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
@@ -123,6 +125,7 @@ public class VentanaUsuario {
 		}
 
 		initialize();
+		this.lblUsuario.setText(usuario.getNombre());
 
 	}
 	/**
@@ -142,35 +145,45 @@ public class VentanaUsuario {
 		pnlLogin.setBackground(new Color(237, 217, 194));
 		frame.getContentPane().add(pnlLogin, BorderLayout.NORTH);
 		GridBagLayout gbl_pnlLogin = new GridBagLayout();
-		gbl_pnlLogin.columnWidths = new int[] { 110, 15, 379, 524, 190, 0 };
+		gbl_pnlLogin.columnWidths = new int[] { 110, 15, 140, 124, 524, 275, 0 };
 		gbl_pnlLogin.rowHeights = new int[] { 13, 76, 0, 0 };
-		gbl_pnlLogin.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlLogin.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_pnlLogin.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlLogin.setLayout(gbl_pnlLogin);
 
-		JLabel lblUsuario = new JLabel("");
-		GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
-		gbc_lblUsuario.anchor = GridBagConstraints.EAST;
-		gbc_lblUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsuario.gridx = 0;
-		gbc_lblUsuario.gridy = 1;
-		pnlLogin.add(lblUsuario, gbc_lblUsuario);
-		lblUsuario.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-usuario-60.png")));
+		JLabel lblIcono = new JLabel("");
+		GridBagConstraints gbc_lblIcono = new GridBagConstraints();
+		gbc_lblIcono.anchor = GridBagConstraints.EAST;
+		gbc_lblIcono.insets = new Insets(0, 0, 5, 5);
+		gbc_lblIcono.gridx = 0;
+		gbc_lblIcono.gridy = 1;
+		pnlLogin.add(lblIcono, gbc_lblIcono);
+		lblIcono.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-usuario-60.png")));
 
-		JLabel lblMensajeBienvenida = new JLabel("\u00A1Bienvenid@, " + usuario.getNombre() + "!");
+		JLabel lblMensajeBienvenida = new JLabel("Bienvenid@, ");
 		lblMensajeBienvenida.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblMensajeBienvenida = new GridBagConstraints();
-		gbc_lblMensajeBienvenida.anchor = GridBagConstraints.WEST;
+		gbc_lblMensajeBienvenida.anchor = GridBagConstraints.EAST;
 		gbc_lblMensajeBienvenida.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMensajeBienvenida.gridx = 2;
 		gbc_lblMensajeBienvenida.gridy = 1;
 		pnlLogin.add(lblMensajeBienvenida, gbc_lblMensajeBienvenida);
 		
+		lblUsuario = new JLabel("<dynamic>");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
+		gbc_lblUsuario.anchor = GridBagConstraints.WEST;
+		gbc_lblUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsuario.gridx = 3;
+		gbc_lblUsuario.gridy = 1;
+		pnlLogin.add(lblUsuario, gbc_lblUsuario);
+		
 		lblBandera_2.setIcon(new ImageIcon(VentanaUsuario.class.getResource(this.usuario.getRutaImagenBandera())));
 		lblBandera_2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		GridBagConstraints gbc_lblBandera_2 = new GridBagConstraints();
+		gbc_lblBandera_2.anchor = GridBagConstraints.EAST;
 		gbc_lblBandera_2.insets = new Insets(0, 0, 5, 0);
-		gbc_lblBandera_2.gridx = 4;
+		gbc_lblBandera_2.gridx = 5;
 		gbc_lblBandera_2.gridy = 1;
 		pnlLogin.add(lblBandera_2, gbc_lblBandera_2);
 
@@ -322,18 +335,22 @@ public class VentanaUsuario {
 		pnlGuias.setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setBackground(new Color(206, 219, 197));
 		pnlGuias.add(toolBar, BorderLayout.NORTH);
 		
 		JButton btnAadir = new JButton("A\u00F1adir");
+		btnAadir.setBackground(new Color(206, 219, 197));
 		btnAadir.addActionListener(new BtnAadirActionListener());
 		btnAadir.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
 		toolBar.add(btnAadir);
 		
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setBackground(new Color(206, 219, 197));
 		btnModificar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
 		toolBar.add(btnModificar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBackground(new Color(206, 219, 197));
 		btnEliminar.addActionListener(new BtnEliminarActionListener());
 		btnEliminar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
 		toolBar.add(btnEliminar);
@@ -363,9 +380,11 @@ public class VentanaUsuario {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(new Color(244, 229, 226));
 		pnlGuias.add(scrollPane, BorderLayout.CENTER);
 		
 		tabla_Guias = new JTable();
+		tabla_Guias.setBackground(new Color(244, 229, 226));
 		tabla_Guias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		ListSelectionModel rowSM = tabla_Guias.getSelectionModel();
 		rowSM.addListSelectionListener(new ListSelectionListener() {
@@ -392,12 +411,13 @@ public class VentanaUsuario {
 		tabla_Guias.setModel(tabGuias);
 		TableColumn columnaFoto = tabla_Guias.getColumnModel().getColumn(2);
 		columnaFoto.setCellEditor(new ColumnaFotoEditor());
-		
+		tabla_Guias.setRowHeight(35);
 		
 		
 		scrollPane.setViewportView(tabla_Guias);
 		
 		JPanel pnl1 = new JPanel();
+		pnl1.setBackground(new Color(244, 229, 226));
 		pnlGuias.add(pnl1, BorderLayout.SOUTH);
 		pnl1.setLayout(new GridLayout(1, 2, 0, 0));
 		
@@ -410,7 +430,8 @@ public class VentanaUsuario {
 
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal principal = new VentanaPrincipal();
+				Usuario usuario = new Usuario(lblUsuario.getText());
+				VentanaPrincipal principal = new VentanaPrincipal(usuario);
 				principal.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -440,8 +461,7 @@ public class VentanaUsuario {
 	private class BtnAadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			TablaGuias tab = (TablaGuias) tabla_Guias.getModel();
-			Object[] nuevaFila = {"...", "...", new 
-			ImageIcon(getClass().getClassLoader().getResource("Presentacion/iconoPersona.png")),false};
+			Object[] nuevaFila = {"...", "...", new ImageIcon(getClass().getClassLoader().getResource("Presentacion/user24.png")),"...",false};
 			tab.aniadeFila(nuevaFila);
 			tab.fireTableDataChanged();
 

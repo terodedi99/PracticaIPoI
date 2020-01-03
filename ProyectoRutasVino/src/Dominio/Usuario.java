@@ -1,5 +1,7 @@
 package Dominio;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	private String nombre;
 	private String apellidos;
@@ -7,6 +9,8 @@ public class Usuario {
 	private String fecha_nacimiento;
 	private String contrasena;
 	private String ruta_imagen_bandera;
+	private ArrayList<String> nombres;
+	private ArrayList<String> contrasenas;
 	
 	public Usuario(String nombre) {
 		if (nombre.equals("Teresa")) {
@@ -29,7 +33,31 @@ public class Usuario {
 			this.correo_electronico = "guia_turistic0@rutasdelvino.com";
 			this.fecha_nacimiento = "16/12/1992";
 			this.contrasena = "1234";
-		}		
+		}	
+		
+	}
+	
+	public Usuario() {
+		nombres = new ArrayList();
+		nombres.add("Teresa");
+		nombres.add("Laura");
+		nombres.add("Guia");
+		
+		contrasenas = new ArrayList();
+		contrasenas.add("T1234");
+		contrasenas.add("L1234");
+		contrasenas.add("1234");
+		
+	}
+	
+	public boolean checkUsuario(String name) {
+		return nombres.contains(name);
+		
+	}
+	
+	public boolean checkContrasena(String name) {
+		return contrasenas.contains(name);
+		
 	}
 
 	public String getNombre() {
