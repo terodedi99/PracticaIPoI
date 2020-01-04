@@ -26,8 +26,8 @@
 		<item key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID" value="false"/>
 		<item key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID" value="false"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
-			<item value="C:\Users\Teresa\Downloads"/>
 			<item value="C:\Users\Teresa\Documents\Ingeniería Informática\Curso 2019 - 2020\Interacción Persona-Ordenador I\Prácticas\Proyecto Rutas del Vino\Iconos"/>
+			<item value="C:\Users\Teresa\Downloads"/>
 			<item value="C:\Users\Teresa\Documents\Ingeniería Informática\Curso 2019 - 2020\Interacción Persona-Ordenador I\Prácticas\Proyecto Rutas del Vino\Logos"/>
 		</list>
 	</section>
@@ -39,5 +39,9 @@
 			<item value="org.eclipse.wb"/>
 			<item value="org.eclipse.wb/org.eclipse.wb.swing"/>
 		</list>
+	</section>
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="1068"/>
+		<item key="DIALOG_Y_ORIGIN" value="384"/>
 	</section>
 </section>

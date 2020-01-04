@@ -6,4 +6,5 @@
     <fullyQualifiedTypeName name="java.util.Timer"/>
     <fullyQualifiedTypeName name="java.util.TimerTask"/>
     <fullyQualifiedTypeName name="Dominio.Usuario"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
