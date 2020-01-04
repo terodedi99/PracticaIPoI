@@ -138,8 +138,8 @@ public class VentanaPrincipal {
 	private JButton btnLimpiarCamposRegistro;
 	private JButton btnLimpiarCamposInicioSesion;
 	private JDateChooser dateChooser; //Añadir el calendario
-	private final String user = "Admin";
-	private final String password = "1234";
+	private boolean spain = false;
+	private Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -156,13 +156,20 @@ public class VentanaPrincipal {
 			}
 		});
 	}
-
+		
 	/**
 	 * Create the application.
 	 */
 	public VentanaPrincipal() {
+		this.usuario = null;
 		initialize();
 
+	}
+
+	public VentanaPrincipal(Usuario usuario) {
+		// TODO Auto-generated constructor stub
+		this.usuario = usuario;
+		initialize();
 	}
 
 	/**
@@ -303,6 +310,7 @@ public class VentanaPrincipal {
 		pnlTitulo.add(btnPrincipal, gbc_btnPrincipal);
 
 		toolBar = new JToolBar();
+		toolBar.setBackground(new Color(244, 229, 226));
 		toolBar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_toolBar = new GridBagConstraints();
 		gbc_toolBar.insets = new Insets(0, 0, 5, 0);
@@ -311,30 +319,35 @@ public class VentanaPrincipal {
 		pnlTitulo.add(toolBar, gbc_toolBar);
 
 		btnCiudadReal = new JButton("Ciudad Real");
+		btnCiudadReal.setBackground(new Color(244, 229, 226));
 		btnCiudadReal.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
 		toolBar.add(btnCiudadReal);
 
 		btnValdepenas = new JButton("Valdepe\u00F1as");
+		btnValdepenas.setBackground(new Color(244, 229, 226));
 		btnValdepenas.setForeground(new Color(81, 43, 55));
 		btnValdepenas.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnValdepenas.setBorder(new RoundedBorder(10));
 		toolBar.add(btnValdepenas);
 
 		btnAlmagro = new JButton("Almagro");
+		btnAlmagro.setBackground(new Color(244, 229, 226));
 		btnAlmagro.setForeground(new Color(81, 43, 55));
 		btnAlmagro.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnAlmagro.setBorder(new RoundedBorder(10));
 		toolBar.add(btnAlmagro);
 
 		btnAlcazar = new JButton("Alc\u00E1zar de San Juan");
+		btnAlcazar.setBackground(new Color(244, 229, 226));
 		btnAlcazar.setForeground(new Color(81, 43, 55));
 		btnAlcazar.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnAlcazar.setBorder(new RoundedBorder(10));
 		toolBar.add(btnAlcazar);
 
 		btnCampo = new JButton("Campo de Criptana");
+		btnCampo.setBackground(new Color(244, 229, 226));
 		btnCampo.setForeground(new Color(81, 43, 55));
 		btnCampo.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnCampo.setBorder(new RoundedBorder(10));
@@ -820,7 +833,7 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(lblUsuarioInicioSesion, gbc_lblUsuarioInicioSesion);
 
 		tFUsuarioInicioSesion = new JTextField();
-		tFUsuarioInicioSesion.addActionListener(new TFUsuarioActionListener());
+		tFUsuarioInicioSesion.addActionListener(new TFUsuarioActionListener(this.usuario));
 		tFUsuarioInicioSesion.addFocusListener(new MiFocusListener());
 		tFUsuarioInicioSesion.setColumns(10);
 		GridBagConstraints gbc_tFUsuarioInicioSesion = new GridBagConstraints();
@@ -853,7 +866,7 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(lblContrasenaInicioSesion, gbc_lblContrasenaInicioSesion);
 
 		pwdfContrasenaInicioSesion = new JPasswordField();
-		pwdfContrasenaInicioSesion.addActionListener(new PwdfContrasenaActionListener());
+		pwdfContrasenaInicioSesion.addActionListener(new PwdfContrasenaActionListener(this.usuario));
 		pwdfContrasenaInicioSesion.addFocusListener(new MiFocusListener());
 		pwdfContrasenaInicioSesion.setEnabled(false);
 		GridBagConstraints gbc_pwdfContrasenaInicioSesion = new GridBagConstraints();
@@ -978,7 +991,7 @@ public class VentanaPrincipal {
 
 		btnCiudadReal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Ciudad Real"), !spain);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Ciudad Real"), !spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -987,7 +1000,7 @@ public class VentanaPrincipal {
 
 		btnValdepenas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Valdepeñas"), !spain);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Valdepeñas"), !spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -995,7 +1008,7 @@ public class VentanaPrincipal {
 
 		btnAlmagro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Almagro"), !spain);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Almagro"), !spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1003,7 +1016,7 @@ public class VentanaPrincipal {
 
 		btnAlcazar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1011,7 +1024,7 @@ public class VentanaPrincipal {
 
 		btnCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Campo de Criptana"), !spain);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Campo de Criptana"), !spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1032,11 +1045,15 @@ public class VentanaPrincipal {
 		});
 	}
 
-	private boolean spain = false;
-
 	private class TFUsuarioActionListener implements ActionListener {
+		private Usuario usuario;
+		
+		public TFUsuarioActionListener(Usuario usuario) {
+			this.usuario = usuario;
+		}
+		
 		public void actionPerformed(ActionEvent e) {
-			if (String.valueOf(tFUsuarioInicioSesion.getText()).equals("Teresa") || String.valueOf(tFUsuarioInicioSesion.getText()).equals("Laura")) {
+			if(new Usuario().checkUsuario(tFUsuarioInicioSesion.getText())){
 				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
 				lblMensajesInicioSesion.setForeground(Color.WHITE);
 				lblMensajesInicioSesion.setText("Usuario correcto, introduzca la contraseña");
@@ -1080,9 +1097,18 @@ public class VentanaPrincipal {
 	}
 
 	private class PwdfContrasenaActionListener implements ActionListener {
+		private Usuario usuario;
+		private boolean posible;
+		
+		public PwdfContrasenaActionListener(Usuario usuario) {
+			this.usuario = usuario;
+		}
+		
 		// Obtener contraseña introducida
 		public void actionPerformed(ActionEvent arg0) {
-			if (String.valueOf(pwdfContrasenaInicioSesion.getPassword()).equals(password)) {
+			Timer timer;
+			TimerTask task;
+			if(new Usuario().checkContrasena(pwdfContrasenaInicioSesion.getText())){
 				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
 				lblMensajesInicioSesion.setForeground(Color.WHITE);
 				lblMensajesInicioSesion.setText("Contraseña correcta, ¡bienvenido!");
@@ -1090,14 +1116,8 @@ public class VentanaPrincipal {
 
 				// Temporizador para borrar los campos a los 3,5 segundos una vez haya entrado
 				// el usuario
-				Timer timer = new Timer();
-				TimerTask task = new TimerTask() {
-					public void run() {
-						resetearInicioSesion();
-					}
-				};
-
-				timer.schedule(task, 3500);
+				
+				posible = false;
 
 			} else {
 				lblMensajesInicioSesion.setBackground(new Color(130, 46, 59));
@@ -1108,17 +1128,22 @@ public class VentanaPrincipal {
 
 				// Temporizador para borrar los campos a los 10 segundos si el usuario no vuelve
 				// a intentarlo
-				Timer timer = new Timer();
-				TimerTask task = new TimerTask() {
-					public void run() {
-						resetearInicioSesion();
-					}
-				};
-
-				timer.schedule(task, 10000);
+				
+				posible = true;
+				
 
 			}
-
+			
+			timer = new Timer();
+			task = new TimerTask(){
+				public void run() {
+					resetearInicioSesion();
+				}
+			};
+			if(posible)
+				timer.schedule(task, 10000);
+			else
+				timer.schedule(task, 3500);
 		}
 
 	}

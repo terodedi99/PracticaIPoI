@@ -92,8 +92,11 @@ public class VentanaLocalidades {
 	private JSpinner spinnerPersonas;
 	private JButton btnBorrarCambios;
 	private JButton btnGuardarCambios;
+	private Usuario usuario;
 
-	public VentanaLocalidades(Localidad localidad, boolean spain) {
+	public VentanaLocalidades(Localidad localidad, boolean spain, Usuario usuario) {
+		this.usuario = usuario;
+		
 		this.spain = spain;
 		this.localidad = localidad;
 
@@ -150,23 +153,34 @@ public class VentanaLocalidades {
 		gbc_lblBandera_2.gridy = 1;
 		pnlLogin.add(lblBandera_2, gbc_lblBandera_2);
 
-		JLabel lblUsuario = new JLabel("");
-		lblUsuario.setIcon(new ImageIcon(VentanaLocalidades.class.getResource("/Presentacion/icons8-usuario-60.png")));
-		GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
-		gbc_lblUsuario.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_lblUsuario.insets = new Insets(0, 0, 0, 5);
-		gbc_lblUsuario.gridx = 3;
-		gbc_lblUsuario.gridy = 1;
-		pnlLogin.add(lblUsuario, gbc_lblUsuario);
-
-		JButton btnUsuario = new JButton("   Tu cuenta   ");
-		btnUsuario.setBackground(new Color(237, 217, 194));
-		GridBagConstraints gbc_btnUsuario = new GridBagConstraints();
-		gbc_btnUsuario.anchor = GridBagConstraints.WEST;
-		gbc_btnUsuario.gridx = 4;
-		gbc_btnUsuario.gridy = 1;
-		pnlLogin.add(btnUsuario, gbc_btnUsuario);
-		btnUsuario.setBorder(new RoundedBorder(10));
+		if(this.usuario != null) {
+			JLabel lblUsuario = new JLabel("");
+			lblUsuario.setIcon(new ImageIcon(VentanaLocalidades.class.getResource("/Presentacion/icons8-usuario-60.png")));
+			GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
+			gbc_lblUsuario.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUsuario.insets = new Insets(0, 0, 0, 5);
+			gbc_lblUsuario.gridx = 3;
+			gbc_lblUsuario.gridy = 1;
+			pnlLogin.add(lblUsuario, gbc_lblUsuario);
+		}
+		JButton btnUsuario;
+		if(this.usuario != null) {
+			btnUsuario = new JButton("   " + this.usuario.getNombre() + "   ");
+			btnUsuario.setBackground(new Color(237, 217, 194));
+			GridBagConstraints gbc_btnUsuario = new GridBagConstraints();
+			gbc_btnUsuario.anchor = GridBagConstraints.WEST;
+			gbc_btnUsuario.gridx = 4;
+			gbc_btnUsuario.gridy = 1;
+			pnlLogin.add(btnUsuario, gbc_btnUsuario);
+			btnUsuario.setBorder(new RoundedBorder(10));
+			btnUsuario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					VentanaUsuario usuario = new VentanaUsuario(new Usuario(btnUsuario.getText().replace(" ", "")), !spain);
+					usuario.frame.setVisible(true);
+					frame.dispose();
+				}
+			});
+		}
 
 		JPanel pnlBuscar = new JPanel();
 		pnlBuscar.setBackground(new Color(237, 217, 194));
@@ -180,7 +194,6 @@ public class VentanaLocalidades {
 
 		JButton btnHome = new JButton("");
 		btnHome.setBackground(new Color(237, 217, 194));
-		btnUsuario.setBorder(new RoundedBorder(10));
 		btnHome.setIcon(new ImageIcon(VentanaLocalidades.class.getResource("/Presentacion/home.png")));
 		GridBagConstraints gbc_btnHome = new GridBagConstraints();
 		gbc_btnHome.anchor = GridBagConstraints.WEST;
@@ -305,7 +318,7 @@ public class VentanaLocalidades {
 		}
 		{
 			spinnerPersonas = new JSpinner();
-			spinnerPersonas.setModel(new SpinnerNumberModel(0, 0, 40, 1)); //Valor máximo de 40 personas
+			spinnerPersonas.setModel(new SpinnerNumberModel(2, 2, 40, 1)); //Valor máximo de 40 personas
 			GridBagConstraints gbc_spinnerPersonas = new GridBagConstraints();
 			gbc_spinnerPersonas.anchor = GridBagConstraints.WEST;
 			gbc_spinnerPersonas.insets = new Insets(0, 0, 5, 5);

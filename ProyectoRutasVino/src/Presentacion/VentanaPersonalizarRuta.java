@@ -136,7 +136,7 @@ public class VentanaPersonalizarRuta {
 		}
 		{
 			tBarraDibujo = new JToolBar();
-			tBarraDibujo.setBackground(Color.WHITE);
+			tBarraDibujo.setBackground(new Color(244, 229, 226));
 			tBarraDibujo.setForeground(Color.LIGHT_GRAY);
 			GridBagConstraints gbc_tBarraDibujo = new GridBagConstraints();
 			gbc_tBarraDibujo.anchor = GridBagConstraints.NORTH;
@@ -148,40 +148,40 @@ public class VentanaPersonalizarRuta {
 				btnLugar = new JButton(" ");
 				btnLugar.addActionListener(new BtnLugarActionListener());
 				btnLugar.setBackground(Color.WHITE);
-				btnLugar.setIcon(new ImageIcon(
-						VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-marcador-30.png")));
+				btnLugar.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-marcador-30.png")));
+				btnLugar.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnLugar);
 			}
 			{
 				btnRestaurante = new JButton(" ");
 				btnRestaurante.addActionListener(new BtnRestauranteActionListener());
 				btnRestaurante.setBackground(Color.WHITE);
-				btnRestaurante.setIcon(new ImageIcon(
-						VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-restaurante-30.png")));
+				btnRestaurante.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-restaurante-30.png")));
+				btnRestaurante.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnRestaurante);
 			}
 			{
 				btnParque = new JButton(" ");
 				btnParque.addActionListener(new BtnParqueActionListener());
 				btnParque.setBackground(Color.WHITE);
-				btnParque.setIcon(
-						new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-bosque-30.png")));
+				btnParque.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-bosque-30.png")));
+				btnParque.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnParque);
 			}
 			{
 				btnMonumento = new JButton(" ");
 				btnMonumento.addActionListener(new BtnMonumentoActionListener());
 				btnMonumento.setBackground(Color.WHITE);
-				btnMonumento.setIcon(new ImageIcon(
-						VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-arco-del-triunfo-30.png")));
+				btnMonumento.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-arco-del-triunfo-30.png")));
+				btnMonumento.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnMonumento);
 			}
 			{
 				btnBorrar = new JButton(" ");
 				btnBorrar.addActionListener(new BtnBorrarActionListener());
 				btnBorrar.setBackground(Color.WHITE);
-				btnBorrar.setIcon(
-						new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-borrar-30.png")));
+				btnBorrar.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-borrar-30.png")));
+				btnBorrar.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnBorrar);
 			}
 		}
@@ -196,6 +196,7 @@ public class VentanaPersonalizarRuta {
 
 			areaDibujo = new AreaDibujo();
 			areaDibujo.addMouseListener(new AreaDibujoMouseListener());
+			imagen = new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg"));
 			areaDibujo.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg")));
 			GridBagConstraints gbc_areaDibujo = new GridBagConstraints();
 			gbc_areaDibujo.insets = new Insets(0, 0, 5, 5);
@@ -212,34 +213,31 @@ public class VentanaPersonalizarRuta {
 				gbc_pnlBotones.gridy = 4;
 				frame.getContentPane().add(pnlBotones, gbc_pnlBotones);
 				{
-					btnSalir = new JButton("Salir");
-					btnSalir.addActionListener(new BtnSalir());
-					pnlBotones.add(btnSalir);
-					btnSalir.setBackground(Color.WHITE);
-					btnSalir.setForeground(new Color(81, 43, 55));
-					btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 17));
-					btnSalir.setBorder(new RoundedBorder(10));
-				}
-				{
 					btnGuardar = new JButton("Guardar");
 					btnGuardar.addActionListener(new BtnSalir());
 					pnlBotones.add(btnGuardar);
-					btnGuardar.setBackground(Color.WHITE);
+					btnGuardar.setBackground(new Color(237, 217, 194));
 					btnGuardar.setForeground(new Color(81, 43, 55));
 					btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 					btnGuardar.setBorder(new RoundedBorder(10));
+				}
+				{
+					btnSalir = new JButton("Salir");
+					btnSalir.addActionListener(new BtnSalir());
+					pnlBotones.add(btnSalir);
+					btnSalir.setBackground(new Color(237, 217, 194));
+					btnSalir.setForeground(new Color(81, 43, 55));
+					btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 17));
+					btnSalir.setBorder(new RoundedBorder(10));
 				}
 			}
 
 			// Creación de imágenes y cursores
 			toolkit = Toolkit.getDefaultToolkit();
-			imagLugar = toolkit
-					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-marcador-30.png"));
-			imagRestaurante = toolkit
-					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-restaurante-30.png"));
+			imagLugar = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-marcador-30.png"));
+			imagRestaurante = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-restaurante-30.png"));
 			imagParque = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-bosque-30.png"));
-			imagMonumento = toolkit
-					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-arco-del-triunfo-30.png"));
+			imagMonumento = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-arco-del-triunfo-30.png"));
 			imagBorrar = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-borrar-30.png"));
 
 			// Creación de los cursores
