@@ -318,7 +318,7 @@ public class VentanaLocalidades {
 		}
 		{
 			spinnerPersonas = new JSpinner();
-			spinnerPersonas.setModel(new SpinnerNumberModel(0, 0, 40, 1)); //Valor máximo de 40 personas
+			spinnerPersonas.setModel(new SpinnerNumberModel(2, 2, 40, 1)); //Valor máximo de 40 personas
 			GridBagConstraints gbc_spinnerPersonas = new GridBagConstraints();
 			gbc_spinnerPersonas.anchor = GridBagConstraints.WEST;
 			gbc_spinnerPersonas.insets = new Insets(0, 0, 5, 5);

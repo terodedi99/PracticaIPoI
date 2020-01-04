@@ -58,6 +58,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.ListSelectionModel;
+import javax.swing.SingleSelectionModel;
+
+import java.awt.Component;
 
 public class VentanaUsuario {
 
@@ -76,6 +79,13 @@ public class VentanaUsuario {
 	private JTextField taFilaSeleccionada;
 	private JLabel lblFotoGuia;
 	private JLabel lblUsuario;
+	private JScrollPane scrollPaneGuias;
+	private JScrollPane scrollPaneHistorial;
+	private JPanel pnl1Historial;
+	private JPanel pnl1Guias;
+	private JTable tabla_Historial;
+	private JTable tabla_Historial_1;
+	private JTextField tFFilaHistorialSeleccionada;
 
 	/**
 	 * Launch the application.
@@ -241,12 +251,84 @@ public class VentanaUsuario {
 		pnlHistorial.setBackground(new Color(244, 229, 226));
 		pnlHistorial.setName("");
 		tBOpciones.addTab("Historial de circuitos", null, pnlHistorial, null);
-		GridBagLayout gbl_pnlHistorial = new GridBagLayout();
-		gbl_pnlHistorial.columnWidths = new int[] { 104, 423, 550, 48, 0 };
-		gbl_pnlHistorial.rowHeights = new int[] { 57, 89, 56, 275, 146, 0, 0 };
-		gbl_pnlHistorial.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_pnlHistorial.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
-		pnlHistorial.setLayout(gbl_pnlHistorial);
+		pnlHistorial.setLayout(new BorderLayout(0, 0));
+		
+		JToolBar tBHistorial = new JToolBar();
+		tBHistorial.setBackground(new Color(206, 219, 197));
+		pnlHistorial.add(tBHistorial, BorderLayout.NORTH);
+		
+		JButton btnAnadirHistorial = new JButton("A\u00F1adir");
+		btnAnadirHistorial.setBackground(new Color(206, 219, 197));
+		btnAnadirHistorial.addActionListener(new BtnAadirActionListener());
+		btnAnadirHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
+		tBHistorial.add(btnAnadirHistorial);
+		
+		JButton btnModificarHistorial = new JButton("Modificar");
+		btnModificarHistorial.setBackground(new Color(206, 219, 197));
+		btnModificarHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
+		tBHistorial.add(btnModificarHistorial);
+		
+		JButton btnEliminarHistorial = new JButton("Eliminar");
+		btnEliminarHistorial.setBackground(new Color(206, 219, 197));
+		btnEliminarHistorial.addActionListener(new BtnEliminarActionListener());
+		btnEliminarHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
+		tBHistorial.add(btnEliminarHistorial);
+		
+		TablaHistorial tabHistorial = new TablaHistorial();
+
+		Object[] fila1_hist = { "Alcazar de San Juan", new JSpinner(new SpinnerNumberModel(0,0,0,0)), "Marta", "275", true };
+		tabHistorial.anadirFila(fila1_hist);
+		Object[] fila2_hist = { "Almagro", "Fernandez Gamero", "Jesús", "1140", true };
+		tabHistorial.anadirFila(fila2_hist);
+		Object[] fila3_hist = { "Alcazar de San Juan", "Granados Velasco", "Jesús", "50", false };
+		tabHistorial.anadirFila(fila3_hist);
+		Object[] fila4_hist = { "Ciudad Real", "Peco Lozano", "Marta", "210", false };
+		tabHistorial.anadirFila(fila4_hist);
+		Object[] fila5_hist = { "Valdepeñas", "Harris", "Gaby", "50", true };
+		tabHistorial.anadirFila(fila5_hist);
+
+		JScrollPane scrollPaneHistorial_1 = new JScrollPane();
+		scrollPaneHistorial_1.setBackground(new Color(244, 229, 226));
+		pnlHistorial.add(scrollPaneHistorial_1, BorderLayout.CENTER);
+
+		tabla_Historial_1 = new JTable();
+		scrollPaneHistorial_1.setViewportView(tabla_Historial_1);
+		tabla_Historial_1.setBackground(new Color(244, 229, 226));
+		tabla_Historial_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel rowSM_historial = tabla_Historial_1.getSelectionModel();
+		rowSM_historial.addListSelectionListener(new ListSelectionListener() {
+
+			public void valueChanged(ListSelectionEvent e) {
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				if (!lsm.isSelectionEmpty()) {
+
+					TablaHistorial modeloTablaHistorial = (TablaHistorial) tabla_Historial_1.getModel();
+					int n = tabla_Historial_1.getSelectedRow();
+					if (n != -1) {
+						String contenidoHistorial = "Circuito: " + modeloTablaHistorial.getValueAt(n, 0) + "\n"
+								+ "Nº de personas: " + modeloTablaHistorial.getValueAt(n, 1) + "\n" 
+								+ "Coste (€): " + modeloTablaHistorial.getValueAt(n, 3) + "\n";
+						contenidoHistorial += (Boolean) modeloTablaHistorial.getValueAt(n, 4) ? "Realizado "
+								: "No realizado\n";
+						
+						tFFilaHistorialSeleccionada.setText(contenidoHistorial);
+					}
+				}
+			}
+
+		});
+
+		tabla_Historial_1.setModel(tabHistorial);
+		tabla_Historial_1.setRowHeight(35);
+		
+		JPanel pnl1Historial_1 = new JPanel();
+		pnl1Historial_1.setBackground(new Color(244, 229, 226));
+		pnlHistorial.add(pnl1Historial_1, BorderLayout.SOUTH);
+		pnl1Historial_1.setLayout(new GridLayout(1, 2, 0, 0));
+		
+		tFFilaHistorialSeleccionada = new JTextField();
+		tFFilaHistorialSeleccionada.setColumns(10);
+		pnl1Historial_1.add(tFFilaHistorialSeleccionada);
 
 		JPanel pnlRutasTematicas = new JPanel();
 		pnlRutasTematicas.setBackground(new Color(244, 229, 226));
@@ -334,26 +416,26 @@ public class VentanaUsuario {
 		tBOpciones.addTab("Guías", null, pnlGuias, null);
 		pnlGuias.setLayout(new BorderLayout(0, 0));
 		
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBackground(new Color(206, 219, 197));
-		pnlGuias.add(toolBar, BorderLayout.NORTH);
+		JToolBar tBGuias = new JToolBar();
+		tBGuias.setBackground(new Color(206, 219, 197));
+		pnlGuias.add(tBGuias, BorderLayout.NORTH);
 		
 		JButton btnAadir = new JButton("A\u00F1adir");
 		btnAadir.setBackground(new Color(206, 219, 197));
 		btnAadir.addActionListener(new BtnAadirActionListener());
 		btnAadir.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
-		toolBar.add(btnAadir);
+		tBGuias.add(btnAadir);
 		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setBackground(new Color(206, 219, 197));
 		btnModificar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
-		toolBar.add(btnModificar);
+		tBGuias.add(btnModificar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBackground(new Color(206, 219, 197));
 		btnEliminar.addActionListener(new BtnEliminarActionListener());
 		btnEliminar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
-		toolBar.add(btnEliminar);
+		tBGuias.add(btnEliminar);
 		
 		TablaGuias tabGuias = new TablaGuias();
 		
@@ -379,15 +461,16 @@ public class VentanaUsuario {
 		tabGuias.aniadeFila(fila5);
 		
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBackground(new Color(244, 229, 226));
-		pnlGuias.add(scrollPane, BorderLayout.CENTER);
+		JScrollPane scrollPane_1;
+		scrollPaneGuias = new JScrollPane();
+		scrollPaneGuias.setBackground(new Color(244, 229, 226));
+		pnlGuias.add(scrollPaneGuias, BorderLayout.CENTER);
 		
 		tabla_Guias = new JTable();
 		tabla_Guias.setBackground(new Color(244, 229, 226));
 		tabla_Guias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		ListSelectionModel rowSM = tabla_Guias.getSelectionModel();
-		rowSM.addListSelectionListener(new ListSelectionListener() {
+		ListSelectionModel rowSM_guias = tabla_Guias.getSelectionModel();
+		rowSM_guias.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
 				if (!lsm.isSelectionEmpty()) {
@@ -409,23 +492,24 @@ public class VentanaUsuario {
 		});
 		
 		tabla_Guias.setModel(tabGuias);
-		TableColumn columnaFoto = tabla_Guias.getColumnModel().getColumn(2);
-		columnaFoto.setCellEditor(new ColumnaFotoEditor());
+		TableColumn columnaFoto_guias = tabla_Guias.getColumnModel().getColumn(2);
+		columnaFoto_guias.setCellEditor(new ColumnaFotoEditor());
 		tabla_Guias.setRowHeight(35);
 		
 		
-		scrollPane.setViewportView(tabla_Guias);
+		scrollPaneGuias.setViewportView(tabla_Guias);
 		
-		JPanel pnl1 = new JPanel();
-		pnl1.setBackground(new Color(244, 229, 226));
-		pnlGuias.add(pnl1, BorderLayout.SOUTH);
-		pnl1.setLayout(new GridLayout(1, 2, 0, 0));
+		JPanel pnl1Guias;
+		pnl1Guias = new JPanel();
+		pnl1Guias.setBackground(new Color(244, 229, 226));
+		pnlGuias.add(pnl1Guias, BorderLayout.SOUTH);
+		pnl1Guias.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		lblFotoGuia = new JLabel(" ");
-		pnl1.add(lblFotoGuia);
+		pnl1Guias.add(lblFotoGuia);
 		
 		taFilaSeleccionada = new JTextField();
-		pnl1.add(taFilaSeleccionada);
+		pnl1Guias.add(taFilaSeleccionada);
 		taFilaSeleccionada.setColumns(10);
 
 		btnHome.addActionListener(new ActionListener() {
