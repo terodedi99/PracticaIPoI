@@ -86,11 +86,13 @@ public class VentanaUsuario {
 	private JTable tabla_Historial;
 	private JTable tabla_Historial_1;
 	private JTextField tFFilaHistorialSeleccionada;
+	private JTable tabla_GruposTuristas;
+	private JTextField tFGruposGuiasSeleccionada;
 
 	/**
 	 * Launch the application.
 	 */
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -107,16 +109,14 @@ public class VentanaUsuario {
 	/**
 	 * Create the application.
 	 */
-	
+
 	public VentanaUsuario() {
 		initialize();
 	}
 
-	
 	public VentanaUsuario(Usuario usuario, boolean spain) {
 		this.spain = spain;
 		this.usuario = usuario;
-		
 
 		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
@@ -138,13 +138,15 @@ public class VentanaUsuario {
 		this.lblUsuario.setText(usuario.getNombre());
 
 	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(237, 217, 194));
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para que la aplicación finalice al pulsar "x"
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para que la
+		// aplicación finalice al pulsar "x"
 		frame.setBounds(0, 0, 516, 394); // Establece posición y tamaño de la ventana
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height); // Cambia el tamaño de la ventana
@@ -178,7 +180,7 @@ public class VentanaUsuario {
 		gbc_lblMensajeBienvenida.gridx = 2;
 		gbc_lblMensajeBienvenida.gridy = 1;
 		pnlLogin.add(lblMensajeBienvenida, gbc_lblMensajeBienvenida);
-		
+
 		lblUsuario = new JLabel("<dynamic>");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
@@ -187,7 +189,7 @@ public class VentanaUsuario {
 		gbc_lblUsuario.gridx = 3;
 		gbc_lblUsuario.gridy = 1;
 		pnlLogin.add(lblUsuario, gbc_lblUsuario);
-		
+
 		lblBandera_2.setIcon(new ImageIcon(VentanaUsuario.class.getResource(this.usuario.getRutaImagenBandera())));
 		lblBandera_2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		GridBagConstraints gbc_lblBandera_2 = new GridBagConstraints();
@@ -252,31 +254,36 @@ public class VentanaUsuario {
 		pnlHistorial.setName("");
 		tBOpciones.addTab("Historial de circuitos", null, pnlHistorial, null);
 		pnlHistorial.setLayout(new BorderLayout(0, 0));
-		
+
 		JToolBar tBHistorial = new JToolBar();
 		tBHistorial.setBackground(new Color(206, 219, 197));
 		pnlHistorial.add(tBHistorial, BorderLayout.NORTH);
-		
+
 		JButton btnAnadirHistorial = new JButton("A\u00F1adir");
+		btnAnadirHistorial.addActionListener(new BtnAnadirHistorialActionListener_1());
 		btnAnadirHistorial.setBackground(new Color(206, 219, 197));
-		btnAnadirHistorial.addActionListener(new BtnAadirActionListener());
 		btnAnadirHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
+		btnAnadirHistorial.setBorder(new RoundedBorder(10));
 		tBHistorial.add(btnAnadirHistorial);
-		
+
 		JButton btnModificarHistorial = new JButton("Modificar");
 		btnModificarHistorial.setBackground(new Color(206, 219, 197));
-		btnModificarHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
+		btnModificarHistorial
+				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
+		btnModificarHistorial.setBorder(new RoundedBorder(10));
 		tBHistorial.add(btnModificarHistorial);
-		
+
 		JButton btnEliminarHistorial = new JButton("Eliminar");
+		btnEliminarHistorial.addActionListener(new BtnEliminarHistorialActionListener());
 		btnEliminarHistorial.setBackground(new Color(206, 219, 197));
-		btnEliminarHistorial.addActionListener(new BtnEliminarActionListener());
-		btnEliminarHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
+		btnEliminarHistorial
+				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
+		btnEliminarHistorial.setBorder(new RoundedBorder(10));
 		tBHistorial.add(btnEliminarHistorial);
-		
+
 		TablaHistorial tabHistorial = new TablaHistorial();
 
-		Object[] fila1_hist = { "Alcazar de San Juan", new JSpinner(new SpinnerNumberModel(0,0,0,0)), "Marta", "275", true };
+		Object[] fila1_hist = { "Alcazar de San Juan", "11", "Marta", "275", true };
 		tabHistorial.anadirFila(fila1_hist);
 		Object[] fila2_hist = { "Almagro", "Fernandez Gamero", "Jesús", "1140", true };
 		tabHistorial.anadirFila(fila2_hist);
@@ -306,11 +313,11 @@ public class VentanaUsuario {
 					int n = tabla_Historial_1.getSelectedRow();
 					if (n != -1) {
 						String contenidoHistorial = "Circuito: " + modeloTablaHistorial.getValueAt(n, 0) + "\n"
-								+ "Nº de personas: " + modeloTablaHistorial.getValueAt(n, 1) + "\n" 
-								+ "Coste (€): " + modeloTablaHistorial.getValueAt(n, 3) + "\n";
+								+ "Nº de personas: " + modeloTablaHistorial.getValueAt(n, 1) + "\n" + "Coste (€): "
+								+ modeloTablaHistorial.getValueAt(n, 3) + "\n";
 						contenidoHistorial += (Boolean) modeloTablaHistorial.getValueAt(n, 4) ? "Realizado "
 								: "No realizado\n";
-						
+
 						tFFilaHistorialSeleccionada.setText(contenidoHistorial);
 					}
 				}
@@ -320,12 +327,12 @@ public class VentanaUsuario {
 
 		tabla_Historial_1.setModel(tabHistorial);
 		tabla_Historial_1.setRowHeight(35);
-		
+
 		JPanel pnl1Historial_1 = new JPanel();
 		pnl1Historial_1.setBackground(new Color(244, 229, 226));
 		pnlHistorial.add(pnl1Historial_1, BorderLayout.SOUTH);
 		pnl1Historial_1.setLayout(new GridLayout(1, 2, 0, 0));
-		
+
 		tFFilaHistorialSeleccionada = new JTextField();
 		tFFilaHistorialSeleccionada.setColumns(10);
 		pnl1Historial_1.add(tFFilaHistorialSeleccionada);
@@ -334,12 +341,12 @@ public class VentanaUsuario {
 		pnlRutasTematicas.setBackground(new Color(244, 229, 226));
 		tBOpciones.addTab("Rutas temáticas", null, pnlRutasTematicas, null);
 		GridBagLayout gbl_pnlRutasTematicas = new GridBagLayout();
-		gbl_pnlRutasTematicas.columnWidths = new int[]{332, 298, 361, 351, 0};
-		gbl_pnlRutasTematicas.rowHeights = new int[]{20, 78, 312, 110, 0};
-		gbl_pnlRutasTematicas.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_pnlRutasTematicas.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlRutasTematicas.columnWidths = new int[] { 332, 298, 361, 351, 0 };
+		gbl_pnlRutasTematicas.rowHeights = new int[] { 20, 78, 312, 110, 0 };
+		gbl_pnlRutasTematicas.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_pnlRutasTematicas.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		pnlRutasTematicas.setLayout(gbl_pnlRutasTematicas);
-		
+
 		lblAlmagro = new JLabel("Almagro");
 		lblAlmagro.setForeground(new Color(81, 43, 55));
 		lblAlmagro.setFont(new Font("Goudy Old Style", Font.ITALIC, 40));
@@ -349,7 +356,7 @@ public class VentanaUsuario {
 		gbc_lblAlmagro.gridx = 0;
 		gbc_lblAlmagro.gridy = 1;
 		pnlRutasTematicas.add(lblAlmagro, gbc_lblAlmagro);
-		
+
 		lblCampoDeCriptana = new JLabel("Campo de Criptana");
 		lblCampoDeCriptana.setForeground(new Color(81, 43, 55));
 		lblCampoDeCriptana.setFont(new Font("Goudy Old Style", Font.PLAIN, 40));
@@ -359,7 +366,7 @@ public class VentanaUsuario {
 		gbc_lblCampoDeCriptana.gridx = 2;
 		gbc_lblCampoDeCriptana.gridy = 1;
 		pnlRutasTematicas.add(lblCampoDeCriptana, gbc_lblCampoDeCriptana);
-		
+
 		JLabel lblFotoAlm = new JLabel(" ");
 		lblFotoAlm.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/RutaAlm.png")));
 		GridBagConstraints gbc_lblFotoAlm = new GridBagConstraints();
@@ -367,18 +374,19 @@ public class VentanaUsuario {
 		gbc_lblFotoAlm.gridx = 0;
 		gbc_lblFotoAlm.gridy = 2;
 		pnlRutasTematicas.add(lblFotoAlm, gbc_lblFotoAlm);
-		
+
 		JTextPane txtpnPasaUnaAnimada = new JTextPane();
 		txtpnPasaUnaAnimada.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnPasaUnaAnimada.setOpaque(false);
-		txtpnPasaUnaAnimada.setText("Pasa una animada ruta de vinos con nosotros escuchando \r\nlas m\u00E1s divertidas an\u00E9cdotas enol\u00F3gicas y \r\ndeleit\u00E1ndote con los sabores de los afamados caldos de nuestra tierra.");
+		txtpnPasaUnaAnimada.setText(
+				"Pasa una animada ruta de vinos con nosotros escuchando \r\nlas m\u00E1s divertidas an\u00E9cdotas enol\u00F3gicas y \r\ndeleit\u00E1ndote con los sabores de los afamados caldos de nuestra tierra.");
 		GridBagConstraints gbc_txtpnPasaUnaAnimada = new GridBagConstraints();
 		gbc_txtpnPasaUnaAnimada.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtpnPasaUnaAnimada.insets = new Insets(0, 0, 5, 5);
 		gbc_txtpnPasaUnaAnimada.gridx = 1;
 		gbc_txtpnPasaUnaAnimada.gridy = 2;
 		pnlRutasTematicas.add(txtpnPasaUnaAnimada, gbc_txtpnPasaUnaAnimada);
-		
+
 		JLabel lblFotoCamp = new JLabel(" ");
 		lblFotoCamp.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/RutaCamp.png")));
 		GridBagConstraints gbc_lblFotoCamp = new GridBagConstraints();
@@ -386,27 +394,114 @@ public class VentanaUsuario {
 		gbc_lblFotoCamp.gridx = 2;
 		gbc_lblFotoCamp.gridy = 2;
 		pnlRutasTematicas.add(lblFotoCamp, gbc_lblFotoCamp);
-		
+
 		JTextPane txtpnEstaEscapadaEn = new JTextPane();
 		txtpnEstaEscapadaEn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnEstaEscapadaEn.setOpaque(false);
-		txtpnEstaEscapadaEn.setText("Esta escapada en es perfecta para conocer las tierras manchegas\r\ndel famoso Hidalgo Don Quijote.\r\nDe Baco a Don Quijote, en esta ruta disfrutar\u00E1s de un divertido recorrido por el pasado vitivin\u00EDcola. Escuchar\u00E1s leyendas, relatos y curiosidades. \r\nTodo para que pases un buen rato porque, recuerda, \r\n\"con pan y vino se anda el camino\".");
+		txtpnEstaEscapadaEn.setText(
+				"Esta escapada en es perfecta para conocer las tierras manchegas\r\ndel famoso Hidalgo Don Quijote.\r\nDe Baco a Don Quijote, en esta ruta disfrutar\u00E1s de un divertido recorrido por el pasado vitivin\u00EDcola. Escuchar\u00E1s leyendas, relatos y curiosidades. \r\nTodo para que pases un buen rato porque, recuerda, \r\n\"con pan y vino se anda el camino\".");
 		GridBagConstraints gbc_txtpnEstaEscapadaEn = new GridBagConstraints();
 		gbc_txtpnEstaEscapadaEn.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnEstaEscapadaEn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtpnEstaEscapadaEn.gridx = 3;
 		gbc_txtpnEstaEscapadaEn.gridy = 2;
 		pnlRutasTematicas.add(txtpnEstaEscapadaEn, gbc_txtpnEstaEscapadaEn);
-		
+
 		JPanel pnlGruposTuristas = new JPanel();
 		pnlGruposTuristas.setBackground(new Color(244, 229, 226));
 		tBOpciones.addTab("Grupos de turistas", null, pnlGruposTuristas, null);
-		GridBagLayout gbl_pnlGruposTuristas = new GridBagLayout();
-		gbl_pnlGruposTuristas.columnWidths = new int[] { 61, 139, 77, 492, 0 };
-		gbl_pnlGruposTuristas.rowHeights = new int[] { 46, 0, 0, 37, 0, 84, 72, 0, 78, 0 };
-		gbl_pnlGruposTuristas.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_pnlGruposTuristas.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		pnlGruposTuristas.setLayout(gbl_pnlGruposTuristas);
+		pnlGruposTuristas.setLayout(new BorderLayout(0, 0));
+
+		JToolBar tBGruposTuristas = new JToolBar();
+		tBGruposTuristas.setBackground(new Color(206, 219, 197));
+		pnlGruposTuristas.add(tBGruposTuristas, BorderLayout.NORTH);
+
+		JButton btnAnadirGruposTuristas = new JButton("A\u00F1adir");
+		btnAnadirGruposTuristas.addActionListener(new BtnAnadirGruposTuristasActionListener_1());
+		btnAnadirGruposTuristas.setBackground(new Color(206, 219, 197));
+		btnAnadirGruposTuristas
+				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
+		btnAnadirGruposTuristas.setBorder(new RoundedBorder(10));
+		tBGruposTuristas.add(btnAnadirGruposTuristas);
+
+		JButton btnModificarGruposTuristas = new JButton("Modificar");
+		btnModificarGruposTuristas.setBackground(new Color(206, 219, 197));
+		btnModificarGruposTuristas
+				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
+		btnModificarGruposTuristas.setBorder(new RoundedBorder(10));
+		tBGruposTuristas.add(btnModificarGruposTuristas);
+
+		JButton btnEliminarGruposTuristas = new JButton("Eliminar");
+		btnEliminarGruposTuristas.addActionListener(new BtnEliminarGruposTuristasActionListener());
+		btnEliminarGruposTuristas.setBackground(new Color(206, 219, 197));
+		btnEliminarGruposTuristas
+				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
+		btnEliminarGruposTuristas.setBorder(new RoundedBorder(10));
+		tBGruposTuristas.add(btnEliminarGruposTuristas);
+
+		TablaGruposTuristas tabGruposGuias = new TablaGruposTuristas();
+
+		Object[] fila1_gg = { "Alcazar de San Juan", "11", "Marta (español)", "275", true };
+		tabGruposGuias.anadirFila(fila1_gg);
+		Object[] fila2_gg = { "Almagro", "18", "Jesús (francés)", "1140", true };
+		tabGruposGuias.anadirFila(fila2_gg);
+		Object[] fila3_gg = { "Alcazar de San Juan", "8", "Rosa (chino)", "50", true };
+		tabGruposGuias.anadirFila(fila3_gg);
+		Object[] fila4_gg = { "Ciudad Real", "6", "Marta (inglés)", "210", false };
+		tabGruposGuias.anadirFila(fila4_gg);
+		Object[] fila5_gg = { "Valdepeñas", "4", "Gaby (español)", "50", false };
+		tabGruposGuias.anadirFila(fila5_gg);
+
+		JScrollPane scrollPaneGruposTuristas = new JScrollPane();
+		scrollPaneGruposTuristas.setBackground(new Color(244, 229, 226));
+		pnlGruposTuristas.add(scrollPaneGruposTuristas, BorderLayout.CENTER);
+
+		tabla_GruposTuristas = new JTable();
+		scrollPaneGruposTuristas.setViewportView(tabla_GruposTuristas);
+		tabla_GruposTuristas.setBackground(new Color(244, 229, 226));
+		tabla_GruposTuristas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel rowSM_gg = tabla_GruposTuristas.getSelectionModel();
+		rowSM_gg.addListSelectionListener(new ListSelectionListener() {
+
+			public void valueChanged(ListSelectionEvent e) {
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				if (!lsm.isSelectionEmpty()) {
+
+					TablaGruposTuristas modeloTablaGruposGuias = (TablaGruposTuristas) tabla_GruposTuristas.getModel();
+					int n = tabla_GruposTuristas.getSelectedRow();
+					if (n != -1) {
+						String contenidoGruposGuias = "Circuito: " + modeloTablaGruposGuias.getValueAt(n, 0) + "\n"
+								+ "Nº de personas: " + modeloTablaGruposGuias.getValueAt(n, 1) + "\n" + "Coste (€): "
+								+ modeloTablaGruposGuias.getValueAt(n, 3) + "\n";
+						contenidoGruposGuias += (Boolean) modeloTablaGruposGuias.getValueAt(n, 4) ? "Realizado "
+								: "No realizado\n";
+
+						tFGruposGuiasSeleccionada.setText(contenidoGruposGuias);
+					}
+				}
+			}
+
+		});
+
+		tabla_GruposTuristas.setModel(tabGruposGuias);
+		tabla_GruposTuristas.setRowHeight(35);
+
+		JPanel pnl1GruposTuristas = new JPanel();
+		pnlGruposTuristas.add(pnl1GruposTuristas, BorderLayout.SOUTH);
+		GridBagLayout gbl_pnl1GruposTuristas = new GridBagLayout();
+		gbl_pnl1GruposTuristas.columnWidths = new int[] { 0, 0 };
+		gbl_pnl1GruposTuristas.rowHeights = new int[] { 0, 0 };
+		gbl_pnl1GruposTuristas.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gbl_pnl1GruposTuristas.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		pnl1GruposTuristas.setLayout(gbl_pnl1GruposTuristas);
+
+		tFGruposGuiasSeleccionada = new JTextField();
+		GridBagConstraints gbc_tFGruposGuiasSeleccionada = new GridBagConstraints();
+		gbc_tFGruposGuiasSeleccionada.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tFGruposGuiasSeleccionada.gridx = 0;
+		gbc_tFGruposGuiasSeleccionada.gridy = 0;
+		pnl1GruposTuristas.add(tFGruposGuiasSeleccionada, gbc_tFGruposGuiasSeleccionada);
+		tFGruposGuiasSeleccionada.setColumns(10);
 
 		JPanel pnlGuias = new JPanel();
 		pnlGuias.setFocusTraversalPolicyProvider(true);
@@ -415,57 +510,58 @@ public class VentanaUsuario {
 		pnlGuias.setToolTipText("");
 		tBOpciones.addTab("Guías", null, pnlGuias, null);
 		pnlGuias.setLayout(new BorderLayout(0, 0));
-		
+
 		JToolBar tBGuias = new JToolBar();
 		tBGuias.setBackground(new Color(206, 219, 197));
 		pnlGuias.add(tBGuias, BorderLayout.NORTH);
-		
+
 		JButton btnAadir = new JButton("A\u00F1adir");
 		btnAadir.setBackground(new Color(206, 219, 197));
 		btnAadir.addActionListener(new BtnAadirActionListener());
 		btnAadir.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
+		btnAadir.setBorder(new RoundedBorder(10));
 		tBGuias.add(btnAadir);
-		
+
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setBackground(new Color(206, 219, 197));
 		btnModificar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
+		btnModificar.setBorder(new RoundedBorder(10));
 		tBGuias.add(btnModificar);
-		
+
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBackground(new Color(206, 219, 197));
 		btnEliminar.addActionListener(new BtnEliminarActionListener());
 		btnEliminar.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-delete-24.png")));
+		btnEliminar.setBorder(new RoundedBorder(10));
 		tBGuias.add(btnEliminar);
-		
+
 		TablaGuias tabGuias = new TablaGuias();
-		
+
 		Object[] fila1 = { "Marta", "Lopez Canales",
-				new ImageIcon(getClass().getClassLoader().getResource
-				("Presentacion/foto1.jpg")),"Español-Inglés", true};
+				new ImageIcon(getClass().getClassLoader().getResource("Presentacion/foto1.jpg")), "Español-Inglés",
+				true };
 		tabGuias.aniadeFila(fila1);
 		Object[] fila2 = { "Jesus", "Fernandez Gamero",
-				new ImageIcon(getClass().getClassLoader().getResource
-						("Presentacion/foto3.jpg")),"Español-Francés", true};
+				new ImageIcon(getClass().getClassLoader().getResource("Presentacion/foto3.jpg")), "Español-Francés",
+				true };
 		tabGuias.aniadeFila(fila2);
 		Object[] fila3 = { "Julia", "Granados Velasco",
-				new ImageIcon(getClass().getClassLoader().getResource
-						("Presentacion/foto2.jpg")),"Español-Chino", false};
+				new ImageIcon(getClass().getClassLoader().getResource("Presentacion/foto2.jpg")), "Español-Chino",
+				false };
 		tabGuias.aniadeFila(fila3);
 		Object[] fila4 = { "Raul", "Peco Lozano",
-				new ImageIcon(getClass().getClassLoader().getResource
-						("Presentacion/foto4.jpg")),"Español", false};
+				new ImageIcon(getClass().getClassLoader().getResource("Presentacion/foto4.jpg")), "Español", false };
 		tabGuias.aniadeFila(fila4);
 		Object[] fila5 = { "Stephanie", "Harris",
-				new ImageIcon(getClass().getClassLoader().getResource
-						("Presentacion/foto5.jpg")),"Inglés-Italiano", true};
+				new ImageIcon(getClass().getClassLoader().getResource("Presentacion/foto5.jpg")), "Inglés-Italiano",
+				true };
 		tabGuias.aniadeFila(fila5);
-		
-		
+
 		JScrollPane scrollPane_1;
 		scrollPaneGuias = new JScrollPane();
 		scrollPaneGuias.setBackground(new Color(244, 229, 226));
 		pnlGuias.add(scrollPaneGuias, BorderLayout.CENTER);
-		
+
 		tabla_Guias = new JTable();
 		tabla_Guias.setBackground(new Color(244, 229, 226));
 		tabla_Guias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -478,11 +574,10 @@ public class VentanaUsuario {
 					TablaGuias modeloTabla = (TablaGuias) tabla_Guias.getModel();
 					int n = tabla_Guias.getSelectedRow();
 					if (n != -1) {
-						String contenido = "Nombre: " + modeloTabla.getValueAt(n, 0) + "\n" +
-								"Apellidos: "
-								+ modeloTabla.getValueAt(n, 1) 
-								+ "\n" +"Idiomas: "+ modeloTabla.getValueAt(n, 3) + "\n";
-						contenido += (Boolean) modeloTabla.getValueAt(n,4) ? "Disponible " : "No Disponible\n";
+						String contenido = "Nombre: " + modeloTabla.getValueAt(n, 0) + "\n" + "Apellidos: "
+								+ modeloTabla.getValueAt(n, 1) + "\n" + "Idiomas: " + modeloTabla.getValueAt(n, 3)
+								+ "\n";
+						contenido += (Boolean) modeloTabla.getValueAt(n, 4) ? "Disponible " : "No Disponible\n";
 						taFilaSeleccionada.setText(contenido);
 						lblFotoGuia.setIcon((ImageIcon) modeloTabla.getValueAt(n, 2));
 					}
@@ -490,24 +585,23 @@ public class VentanaUsuario {
 			}
 
 		});
-		
+
 		tabla_Guias.setModel(tabGuias);
 		TableColumn columnaFoto_guias = tabla_Guias.getColumnModel().getColumn(2);
 		columnaFoto_guias.setCellEditor(new ColumnaFotoEditor());
-		tabla_Guias.setRowHeight(35);
-		
-		
+		tabla_Guias.setRowHeight(40);
+
 		scrollPaneGuias.setViewportView(tabla_Guias);
-		
+
 		JPanel pnl1Guias;
 		pnl1Guias = new JPanel();
 		pnl1Guias.setBackground(new Color(244, 229, 226));
 		pnlGuias.add(pnl1Guias, BorderLayout.SOUTH);
 		pnl1Guias.setLayout(new GridLayout(1, 2, 0, 0));
-		
+
 		lblFotoGuia = new JLabel(" ");
 		pnl1Guias.add(lblFotoGuia);
-		
+
 		taFilaSeleccionada = new JTextField();
 		pnl1Guias.add(taFilaSeleccionada);
 		taFilaSeleccionada.setColumns(10);
@@ -536,27 +630,69 @@ public class VentanaUsuario {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();
 					spain = true;
-					
 
 				}
 			}
 		});
 	}
+
 	private class BtnAadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			TablaGuias tab = (TablaGuias) tabla_Guias.getModel();
-			Object[] nuevaFila = {"...", "...", new ImageIcon(getClass().getClassLoader().getResource("Presentacion/user24.png")),"...",false};
+			Object[] nuevaFila = { "...", "...",
+					new ImageIcon(getClass().getClassLoader().getResource("Presentacion/user24.png")), "...", false };
 			tab.aniadeFila(nuevaFila);
 			tab.fireTableDataChanged();
+		}
+	}
+
+	private class BtnAnadirHistorialActionListener_1 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			TablaHistorial tabTablaHistorial = (TablaHistorial) tabla_Historial_1.getModel();
+			Object[] nuevaFila_hist = { "...", "...", "...", "...", false };
+			tabTablaHistorial.anadirFila(nuevaFila_hist);
+			tabTablaHistorial.fireTableDataChanged();
+		}
+	}
+
+	private class BtnAnadirGruposTuristasActionListener_1 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			TablaGruposTuristas tabTablaGruposTuristas = (TablaGruposTuristas) tabla_GruposTuristas.getModel();
+			Object[] nuevaFila_gg = { "...", "...", "...", "...", false };
+			tabTablaGruposTuristas.anadirFila(nuevaFila_gg);
+			tabTablaGruposTuristas.fireTableDataChanged();
 
 		}
 	}
+
 	private class BtnEliminarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			TablaGuias tab = (TablaGuias) tabla_Guias.getModel();
-			int n= tabla_Guias.getSelectedRow();
-			if (n != -1) tab.eliminaFila(tabla_Guias.getSelectedRow());
+			int n = tabla_Guias.getSelectedRow();
+			if (n != -1)
+				tab.eliminaFila(tabla_Guias.getSelectedRow());
 			tab.fireTableDataChanged();
 		}
 	}
+
+	private class BtnEliminarHistorialActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			TablaHistorial tabHistorial = (TablaHistorial) tabla_Historial_1.getModel();
+			int n = tabla_Historial_1.getSelectedRow();
+			if (n != -1)
+				tabHistorial.eliminaFila(tabla_Historial_1.getSelectedRow());
+			tabHistorial.fireTableDataChanged();
+		}
+	}
+
+	private class BtnEliminarGruposTuristasActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			TablaGruposTuristas tabGruposTuristas = (TablaGruposTuristas) tabla_GruposTuristas.getModel();
+			int n = tabla_GruposTuristas.getSelectedRow();
+			if (n != -1)
+				tabGruposTuristas.eliminaFila(tabla_GruposTuristas.getSelectedRow());
+			tabGruposTuristas.fireTableDataChanged();
+		}
+	}
+
 }

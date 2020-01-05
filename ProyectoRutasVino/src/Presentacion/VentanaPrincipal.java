@@ -137,7 +137,7 @@ public class VentanaPrincipal {
 	private JScrollPane scrollPane;
 	private JButton btnLimpiarCamposRegistro;
 	private JButton btnLimpiarCamposInicioSesion;
-	private JDateChooser dateChooser; //Añadir el calendario
+	private JDateChooser dateChooser; // Añadir el calendario
 	private boolean spain = false;
 	private Usuario usuario;
 
@@ -156,7 +156,7 @@ public class VentanaPrincipal {
 			}
 		});
 	}
-		
+
 	/**
 	 * Create the application.
 	 */
@@ -429,7 +429,8 @@ public class VentanaPrincipal {
 		tPInformacion = new JTextPane();
 		tPInformacion.setOpaque(false);
 		tPInformacion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		tPInformacion.setText("Somos una empresa dedicada a la organizaci\u00F3n de Rutas de Vino por la \r\nprovincia de Ciudad real.\r\n\r\nOfrecemos diferentes rutas para nuestros clientes, trabajamos con grupos\r\nde cualquier edad y de 2 a 40 personas.\r\n\r\nOfrecemos un servicio profesional con una calidad excepcional, siempre \r\nmanteniendo una atenci\u00F3n personalizada para que ustedes tengan la mejor experiencia.");
+		tPInformacion.setText(
+				"Somos una empresa dedicada a la organizaci\u00F3n de Rutas de Vino por la \r\nprovincia de Ciudad real.\r\n\r\nOfrecemos diferentes rutas para nuestros clientes, trabajamos con grupos\r\nde cualquier edad y de 2 a 40 personas.\r\n\r\nOfrecemos un servicio profesional con una calidad excepcional, siempre \r\nmanteniendo una atenci\u00F3n personalizada para que ustedes tengan la mejor experiencia.");
 		tPInformacion.setBackground(new Color(206, 219, 197));
 		GridBagConstraints gbc_tPInformacion = new GridBagConstraints();
 		gbc_tPInformacion.anchor = GridBagConstraints.NORTH;
@@ -563,11 +564,13 @@ public class VentanaPrincipal {
 		gbc_tFCorreoElectronicoRegistro.gridx = 3;
 		gbc_tFCorreoElectronicoRegistro.gridy = 4;
 		pnlRegistro.add(tFCorreoElectronicoRegistro, gbc_tFCorreoElectronicoRegistro);
-		
-		// Instanciar Componente calendario, con máscara para que el usuario pueda meterlo de forma manual si quiere
+
+		// Instanciar Componente calendario, con máscara para que el usuario pueda
+		// meterlo de forma manual si quiere
 		// Se pondrá en rojo si el usuario mete una fecha inválida
 		dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		dateChooser.getCalendarButton().setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
+		dateChooser.getCalendarButton()
+				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
 		lblFechaNacimientoRegistro = new JLabel("Fecha de nacimiento:");
 		lblFechaNacimientoRegistro.setForeground(new Color(81, 43, 55));
 		lblFechaNacimientoRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -577,8 +580,8 @@ public class VentanaPrincipal {
 		gbc_lblFechaNacimientoRegistro.gridx = 2;
 		gbc_lblFechaNacimientoRegistro.gridy = 5;
 		pnlRegistro.add(lblFechaNacimientoRegistro, gbc_lblFechaNacimientoRegistro);
-		
-		//dateChooser.setColumns(10);
+
+		// dateChooser.setColumns(10);
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
 		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
 		gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
@@ -834,7 +837,7 @@ public class VentanaPrincipal {
 
 		tFUsuarioInicioSesion = new JTextField();
 		tFUsuarioInicioSesion.addActionListener(new TFUsuarioActionListener(this.usuario));
-		tFUsuarioInicioSesion.addFocusListener(new MiFocusListener());
+		// tFUsuarioInicioSesion.addFocusListener(new MiFocusListener());
 		tFUsuarioInicioSesion.setColumns(10);
 		GridBagConstraints gbc_tFUsuarioInicioSesion = new GridBagConstraints();
 		gbc_tFUsuarioInicioSesion.fill = GridBagConstraints.HORIZONTAL;
@@ -844,7 +847,8 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(tFUsuarioInicioSesion, gbc_tFUsuarioInicioSesion);
 
 		lblIconoInicioSesion = new JLabel(" ");
-		lblIconoInicioSesion.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
+		lblIconoInicioSesion.setIcon(
+				new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-usuario-masculino-64.png")));
 		lblIconoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblIconoInicioSesion = new GridBagConstraints();
 		gbc_lblIconoInicioSesion.anchor = GridBagConstraints.EAST;
@@ -911,7 +915,8 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(lblTextoInicioSesion, gbc_lblTextoInicioSesion);
 
 		lblInfoInicioSesion = new JLabel("");
-		lblInfoInicioSesion.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfoInicioSesion
+				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
 		lblInfoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblInfoInicioSesion = new GridBagConstraints();
 		gbc_lblInfoInicioSesion.anchor = GridBagConstraints.WEST;
@@ -974,7 +979,8 @@ public class VentanaPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				ImageIcon imagenEnglish = new ImageIcon(
+						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
 				if (spain) {
 					lblBandera.setIcon(imagenSpain);
@@ -1016,7 +1022,8 @@ public class VentanaPrincipal {
 
 		btnAlcazar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain, usuario);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain,
+						usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1029,13 +1036,13 @@ public class VentanaPrincipal {
 				frame.dispose();
 			}
 		});
-		
+
 		btnLimpiarCamposRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resetearRegistro();
 			}
 		});
-		
+
 		btnEntrarInicioSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaUsuario usuario = new VentanaUsuario(new Usuario(tFUsuarioInicioSesion.getText()), !spain);
@@ -1047,13 +1054,13 @@ public class VentanaPrincipal {
 
 	private class TFUsuarioActionListener implements ActionListener {
 		private Usuario usuario;
-		
+
 		public TFUsuarioActionListener(Usuario usuario) {
 			this.usuario = usuario;
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
-			if(new Usuario().checkUsuario(tFUsuarioInicioSesion.getText())){
+			if (new Usuario().checkUsuario(tFUsuarioInicioSesion.getText())) {
 				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
 				lblMensajesInicioSesion.setForeground(Color.WHITE);
 				lblMensajesInicioSesion.setText("Usuario correcto, introduzca la contraseña");
@@ -1099,16 +1106,16 @@ public class VentanaPrincipal {
 	private class PwdfContrasenaActionListener implements ActionListener {
 		private Usuario usuario;
 		private boolean posible;
-		
+
 		public PwdfContrasenaActionListener(Usuario usuario) {
 			this.usuario = usuario;
 		}
-		
+
 		// Obtener contraseña introducida
 		public void actionPerformed(ActionEvent arg0) {
 			Timer timer;
 			TimerTask task;
-			if(new Usuario().checkContrasena(pwdfContrasenaInicioSesion.getText())){
+			if (new Usuario().checkContrasena(pwdfContrasenaInicioSesion.getText())) {
 				lblMensajesInicioSesion.setBackground(new Color(151, 168, 142));
 				lblMensajesInicioSesion.setForeground(Color.WHITE);
 				lblMensajesInicioSesion.setText("Contraseña correcta, ¡bienvenido!");
@@ -1116,7 +1123,7 @@ public class VentanaPrincipal {
 
 				// Temporizador para borrar los campos a los 3,5 segundos una vez haya entrado
 				// el usuario
-				
+
 				posible = false;
 
 			} else {
@@ -1128,19 +1135,18 @@ public class VentanaPrincipal {
 
 				// Temporizador para borrar los campos a los 10 segundos si el usuario no vuelve
 				// a intentarlo
-				
+
 				posible = true;
-				
 
 			}
-			
+
 			timer = new Timer();
-			task = new TimerTask(){
+			task = new TimerTask() {
 				public void run() {
 					resetearInicioSesion();
 				}
 			};
-			if(posible)
+			if (posible)
 				timer.schedule(task, 10000);
 			else
 				timer.schedule(task, 3500);
@@ -1166,7 +1172,6 @@ public class VentanaPrincipal {
 		pwdfContrasenaRegistro.setText(null);
 		pwdfRContrasenaRegistro.setText(null);
 		dateChooser.setDate(null);
-		
 
 	}
 }

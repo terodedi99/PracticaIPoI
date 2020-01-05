@@ -65,7 +65,7 @@ public class VentanaPersonalizarRuta {
 	private Cursor cursorParque;
 	private Cursor cursorMonumento;
 	private Cursor cursorBorrar;
-	//Variables para almacenar las coordenadas.
+	// Variables para almacenar las coordenadas.
 	private int x, y;
 	private JPanel pnlBotones;
 	private JButton btnSalir;
@@ -126,7 +126,8 @@ public class VentanaPersonalizarRuta {
 		{
 			lblTexto = new JLabel(
 					"  Utiliza los iconos para elegir restaurantes, lugares de inter\u00E9s como parques o monumentos.");
-			lblTexto.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-idea-16.png")));
+			lblTexto.setIcon(
+					new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-idea-16.png")));
 			lblTexto.setFont(new Font("Goudy Old Style", Font.PLAIN, 17));
 			GridBagConstraints gbc_lblTexto = new GridBagConstraints();
 			gbc_lblTexto.insets = new Insets(0, 0, 5, 5);
@@ -148,7 +149,8 @@ public class VentanaPersonalizarRuta {
 				btnLugar = new JButton(" ");
 				btnLugar.addActionListener(new BtnLugarActionListener());
 				btnLugar.setBackground(Color.WHITE);
-				btnLugar.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-marcador-30.png")));
+				btnLugar.setIcon(new ImageIcon(
+						VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-marcador-30.png")));
 				btnLugar.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnLugar);
 			}
@@ -156,7 +158,8 @@ public class VentanaPersonalizarRuta {
 				btnRestaurante = new JButton(" ");
 				btnRestaurante.addActionListener(new BtnRestauranteActionListener());
 				btnRestaurante.setBackground(Color.WHITE);
-				btnRestaurante.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-restaurante-30.png")));
+				btnRestaurante.setIcon(new ImageIcon(
+						VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-restaurante-30.png")));
 				btnRestaurante.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnRestaurante);
 			}
@@ -164,7 +167,8 @@ public class VentanaPersonalizarRuta {
 				btnParque = new JButton(" ");
 				btnParque.addActionListener(new BtnParqueActionListener());
 				btnParque.setBackground(Color.WHITE);
-				btnParque.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-bosque-30.png")));
+				btnParque.setIcon(
+						new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-bosque-30.png")));
 				btnParque.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnParque);
 			}
@@ -172,7 +176,8 @@ public class VentanaPersonalizarRuta {
 				btnMonumento = new JButton(" ");
 				btnMonumento.addActionListener(new BtnMonumentoActionListener());
 				btnMonumento.setBackground(Color.WHITE);
-				btnMonumento.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-arco-del-triunfo-30.png")));
+				btnMonumento.setIcon(new ImageIcon(
+						VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-arco-del-triunfo-30.png")));
 				btnMonumento.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnMonumento);
 			}
@@ -180,24 +185,27 @@ public class VentanaPersonalizarRuta {
 				btnBorrar = new JButton(" ");
 				btnBorrar.addActionListener(new BtnBorrarActionListener());
 				btnBorrar.setBackground(Color.WHITE);
-				btnBorrar.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-borrar-30.png")));
+				btnBorrar.setIcon(
+						new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-borrar-30.png")));
 				btnBorrar.setBorder(new RoundedBorder(10));
 				tBarraDibujo.add(btnBorrar);
 			}
 		}
 		{
-			//lblMapa = new JLabel(" ");
-			//lblMapa.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapa.png")));
-			//GridBagConstraints gbc_lblMapa = new GridBagConstraints();
-			//gbc_lblMapa.insets = new Insets(0, 0, 5, 5);
-			//gbc_lblMapa.gridx = 0;
-			//gbc_lblMapa.gridy = 3;
-			//frame.getContentPane().add(lblMapa, gbc_lblMapa);
+			// lblMapa = new JLabel(" ");
+			// lblMapa.setIcon(new
+			// ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapa.png")));
+			// GridBagConstraints gbc_lblMapa = new GridBagConstraints();
+			// gbc_lblMapa.insets = new Insets(0, 0, 5, 5);
+			// gbc_lblMapa.gridx = 0;
+			// gbc_lblMapa.gridy = 3;
+			// frame.getContentPane().add(lblMapa, gbc_lblMapa);
 
 			areaDibujo = new AreaDibujo();
 			areaDibujo.addMouseListener(new AreaDibujoMouseListener());
 			imagen = new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg"));
-			areaDibujo.setIcon(new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg")));
+			areaDibujo.setIcon(
+					new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/mapaCalleMudo1.jpg")));
 			GridBagConstraints gbc_areaDibujo = new GridBagConstraints();
 			gbc_areaDibujo.insets = new Insets(0, 0, 5, 5);
 			gbc_areaDibujo.gridx = 0;
@@ -234,10 +242,13 @@ public class VentanaPersonalizarRuta {
 
 			// Creación de imágenes y cursores
 			toolkit = Toolkit.getDefaultToolkit();
-			imagLugar = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-marcador-30.png"));
-			imagRestaurante = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-restaurante-30.png"));
+			imagLugar = toolkit
+					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-marcador-30.png"));
+			imagRestaurante = toolkit
+					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-restaurante-30.png"));
 			imagParque = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-bosque-30.png"));
-			imagMonumento = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-arco-del-triunfo-30.png"));
+			imagMonumento = toolkit
+					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-arco-del-triunfo-30.png"));
 			imagBorrar = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-borrar-30.png"));
 
 			// Creación de los cursores
@@ -317,6 +328,7 @@ public class VentanaPersonalizarRuta {
 
 		}
 	}
+
 	private class BtnSalir implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			frame.dispose();
