@@ -41,7 +41,6 @@ public class VentanaPersonalizarRuta {
 	private JButton btnRestaurante;
 	private JButton btnParque;
 	private JButton btnMonumento;
-	private JButton btnBorrar;
 	private JLabel lblMapa;
 	// Area de dibujo personalizada (creada extendiendo de JLabel)
 	private AreaDibujo areaDibujo;
@@ -52,19 +51,19 @@ public class VentanaPersonalizarRuta {
 	private final int RESTAURANTE = 2;
 	private final int PARQUE = 3;
 	private final int MONUMENTO = 4;
-	private final int BORRAR = 5;
+
 	// Cursores e imágenes
 	private Toolkit toolkit;
 	private Image imagLugar;
 	private Image imagRestaurante;
 	private Image imagParque;
 	private Image imagMonumento;
-	private Image imagBorrar;
+
 	private Cursor cursorLugar;
 	private Cursor cursorRestaurante;
 	private Cursor cursorParque;
 	private Cursor cursorMonumento;
-	private Cursor cursorBorrar;
+
 	// Variables para almacenar las coordenadas.
 	private int x, y;
 	private JPanel pnlBotones;
@@ -182,13 +181,7 @@ public class VentanaPersonalizarRuta {
 				tBarraDibujo.add(btnMonumento);
 			}
 			{
-				btnBorrar = new JButton(" ");
-				btnBorrar.addActionListener(new BtnBorrarActionListener());
-				btnBorrar.setBackground(Color.WHITE);
-				btnBorrar.setIcon(
-						new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-borrar-30.png")));
-				btnBorrar.setBorder(new RoundedBorder(10));
-				tBarraDibujo.add(btnBorrar);
+				
 			}
 		}
 		{
@@ -249,14 +242,13 @@ public class VentanaPersonalizarRuta {
 			imagParque = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-bosque-30.png"));
 			imagMonumento = toolkit
 					.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-arco-del-triunfo-30.png"));
-			imagBorrar = toolkit.getImage(getClass().getClassLoader().getResource("Presentacion/icons8-borrar-30.png"));
-
+			
 			// Creación de los cursores
 			cursorLugar = toolkit.createCustomCursor(imagLugar, new Point(0, 0), "CURSOR_LUGAR");
 			cursorRestaurante = toolkit.createCustomCursor(imagRestaurante, new Point(0, 0), "CURSOR_RESTAURANTE");
 			cursorParque = toolkit.createCustomCursor(imagParque, new Point(0, 0), "CURSOR_PARQUE");
 			cursorMonumento = toolkit.createCustomCursor(imagMonumento, new Point(0, 0), "CURSOR_MONUMENTO");
-			cursorBorrar = toolkit.createCustomCursor(imagBorrar, new Point(0, 0), "CURSOR_BORRAR");
+		
 		}
 
 	}
@@ -289,13 +281,6 @@ public class VentanaPersonalizarRuta {
 		}
 	}
 
-	private class BtnBorrarActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			modo = BORRAR;
-			frame.setCursor(cursorBorrar);
-		}
-	}
-
 	private class AreaDibujoMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -317,10 +302,6 @@ public class VentanaPersonalizarRuta {
 					break;
 				case MONUMENTO:
 					areaDibujo.addObjetoGrafico(new ImagenGrafico(x, y, imagMonumento));
-					areaDibujo.repaint();
-					break;
-				case BORRAR:
-					areaDibujo.addObjetoGrafico(new ImagenGrafico(x, y, imagBorrar));
 					areaDibujo.repaint();
 					break;
 				}
