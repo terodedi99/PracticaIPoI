@@ -95,11 +95,9 @@ public class VentanaLocalidades {
 	private Usuario usuario;
 
 	public VentanaLocalidades(Localidad localidad, boolean spain, Usuario usuario) {
-		this.usuario = usuario;
-
-		this.spain = spain;
 		this.localidad = localidad;
-
+		this.spain = spain;
+		this.usuario = usuario;
 		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
@@ -113,7 +111,7 @@ public class VentanaLocalidades {
 			lblBandera_2.setIcon(imagenEnglish);
 			lblBandera_2.repaint();
 			spain = true;
-
+			
 		}
 
 		initialize();
@@ -374,28 +372,7 @@ public class VentanaLocalidades {
 		pnlCalendario.add(dateChooser_1, gbc_dateChooser_1);
 
 		{
-			// Instanciar Componente de calendario de fecha de entrada
-			/*
-			 * calendar_entrada = new JCalendar();
-			 * calendar_entrada.setTodayButtonVisible(true); //Agregar botón de ''Día de
-			 * hoy'' calendar_entrada.setWeekOfYearVisible(false); //Quitar número de
-			 * semanas GridBagConstraints gbc_calendar_entrada = new GridBagConstraints();
-			 * gbc_calendar_entrada.insets = new Insets(0, 0, 5, 5);
-			 * gbc_calendar_entrada.gridx = 2; gbc_calendar_entrada.gridy = 3;
-			 * pnlCalendario.add(calendar_entrada, gbc_calendar_entrada);
-			 */
 		}
-
-		// Instanciar Componente de calendario de fecha de salida
-		/*
-		 * calendar_salida = new JCalendar(); calendar_salida.getDate();
-		 * calendar_salida.setTodayButtonVisible(true); //Agregar botón de ''Día de
-		 * hoy'' calendar_salida.setWeekOfYearVisible(false); //Quitar número de semanas
-		 * GridBagConstraints gbc_calendar_salida = new GridBagConstraints();
-		 * gbc_calendar_salida.insets = new Insets(0, 0, 5, 5);
-		 * gbc_calendar_salida.gridx = 5; gbc_calendar_salida.gridy = 3;
-		 * pnlCalendario.add(calendar_salida, gbc_calendar_salida);
-		 */
 		{
 			btnBorrarCambios = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnBorrarCambios.text")); //$NON-NLS-1$
 			btnBorrarCambios.setOpaque(false);
@@ -613,29 +590,26 @@ public class VentanaLocalidades {
 			}
 		});
 
-		/*
-		 * btnUsuario.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { VentanaUsuario usuario = new
-		 * VentanaUsuario(Usuario usuario, boolean spain);
-		 * usuario.frame.setVisible(true); frame.dispose(); } });
-		 */
-
 		lblBandera_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(
-						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
 				if (spain) {
 					lblBandera_2.setIcon(imagenSpain);
 					lblBandera_2.repaint();
 					spain = false;
+				
 				} else {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();
 					spain = true;
+					MessagesVentanaLocalidades.setIdioma("inglés");
+					VentanaLocalidades localidad = new VentanaLocalidades();
+					localidad.frame.setVisible(true);
+					frame.dispose();
 
 				}
 			}

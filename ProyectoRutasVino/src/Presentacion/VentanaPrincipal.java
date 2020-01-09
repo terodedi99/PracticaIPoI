@@ -979,8 +979,7 @@ public class VentanaPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(
-						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
 				if (spain) {
 					lblBandera.setIcon(imagenSpain);
