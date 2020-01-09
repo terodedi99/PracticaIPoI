@@ -63,6 +63,9 @@ import javax.swing.border.BevelBorder;
 import java.awt.Cursor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JFormattedTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class VentanaPrincipal {
 
@@ -138,8 +141,9 @@ public class VentanaPrincipal {
 	private JButton btnLimpiarCamposRegistro;
 	private JButton btnLimpiarCamposInicioSesion;
 	private JDateChooser dateChooser; // Añadir el calendario
-	private boolean spain = false;
+	private boolean spain;
 	private Usuario usuario;
+	private JFormattedTextField formattedTextField;
 
 	/**
 	 * Launch the application.
@@ -161,15 +165,35 @@ public class VentanaPrincipal {
 	 * Create the application.
 	 */
 	public VentanaPrincipal() {
-		this.usuario = null;
 		initialize();
 
 	}
+	
+	public VentanaPrincipal(boolean spain) {
+		this.spain = spain;
+		
+		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
+		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
+		if (spain) {
+			lblBandera.setIcon(imagenSpain);;
+			lblBandera.repaint();
+			spain = false;
+			 
+		} else {
+			lblBandera.setIcon(imagenEnglish);
+			lblBandera.repaint();
+			spain = true;
+
+		}
+		
+		initialize();
+	}
+	
 	public VentanaPrincipal(Usuario usuario) {
-		// TODO Auto-generated constructor stub
 		this.usuario = usuario;
 		initialize();
+	
 	}
 
 	/**
@@ -179,7 +203,7 @@ public class VentanaPrincipal {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(237, 217, 194));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para que la aplicación finalice al pulsar "x"
-		frame.setBounds(0, 0, 516, 394); // Establece posición y tamaño de la ventana
+		frame.setBounds(0, 0, 770, 770); // Establece posición y tamaño de la ventana
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height); // Cambia el tamaño de la ventana
 		frame.getContentPane().setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
@@ -292,7 +316,7 @@ public class VentanaPrincipal {
 		pnlTitulo.setBackground(new Color(237, 217, 194));
 		pnlTitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagLayout gbl_pnlTitulo = new GridBagLayout();
-		gbl_pnlTitulo.columnWidths = new int[] { 1266, 0 };
+		gbl_pnlTitulo.columnWidths = new int[] { 1280, 0 };
 		gbl_pnlTitulo.rowHeights = new int[] { 69, 49, 0, 0, 0, 0 };
 		gbl_pnlTitulo.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_pnlTitulo.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
@@ -380,9 +404,9 @@ public class VentanaPrincipal {
 		pnlInformacion.setOpaque(false);
 		pnlCardInformacion.add(pnlInformacion, "Principal");
 		GridBagLayout gbl_pnlInformacion = new GridBagLayout();
-		gbl_pnlInformacion.columnWidths = new int[] { 653, 589, 114, 0 };
+		gbl_pnlInformacion.columnWidths = new int[] { 622, 635, 0 };
 		gbl_pnlInformacion.rowHeights = new int[] { 38, 46, 68, 0, 187, 86, 35, 0 };
-		gbl_pnlInformacion.columnWeights = new double[] { 1.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlInformacion.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
 		gbl_pnlInformacion.rowWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		pnlInformacion.setLayout(gbl_pnlInformacion);
 
@@ -390,7 +414,7 @@ public class VentanaPrincipal {
 		lblNewLabel.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/molinos.jpeg")));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridwidth = 2;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 1;
 		pnlInformacion.add(lblNewLabel, gbc_lblNewLabel);
@@ -410,7 +434,7 @@ public class VentanaPrincipal {
 		lblTituloInformacion.setFont(new Font("Goudy Old Style", Font.ITALIC, 30));
 		lblTituloInformacion.setBackground(new Color(206, 219, 197));
 		GridBagConstraints gbc_lblTituloInformacion = new GridBagConstraints();
-		gbc_lblTituloInformacion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTituloInformacion.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTituloInformacion.gridx = 1;
 		gbc_lblTituloInformacion.gridy = 2;
 		pnlInformacion.add(lblTituloInformacion, gbc_lblTituloInformacion);
@@ -421,7 +445,7 @@ public class VentanaPrincipal {
 		btnFormulario.setBorder(new RoundedBorder(10));
 		btnFormulario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GridBagConstraints gbc_btnFormulario = new GridBagConstraints();
-		gbc_btnFormulario.insets = new Insets(0, 0, 5, 5);
+		gbc_btnFormulario.insets = new Insets(0, 0, 5, 0);
 		gbc_btnFormulario.gridx = 1;
 		gbc_btnFormulario.gridy = 3;
 		pnlInformacion.add(btnFormulario, gbc_btnFormulario);
@@ -443,7 +467,7 @@ public class VentanaPrincipal {
 		lblDatos.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDatos.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/datos.png")));
 		GridBagConstraints gbc_lblDatos = new GridBagConstraints();
-		gbc_lblDatos.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDatos.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDatos.gridx = 1;
 		gbc_lblDatos.gridy = 4;
 		pnlInformacion.add(lblDatos, gbc_lblDatos);
@@ -460,8 +484,7 @@ public class VentanaPrincipal {
 		lblMapaCiudadReal = new JLabel("");
 		lblMapaCiudadReal.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/mapa.png")));
 		GridBagConstraints gbc_lblMapaCiudadReal = new GridBagConstraints();
-		gbc_lblMapaCiudadReal.anchor = GridBagConstraints.WEST;
-		gbc_lblMapaCiudadReal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMapaCiudadReal.insets = new Insets(0, 0, 5, 0);
 		gbc_lblMapaCiudadReal.gridx = 1;
 		gbc_lblMapaCiudadReal.gridy = 5;
 		pnlInformacion.add(lblMapaCiudadReal, gbc_lblMapaCiudadReal);
@@ -474,7 +497,7 @@ public class VentanaPrincipal {
 		GridBagLayout gbl_pnlRegistro = new GridBagLayout();
 		gbl_pnlRegistro.columnWidths = new int[] { 73, 301, 215, 227, 100, 93, 287, 0 };
 		gbl_pnlRegistro.rowHeights = new int[] { 60, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0 };
-		gbl_pnlRegistro.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlRegistro.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_pnlRegistro.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		pnlRegistro.setLayout(gbl_pnlRegistro);
@@ -503,6 +526,14 @@ public class VentanaPrincipal {
 		pnlRegistro.add(lblTitulo2Registro, gbc_lblTitulo2Registro);
 
 		tFNombreRegistro = new JTextField();
+		tFNombreRegistro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char nombre = e.getKeyChar();
+				if((nombre<'a' || nombre>'z') && (nombre<'A' || nombre>'Z'))
+					e.consume();
+			}
+		});
 		tFNombreRegistro.addFocusListener(new MiFocusListener());
 
 		lblNombreRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblNombreRegistro.text")); //$NON-NLS-1$
@@ -525,6 +556,14 @@ public class VentanaPrincipal {
 		pnlRegistro.add(tFNombreRegistro, gbc_tFNombreRegistro);
 
 		tFApellidosRegistro = new JTextField();
+		tFApellidosRegistro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char apellidos = e.getKeyChar();
+				if((apellidos<'a' || apellidos>'z') && (apellidos<'A' || apellidos>'Z'))
+					e.consume();
+			}
+		});
 		tFApellidosRegistro.addFocusListener(new MiFocusListener());
 
 		lblApellidosRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblApellidosRegistro.text")); //$NON-NLS-1$
@@ -555,6 +594,14 @@ public class VentanaPrincipal {
 		pnlRegistro.add(lblCorreoElectronicoRegistro, gbc_lblCorreoElectronicoRegistro);
 
 		tFCorreoElectronicoRegistro = new JTextField();
+		tFCorreoElectronicoRegistro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char email = e.getKeyChar();
+				if((email<'a' || email>'z') && (email<'A' || email>'Z') && (email<'0'|| email>'9' && email<'@'))
+					e.consume();
+			}
+		});
 		tFCorreoElectronicoRegistro.addFocusListener(new MiFocusListener());
 		tFCorreoElectronicoRegistro.setColumns(10);
 		GridBagConstraints gbc_tFCorreoElectronicoRegistro = new GridBagConstraints();
@@ -569,8 +616,13 @@ public class VentanaPrincipal {
 		// meterlo de forma manual si quiere
 		// Se pondrá en rojo si el usuario mete una fecha inválida
 		dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		dateChooser.getCalendarButton()
-				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
+		dateChooser.getCalendarButton().setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
+		
+		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+		gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_formattedTextField.gridx = 1;
+		gbc_formattedTextField.gridy = 5;
 		lblFechaNacimientoRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblFechaNacimientoRegistro.text")); //$NON-NLS-1$
 		lblFechaNacimientoRegistro.setForeground(new Color(81, 43, 55));
 		lblFechaNacimientoRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -590,6 +642,16 @@ public class VentanaPrincipal {
 		pnlRegistro.add(dateChooser, gbc_dateChooser);
 
 		pwdfContrasenaRegistro = new JPasswordField();
+		pwdfContrasenaRegistro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 15;
+				{
+					if (pwdfContrasenaRegistro.getText().length() == limite)
+				     e.consume();
+				}
+			}
+		});
 		pwdfContrasenaRegistro.addFocusListener(new MiFocusListener());
 
 		lblContrasenaRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblContrasenaRegistro.text")); //$NON-NLS-1$
@@ -619,6 +681,16 @@ public class VentanaPrincipal {
 		pnlRegistro.add(lblInfoRegistro, gbc_lblInfoRegistro);
 
 		pwdfRContrasenaRegistro = new JPasswordField();
+		pwdfRContrasenaRegistro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 15;
+				{
+					if (pwdfContrasenaRegistro.getText().length() == limite)
+				     e.consume();
+				}
+			}
+		});
 		pwdfRContrasenaRegistro.addFocusListener(new MiFocusListener());
 
 		lblRContrasenaRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblRContrasenaRegistro.text")); //$NON-NLS-1$
@@ -719,6 +791,14 @@ public class VentanaPrincipal {
 		pnlFormulario.add(lblNombreFormulario, gbc_lblNombreFormulario);
 
 		tFNombreFormulario = new JTextField();
+		tFNombreFormulario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char nombreF = e.getKeyChar();
+				if((nombreF<'a' || nombreF>'z') && (nombreF<'A' || nombreF>'Z'))
+					e.consume();
+			}
+		});
 		tFNombreFormulario.addFocusListener(new MiFocusListener());
 		tFNombreFormulario.setColumns(10);
 		GridBagConstraints gbc_tFNombreFormulario = new GridBagConstraints();
@@ -915,8 +995,7 @@ public class VentanaPrincipal {
 		pnlInicioSesion.add(lblTextoInicioSesion, gbc_lblTextoInicioSesion);
 
 		lblInfoInicioSesion = new JLabel("");
-		lblInfoInicioSesion
-				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
+		lblInfoInicioSesion.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-ayuda-16.png")));
 		lblInfoInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblInfoInicioSesion = new GridBagConstraints();
 		gbc_lblInfoInicioSesion.anchor = GridBagConstraints.WEST;
@@ -980,15 +1059,25 @@ public class VentanaPrincipal {
 			public void mouseClicked(MouseEvent e) {
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
-
+				
 				if (spain) {
 					lblBandera.setIcon(imagenSpain);
 					lblBandera.repaint();
+					MessagesVentanaPrincipal.setIdioma("ingles");
+					VentanaPrincipal principalES = new VentanaPrincipal(!spain);
+					principalES.frame.setVisible(true);
+					frame.dispose();
 					spain = false;
+				
 				} else {
 					lblBandera.setIcon(imagenEnglish);
 					lblBandera.repaint();
+					MessagesVentanaPrincipal.setIdioma("es");
+					VentanaPrincipal principalIN = new VentanaPrincipal(!spain);
+					principalIN.frame.setVisible(true);
+					frame.dispose();
 					spain = true;
+
 				}
 
 			}

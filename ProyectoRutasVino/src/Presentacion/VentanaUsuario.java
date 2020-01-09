@@ -115,9 +115,9 @@ public class VentanaUsuario {
 	}
 
 	public VentanaUsuario(Usuario usuario, boolean spain) {
-		this.spain = spain;
 		this.usuario = usuario;
-
+		this.spain = spain;
+		
 		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
@@ -614,21 +614,29 @@ public class VentanaUsuario {
 				frame.dispose();
 			}
 		});
+		
 		lblBandera_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(
-						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
 				if (spain) {
 					lblBandera_2.setIcon(imagenSpain);
 					lblBandera_2.repaint();
+					MessagesVentanaUsuario.setIdioma("inglés");
+					VentanaUsuario usuarioES = new VentanaUsuario(new Usuario(lblUsuario.getText()), !spain);
+					usuarioES.frame.setVisible(true);
+					frame.dispose();
 					spain = false;
+				
 				} else {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();
+					MessagesVentanaUsuario.setIdioma("es");
+					VentanaUsuario usuarioIN = new VentanaUsuario(new Usuario(lblUsuario.getText()), !spain);
+					usuarioIN.frame.setVisible(true);
+					frame.dispose();
 					spain = true;
 
 				}

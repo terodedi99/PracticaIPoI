@@ -54,7 +54,7 @@ public class VentanaLocalidades {
 
 	public JFrame frame;
 	private JTextField tFBuscar;
-	private Localidad localidad;
+	public Localidad localidad;
 	private JLabel lblFechaEntrada;
 	private JDateChooser dateChooser; // Añadir el calendario
 	private JDateChooser dateChooser_1;
@@ -63,6 +63,12 @@ public class VentanaLocalidades {
 	private JCalendar calendar_salida;
 	private JTextFieldDateEditor textFieldDateEditor;
 	JLabel lblBandera_2 = new JLabel("");
+	private boolean spain;
+	private JLabel lblNumPersonas;
+	private JSpinner spinnerPersonas;
+	private JButton btnBorrarCambios;
+	private JButton btnGuardarCambios;
+	private Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -87,12 +93,7 @@ public class VentanaLocalidades {
 		initialize();
 	}
 
-	private boolean spain;
-	private JLabel lblNumPersonas;
-	private JSpinner spinnerPersonas;
-	private JButton btnBorrarCambios;
-	private JButton btnGuardarCambios;
-	private Usuario usuario;
+	
 
 	public VentanaLocalidades(Localidad localidad, boolean spain, Usuario usuario) {
 		this.localidad = localidad;
@@ -600,16 +601,20 @@ public class VentanaLocalidades {
 				if (spain) {
 					lblBandera_2.setIcon(imagenSpain);
 					lblBandera_2.repaint();
+					MessagesVentanaLocalidades.setIdioma("inglés");
+					VentanaLocalidades localidadES = new VentanaLocalidades(new Localidad(lblLocalidad.getText()), !spain, usuario);
+					localidadES.frame.setVisible(true);
+					frame.dispose();
 					spain = false;
 				
 				} else {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();
-					spain = true;
-					MessagesVentanaLocalidades.setIdioma("inglés");
-					VentanaLocalidades localidad = new VentanaLocalidades();
-					localidad.frame.setVisible(true);
+					MessagesVentanaLocalidades.setIdioma("es");
+					VentanaLocalidades localidadIN = new VentanaLocalidades(new Localidad(lblLocalidad.getText()), !spain, usuario);
+					localidadIN.frame.setVisible(true);
 					frame.dispose();
+					spain = true;
 
 				}
 			}
