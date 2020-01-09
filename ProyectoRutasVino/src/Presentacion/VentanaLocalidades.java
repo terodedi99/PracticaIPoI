@@ -230,7 +230,7 @@ public class VentanaLocalidades {
 
 		JTabbedPane tBOpciones = new JTabbedPane(JTabbedPane.TOP);
 		tBOpciones.setBackground(new Color(244, 229, 226));
-		tBOpciones.setToolTipText("");
+		tBOpciones.setToolTipText(MessagesVentanaLocalidades.getString("VentanaLocalidades.tBOpciones.toolTipText")); //$NON-NLS-1$
 		frame.getContentPane().add(tBOpciones, BorderLayout.CENTER);
 		tBOpciones.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		tBOpciones.setForeground(new Color(81, 43, 55));
@@ -256,7 +256,7 @@ public class VentanaLocalidades {
 		gbc_lblLocalidad.gridy = 1;
 		pnlLocalidad.add(lblLocalidad, gbc_lblLocalidad);
 
-		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
+		JLabel lblDescripcion = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblDescripcion.text")); //$NON-NLS-1$
 		lblDescripcion.setForeground(new Color(81, 43, 55));
 		lblDescripcion.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
@@ -292,7 +292,7 @@ public class VentanaLocalidades {
 		tBOpciones.addTab("Fechas disponibles", null, pnlFechas, null);
 		pnlFechas.setLayout(null);
 
-		JLabel lblFechasDisponibles = new JLabel("Fechas disponibles");
+		JLabel lblFechasDisponibles = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblFechasDisponibles.text")); //$NON-NLS-1$
 		lblFechasDisponibles.setBounds(30, 42, 360, 61);
 		lblFechasDisponibles.setForeground(new Color(81, 43, 55));
 		lblFechasDisponibles.setFont(new Font("Goudy Old Style", Font.PLAIN, 50));
@@ -309,7 +309,7 @@ public class VentanaLocalidades {
 		gbl_pnlCalendario.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlCalendario.setLayout(gbl_pnlCalendario);
 		{
-			lblNumPersonas = new JLabel("N\u00FAmero de personas:");
+			lblNumPersonas = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblNumPersonas.text")); //$NON-NLS-1$
 			lblNumPersonas.setForeground(new Color(81, 43, 55));
 			lblNumPersonas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			GridBagConstraints gbc_lblNumPersonas = new GridBagConstraints();
@@ -330,7 +330,7 @@ public class VentanaLocalidades {
 			pnlCalendario.add(spinnerPersonas, gbc_spinnerPersonas);
 		}
 
-		lblFechaEntrada = new JLabel("Fecha de entrada:");
+		lblFechaEntrada = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblFechaEntrada.text")); //$NON-NLS-1$
 		lblFechaEntrada.setForeground(new Color(81, 43, 55));
 		lblFechaEntrada.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblFechaEntrada = new GridBagConstraints();
@@ -353,7 +353,7 @@ public class VentanaLocalidades {
 		gbc_dateChooser.gridy = 1;
 		pnlCalendario.add(dateChooser, gbc_dateChooser);
 
-		lblFechaDeSalida = new JLabel("Fecha de salida:");
+		lblFechaDeSalida = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblFechaDeSalida.text")); //$NON-NLS-1$
 		lblFechaDeSalida.setForeground(new Color(81, 43, 55));
 		lblFechaDeSalida.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblFechaDeSalida = new GridBagConstraints();
@@ -397,12 +397,12 @@ public class VentanaLocalidades {
 		 * pnlCalendario.add(calendar_salida, gbc_calendar_salida);
 		 */
 		{
-			btnBorrarCambios = new JButton("Borrar cambios");
+			btnBorrarCambios = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnBorrarCambios.text")); //$NON-NLS-1$
 			btnBorrarCambios.setOpaque(false);
 			btnBorrarCambios.setBackground(new Color(244, 229, 226));
 			btnBorrarCambios.addActionListener(new BtnBorrarCambiosActionListener());
 			{
-				btnGuardarCambios = new JButton("Guardar cambios");
+				btnGuardarCambios = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnGuardarCambios.text")); //$NON-NLS-1$
 				btnGuardarCambios.setBackground(new Color(244, 229, 226));
 				btnGuardarCambios.addActionListener(new BtnGuardarCambiosActionListener());
 				btnGuardarCambios.setOpaque(false);
@@ -438,7 +438,7 @@ public class VentanaLocalidades {
 		gbl_pnlPrecio.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlPrecio.setLayout(gbl_pnlPrecio);
 
-		JLabel lblPrecio = new JLabel("Precio");
+		JLabel lblPrecio = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblPrecio.text")); //$NON-NLS-1$
 		lblPrecio.setForeground(new Color(81, 43, 55));
 		lblPrecio.setFont(new Font("Goudy Old Style", Font.PLAIN, 50));
 		GridBagConstraints gbc_lblPrecio = new GridBagConstraints();
@@ -500,7 +500,7 @@ public class VentanaLocalidades {
 		gbc_lblIconoRuta.gridy = 8;
 		pnlPrecio.add(lblIconoRuta, gbc_lblIconoRuta);
 
-		JButton btnPersonalizarRuta = new JButton("\u00BFPrefieres personalizar tu ruta?");
+		JButton btnPersonalizarRuta = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnPersonalizarRuta.text")); //$NON-NLS-1$
 		btnPersonalizarRuta.addActionListener(new BtnPersonalizarRutaActionListener());
 		btnPersonalizarRuta.setBackground(new Color(244, 229, 226));
 		btnPersonalizarRuta.setBorder(new RoundedBorder(10));
@@ -515,7 +515,7 @@ public class VentanaLocalidades {
 		pnlOpiniones.setFocusTraversalPolicyProvider(true);
 		pnlOpiniones.setFocusCycleRoot(true);
 		pnlOpiniones.setBackground(new Color(244, 229, 226));
-		pnlOpiniones.setToolTipText("");
+		pnlOpiniones.setToolTipText(MessagesVentanaLocalidades.getString("VentanaLocalidades.pnlOpiniones.toolTipText")); //$NON-NLS-1$
 		tBOpciones.addTab("Opiniones", null, pnlOpiniones, null);
 		GridBagLayout gbl_pnlOpiniones = new GridBagLayout();
 		gbl_pnlOpiniones.columnWidths = new int[] { 43, 283, 496, 266, 0 };
@@ -524,7 +524,7 @@ public class VentanaLocalidades {
 		gbl_pnlOpiniones.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlOpiniones.setLayout(gbl_pnlOpiniones);
 
-		JLabel lblOpiniones = new JLabel("Opiniones");
+		JLabel lblOpiniones = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblOpiniones.text")); //$NON-NLS-1$
 		lblOpiniones.setForeground(new Color(81, 43, 55));
 		lblOpiniones.setFont(new Font("Goudy Old Style", Font.PLAIN, 50));
 		GridBagConstraints gbc_lblOpiniones = new GridBagConstraints();

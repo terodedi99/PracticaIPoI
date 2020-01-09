@@ -112,7 +112,7 @@ public class VentanaPersonalizarRuta {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
 		{
-			lblPersonalizar = new JLabel("  Personaliza tu ruta");
+			lblPersonalizar = new JLabel(MessagesPersonalizarRuta.getString("VentanaPersonalizarRuta.lblPersonalizar.text")); //$NON-NLS-1$
 			lblPersonalizar.setForeground(new Color(81, 43, 55));
 			lblPersonalizar.setFont(new Font("Goudy Old Style", Font.PLAIN, 50));
 			GridBagConstraints gbc_lblPersonalizar = new GridBagConstraints();
@@ -124,7 +124,7 @@ public class VentanaPersonalizarRuta {
 		}
 		{
 			lblTexto = new JLabel(
-					"  Utiliza los iconos para elegir restaurantes, lugares de inter\u00E9s como parques o monumentos.");
+					MessagesPersonalizarRuta.getString("VentanaPersonalizarRuta.lblTexto.text")); //$NON-NLS-1$
 			lblTexto.setIcon(
 					new ImageIcon(VentanaPersonalizarRuta.class.getResource("/Presentacion/icons8-idea-16.png")));
 			lblTexto.setFont(new Font("Goudy Old Style", Font.PLAIN, 17));
@@ -214,7 +214,7 @@ public class VentanaPersonalizarRuta {
 				gbc_pnlBotones.gridy = 4;
 				frame.getContentPane().add(pnlBotones, gbc_pnlBotones);
 				{
-					btnGuardar = new JButton("Guardar");
+					btnGuardar = new JButton(MessagesPersonalizarRuta.getString("VentanaPersonalizarRuta.btnGuardar.text")); //$NON-NLS-1$
 					btnGuardar.addActionListener(new BtnSalir());
 					pnlBotones.add(btnGuardar);
 					btnGuardar.setBackground(new Color(237, 217, 194));
@@ -223,7 +223,7 @@ public class VentanaPersonalizarRuta {
 					btnGuardar.setBorder(new RoundedBorder(10));
 				}
 				{
-					btnSalir = new JButton("Salir");
+					btnSalir = new JButton(MessagesPersonalizarRuta.getString("VentanaPersonalizarRuta.btnSalir.text")); //$NON-NLS-1$
 					btnSalir.addActionListener(new BtnSalir());
 					pnlBotones.add(btnSalir);
 					btnSalir.setBackground(new Color(237, 217, 194));

@@ -223,7 +223,7 @@ public class VentanaPrincipal {
 		lblFlecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblFlecha.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/login.png")));
 
-		btnIniciarSesion = new JButton("Iniciar sesi\u00F3n");
+		btnIniciarSesion = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnIniciarSesion.text")); //$NON-NLS-1$
 		btnIniciarSesion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnIniciarSesion.setMargin(new Insets(2, 7, 2, 7));
 		btnIniciarSesion.setForeground(new Color(81, 43, 55));
@@ -237,7 +237,7 @@ public class VentanaPrincipal {
 		gbc_btnIniciarSesion.gridy = 0;
 		pnlLogin.add(btnIniciarSesion, gbc_btnIniciarSesion);
 
-		btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnRegistrarse.text")); //$NON-NLS-1$
 		btnRegistrarse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRegistrarse.setMargin(new Insets(2, 7, 2, 7));
 		GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
@@ -298,7 +298,7 @@ public class VentanaPrincipal {
 		gbl_pnlTitulo.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlTitulo.setLayout(gbl_pnlTitulo);
 
-		btnPrincipal = new JButton("Rutas del Vino");
+		btnPrincipal = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnPrincipal.text")); //$NON-NLS-1$
 		btnPrincipal.setBackground(new Color(237, 217, 194));
 		btnPrincipal.setOpaque(false);
 		btnPrincipal.setFont(new Font("Goudy Old Style", Font.ITALIC, 50));
@@ -318,35 +318,35 @@ public class VentanaPrincipal {
 		gbc_toolBar.gridy = 1;
 		pnlTitulo.add(toolBar, gbc_toolBar);
 
-		btnCiudadReal = new JButton("Ciudad Real");
+		btnCiudadReal = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnCiudadReal.text")); //$NON-NLS-1$
 		btnCiudadReal.setBackground(new Color(244, 229, 226));
 		btnCiudadReal.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
 		toolBar.add(btnCiudadReal);
 
-		btnValdepenas = new JButton("Valdepe\u00F1as");
+		btnValdepenas = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnValdepenas.text")); //$NON-NLS-1$
 		btnValdepenas.setBackground(new Color(244, 229, 226));
 		btnValdepenas.setForeground(new Color(81, 43, 55));
 		btnValdepenas.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnValdepenas.setBorder(new RoundedBorder(10));
 		toolBar.add(btnValdepenas);
 
-		btnAlmagro = new JButton("Almagro");
+		btnAlmagro = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnAlmagro.text")); //$NON-NLS-1$
 		btnAlmagro.setBackground(new Color(244, 229, 226));
 		btnAlmagro.setForeground(new Color(81, 43, 55));
 		btnAlmagro.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnAlmagro.setBorder(new RoundedBorder(10));
 		toolBar.add(btnAlmagro);
 
-		btnAlcazar = new JButton("Alc\u00E1zar de San Juan");
+		btnAlcazar = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnAlcazar.text")); //$NON-NLS-1$
 		btnAlcazar.setBackground(new Color(244, 229, 226));
 		btnAlcazar.setForeground(new Color(81, 43, 55));
 		btnAlcazar.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
 		btnAlcazar.setBorder(new RoundedBorder(10));
 		toolBar.add(btnAlcazar);
 
-		btnCampo = new JButton("Campo de Criptana");
+		btnCampo = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnCampo.text")); //$NON-NLS-1$
 		btnCampo.setBackground(new Color(244, 229, 226));
 		btnCampo.setForeground(new Color(81, 43, 55));
 		btnCampo.setFont(new Font("Goudy Old Style", Font.PLAIN, 25));
@@ -395,7 +395,7 @@ public class VentanaPrincipal {
 		gbc_lblNewLabel.gridy = 1;
 		pnlInformacion.add(lblNewLabel, gbc_lblNewLabel);
 
-		lblTituloQuienes = new JLabel("\u00BFQui\u00E9nes somos?");
+		lblTituloQuienes = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblTituloQuienes.text")); //$NON-NLS-1$
 		lblTituloQuienes.setForeground(new Color(81, 43, 55));
 		lblTituloQuienes.setFont(new Font("Goudy Old Style", Font.ITALIC, 30));
 		lblTituloQuienes.setBackground(new Color(206, 219, 197));
@@ -405,7 +405,7 @@ public class VentanaPrincipal {
 		gbc_lblTituloQuienes.gridy = 2;
 		pnlInformacion.add(lblTituloQuienes, gbc_lblTituloQuienes);
 
-		lblTituloInformacion = new JLabel("Informaci\u00F3n de contacto");
+		lblTituloInformacion = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblTituloInformacion.text")); //$NON-NLS-1$
 		lblTituloInformacion.setForeground(new Color(81, 43, 55));
 		lblTituloInformacion.setFont(new Font("Goudy Old Style", Font.ITALIC, 30));
 		lblTituloInformacion.setBackground(new Color(206, 219, 197));
@@ -415,7 +415,7 @@ public class VentanaPrincipal {
 		gbc_lblTituloInformacion.gridy = 2;
 		pnlInformacion.add(lblTituloInformacion, gbc_lblTituloInformacion);
 
-		btnFormulario = new JButton("Formulario de contacto");
+		btnFormulario = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnFormulario.text")); //$NON-NLS-1$
 		btnFormulario.setForeground(new Color(81, 43, 55));
 		btnFormulario.setBackground(new Color(237, 217, 194));
 		btnFormulario.setBorder(new RoundedBorder(10));
@@ -430,7 +430,7 @@ public class VentanaPrincipal {
 		tPInformacion.setOpaque(false);
 		tPInformacion.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tPInformacion.setText(
-				"Somos una empresa dedicada a la organizaci\u00F3n de Rutas de Vino por la \r\nprovincia de Ciudad real.\r\n\r\nOfrecemos diferentes rutas para nuestros clientes, trabajamos con grupos\r\nde cualquier edad y de 2 a 40 personas.\r\n\r\nOfrecemos un servicio profesional con una calidad excepcional, siempre \r\nmanteniendo una atenci\u00F3n personalizada para que ustedes tengan la mejor experiencia.");
+				MessagesVentanaPrincipal.getString("VentanaPrincipal.tPInformacion.text")); //$NON-NLS-1$
 		tPInformacion.setBackground(new Color(206, 219, 197));
 		GridBagConstraints gbc_tPInformacion = new GridBagConstraints();
 		gbc_tPInformacion.anchor = GridBagConstraints.NORTH;
@@ -479,7 +479,7 @@ public class VentanaPrincipal {
 				Double.MIN_VALUE };
 		pnlRegistro.setLayout(gbl_pnlRegistro);
 
-		lblTitulo1Registro = new JLabel("\u00BFA\u00FAn no tienes cuenta?");
+		lblTitulo1Registro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblTitulo1Registro.text")); //$NON-NLS-1$
 		lblTitulo1Registro.setForeground(new Color(81, 43, 55));
 		lblTitulo1Registro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo1Registro.setFont(new Font("Goudy Old Style", Font.PLAIN, 30));
@@ -491,7 +491,7 @@ public class VentanaPrincipal {
 		gbc_lblTitulo1Registro.gridy = 0;
 		pnlRegistro.add(lblTitulo1Registro, gbc_lblTitulo1Registro);
 
-		lblTitulo2Registro = new JLabel("\u00A1Reg\u00EDstrate!");
+		lblTitulo2Registro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblTitulo2Registro.text")); //$NON-NLS-1$
 		lblTitulo2Registro.setForeground(new Color(81, 43, 55));
 		lblTitulo2Registro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo2Registro.setFont(new Font("Goudy Old Style", Font.PLAIN, 28));
@@ -505,7 +505,7 @@ public class VentanaPrincipal {
 		tFNombreRegistro = new JTextField();
 		tFNombreRegistro.addFocusListener(new MiFocusListener());
 
-		lblNombreRegistro = new JLabel("Nombre:");
+		lblNombreRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblNombreRegistro.text")); //$NON-NLS-1$
 		lblNombreRegistro.setForeground(new Color(81, 43, 55));
 		lblNombreRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblNombreRegistro = new GridBagConstraints();
@@ -527,7 +527,7 @@ public class VentanaPrincipal {
 		tFApellidosRegistro = new JTextField();
 		tFApellidosRegistro.addFocusListener(new MiFocusListener());
 
-		lblApellidosRegistro = new JLabel("Apellidos:");
+		lblApellidosRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblApellidosRegistro.text")); //$NON-NLS-1$
 		lblApellidosRegistro.setForeground(new Color(81, 43, 55));
 		lblApellidosRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblApellidosRegistro = new GridBagConstraints();
@@ -544,7 +544,7 @@ public class VentanaPrincipal {
 		gbc_tFApellidosRegistro.gridy = 3;
 		pnlRegistro.add(tFApellidosRegistro, gbc_tFApellidosRegistro);
 
-		lblCorreoElectronicoRegistro = new JLabel("Correo electr\u00F3nico:");
+		lblCorreoElectronicoRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblCorreoElectronicoRegistro.text")); //$NON-NLS-1$
 		lblCorreoElectronicoRegistro.setForeground(new Color(81, 43, 55));
 		lblCorreoElectronicoRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblCorreoElectronicoRegistro = new GridBagConstraints();
@@ -571,7 +571,7 @@ public class VentanaPrincipal {
 		dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dateChooser.getCalendarButton()
 				.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/icons8-calendario-24.png")));
-		lblFechaNacimientoRegistro = new JLabel("Fecha de nacimiento:");
+		lblFechaNacimientoRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblFechaNacimientoRegistro.text")); //$NON-NLS-1$
 		lblFechaNacimientoRegistro.setForeground(new Color(81, 43, 55));
 		lblFechaNacimientoRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblFechaNacimientoRegistro = new GridBagConstraints();
@@ -592,7 +592,7 @@ public class VentanaPrincipal {
 		pwdfContrasenaRegistro = new JPasswordField();
 		pwdfContrasenaRegistro.addFocusListener(new MiFocusListener());
 
-		lblContrasenaRegistro = new JLabel("Contrase\u00F1a:");
+		lblContrasenaRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblContrasenaRegistro.text")); //$NON-NLS-1$
 		lblContrasenaRegistro.setForeground(new Color(81, 43, 55));
 		lblContrasenaRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblContrasenaRegistro = new GridBagConstraints();
@@ -621,7 +621,7 @@ public class VentanaPrincipal {
 		pwdfRContrasenaRegistro = new JPasswordField();
 		pwdfRContrasenaRegistro.addFocusListener(new MiFocusListener());
 
-		lblRContrasenaRegistro = new JLabel("Repetir contrase\u00F1a:");
+		lblRContrasenaRegistro = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblRContrasenaRegistro.text")); //$NON-NLS-1$
 		lblRContrasenaRegistro.setForeground(new Color(81, 43, 55));
 		lblRContrasenaRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblRContrasenaRegistro = new GridBagConstraints();
@@ -649,7 +649,7 @@ public class VentanaPrincipal {
 		gbc_lblInfo2Registro.gridy = 7;
 		pnlRegistro.add(lblInfo2Registro, gbc_lblInfo2Registro);
 
-		btnAceptarRegistro = new JButton("Aceptar");
+		btnAceptarRegistro = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnAceptarRegistro.text")); //$NON-NLS-1$
 		btnAceptarRegistro.setBackground(new Color(237, 217, 194));
 		btnAceptarRegistro.setForeground(new Color(81, 43, 55));
 		btnAceptarRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -660,7 +660,7 @@ public class VentanaPrincipal {
 		gbc_btnAceptarRegistro.gridy = 8;
 		pnlRegistro.add(btnAceptarRegistro, gbc_btnAceptarRegistro);
 
-		btnLimpiarCamposRegistro = new JButton("Limpiar campos");
+		btnLimpiarCamposRegistro = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnLimpiarCamposRegistro.text")); //$NON-NLS-1$
 		btnLimpiarCamposRegistro.setForeground(new Color(81, 43, 55));
 		btnLimpiarCamposRegistro.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnLimpiarCamposRegistro.setBorder(new RoundedBorder(10));
@@ -682,7 +682,7 @@ public class VentanaPrincipal {
 		gbl_pnlFormulario.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlFormulario.setLayout(gbl_pnlFormulario);
 
-		lblContactoFormulario = new JLabel("Contacto");
+		lblContactoFormulario = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblContactoFormulario.text")); //$NON-NLS-1$
 		lblContactoFormulario.setForeground(new Color(81, 43, 55));
 		lblContactoFormulario.setHorizontalAlignment(SwingConstants.CENTER);
 		lblContactoFormulario.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
@@ -697,7 +697,7 @@ public class VentanaPrincipal {
 		tPTextoFormulario.setForeground(new Color(81, 43, 55));
 		tPTextoFormulario.setOpaque(false);
 		tPTextoFormulario.setText(
-				"Puedes rellenar y enviarnos este formulario para solicitar informaci\u00F3n acerca de nuestras rutas o para realizar una reserva.");
+				MessagesVentanaPrincipal.getString("VentanaPrincipal.tPTextoFormulario.text")); //$NON-NLS-1$
 		tPTextoFormulario.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		tPTextoFormulario.setBackground(new Color(237, 217, 194));
 		GridBagConstraints gbc_tPTextoFormulario = new GridBagConstraints();
@@ -708,7 +708,7 @@ public class VentanaPrincipal {
 		gbc_tPTextoFormulario.gridy = 1;
 		pnlFormulario.add(tPTextoFormulario, gbc_tPTextoFormulario);
 
-		lblNombreFormulario = new JLabel("Nombre:");
+		lblNombreFormulario = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblNombreFormulario.text")); //$NON-NLS-1$
 		lblNombreFormulario.setForeground(new Color(81, 43, 55));
 		lblNombreFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblNombreFormulario = new GridBagConstraints();
@@ -728,7 +728,7 @@ public class VentanaPrincipal {
 		gbc_tFNombreFormulario.gridy = 2;
 		pnlFormulario.add(tFNombreFormulario, gbc_tFNombreFormulario);
 
-		lbCorreoElectronicoFormulario = new JLabel("Correo electr\u00F3nico:");
+		lbCorreoElectronicoFormulario = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lbCorreoElectronicoFormulario.text")); //$NON-NLS-1$
 		lbCorreoElectronicoFormulario.setForeground(new Color(81, 43, 55));
 		lbCorreoElectronicoFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lbCorreoElectronicoFormulario = new GridBagConstraints();
@@ -748,7 +748,7 @@ public class VentanaPrincipal {
 		gbc_tFCorreoElectronicoFormulario.gridy = 3;
 		pnlFormulario.add(tFCorreoElectronicoFormulario, gbc_tFCorreoElectronicoFormulario);
 
-		lblAsuntoFormulario = new JLabel("Asunto:");
+		lblAsuntoFormulario = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblAsuntoFormulario.text")); //$NON-NLS-1$
 		lblAsuntoFormulario.setForeground(new Color(81, 43, 55));
 		lblAsuntoFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblAsuntoFormulario = new GridBagConstraints();
@@ -768,7 +768,7 @@ public class VentanaPrincipal {
 		gbc_tFAsuntoFormulario.gridy = 4;
 		pnlFormulario.add(tFAsuntoFormulario, gbc_tFAsuntoFormulario);
 
-		lblComentariosFormulario = new JLabel("Comentarios:");
+		lblComentariosFormulario = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblComentariosFormulario.text")); //$NON-NLS-1$
 		lblComentariosFormulario.setForeground(new Color(81, 43, 55));
 		lblComentariosFormulario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblComentariosFormulario = new GridBagConstraints();
@@ -790,7 +790,7 @@ public class VentanaPrincipal {
 		gbc_tFComentariosFormulario.gridy = 5;
 		pnlFormulario.add(tFComentariosFormulario, gbc_tFComentariosFormulario);
 
-		btnEnviarFormulario = new JButton("  Enviar  ");
+		btnEnviarFormulario = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnEnviarFormulario.text")); //$NON-NLS-1$
 		btnEnviarFormulario.setBackground(new Color(237, 217, 194));
 		btnEnviarFormulario.setForeground(new Color(81, 43, 55));
 		btnCiudadReal.setBorder(new RoundedBorder(10));
@@ -813,7 +813,7 @@ public class VentanaPrincipal {
 		gbl_pnlInicioSesion.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlInicioSesion.setLayout(gbl_pnlInicioSesion);
 
-		lblIniciaSesion = new JLabel("Inicia sesi\u00F3n");
+		lblIniciaSesion = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblIniciaSesion.text")); //$NON-NLS-1$
 		lblIniciaSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIniciaSesion.setForeground(new Color(81, 43, 55));
 		lblIniciaSesion.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
@@ -825,7 +825,7 @@ public class VentanaPrincipal {
 		gbc_lblIniciaSesion.gridy = 0;
 		pnlInicioSesion.add(lblIniciaSesion, gbc_lblIniciaSesion);
 
-		lblUsuarioInicioSesion = new JLabel("Usuario:");
+		lblUsuarioInicioSesion = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblUsuarioInicioSesion.text")); //$NON-NLS-1$
 		lblUsuarioInicioSesion.setForeground(new Color(81, 43, 55));
 		lblUsuarioInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblUsuarioInicioSesion = new GridBagConstraints();
@@ -858,7 +858,7 @@ public class VentanaPrincipal {
 		gbc_lblIconoInicioSesion.gridy = 1;
 		pnlInicioSesion.add(lblIconoInicioSesion, gbc_lblIconoInicioSesion);
 
-		lblContrasenaInicioSesion = new JLabel("Contrase\u00F1a:");
+		lblContrasenaInicioSesion = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblContrasenaInicioSesion.text")); //$NON-NLS-1$
 		lblContrasenaInicioSesion.setForeground(new Color(81, 43, 55));
 		lblContrasenaInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblContrasenaInicioSesion.setEnabled(false);
@@ -880,7 +880,7 @@ public class VentanaPrincipal {
 		gbc_pwdfContrasenaInicioSesion.gridy = 2;
 		pnlInicioSesion.add(pwdfContrasenaInicioSesion, gbc_pwdfContrasenaInicioSesion);
 
-		btnLimpiarCamposInicioSesion = new JButton("Limpiar campos");
+		btnLimpiarCamposInicioSesion = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnLimpiarCamposInicioSesion.text")); //$NON-NLS-1$
 		btnLimpiarCamposInicioSesion.setForeground(new Color(81, 43, 55));
 		btnLimpiarCamposInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnLimpiarCamposInicioSesion.setBorder(new RoundedBorder(10));
@@ -892,7 +892,7 @@ public class VentanaPrincipal {
 		gbc_btnLimpiarCamposInicioSesion.gridy = 1;
 		pnlInicioSesion.add(btnLimpiarCamposInicioSesion, gbc_btnLimpiarCamposInicioSesion);
 
-		btnEntrarInicioSesion = new JButton("Entrar");
+		btnEntrarInicioSesion = new JButton(MessagesVentanaPrincipal.getString("VentanaPrincipal.btnEntrarInicioSesion.text")); //$NON-NLS-1$
 		btnEntrarInicioSesion.setEnabled(false);
 		btnEntrarInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnEntrarInicioSesion.setBackground(new Color(237, 217, 194));
@@ -905,7 +905,7 @@ public class VentanaPrincipal {
 		btnEntrarInicioSesion.setBorder(new RoundedBorder(10));
 		pnlInicioSesion.add(btnEntrarInicioSesion, gbc_btnEntrarInicioSesion);
 
-		lblTextoInicioSesion = new JLabel("\u00BFHas olvidado tu contrase\u00F1a?");
+		lblTextoInicioSesion = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblTextoInicioSesion.text")); //$NON-NLS-1$
 		lblTextoInicioSesion.setForeground(new Color(81, 43, 55));
 		lblTextoInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		GridBagConstraints gbc_lblTextoInicioSesion = new GridBagConstraints();
@@ -925,7 +925,7 @@ public class VentanaPrincipal {
 		gbc_lblInfoInicioSesion.gridy = 3;
 		pnlInicioSesion.add(lblInfoInicioSesion, gbc_lblInfoInicioSesion);
 
-		lblMensajesInicioSesion = new JLabel(" Mensajes del sistema");
+		lblMensajesInicioSesion = new JLabel(MessagesVentanaPrincipal.getString("VentanaPrincipal.lblMensajesInicioSesion.text")); //$NON-NLS-1$
 		lblMensajesInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblMensajesInicioSesion.setOpaque(true);
 		lblMensajesInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
