@@ -73,7 +73,7 @@ public class VentanaUsuario {
 	private JLabel lblAlmagro;
 	private JLabel lblCampoDeCriptana;
 	JLabel lblBandera_2 = new JLabel("");
-	private boolean spain;
+	public boolean spain;
 	private Usuario usuario;
 	private JTable tabla_Guias;
 	private JTextField taFilaSeleccionada;
@@ -117,7 +117,7 @@ public class VentanaUsuario {
 	public VentanaUsuario(Usuario usuario, boolean spain) {
 		this.usuario = usuario;
 		this.spain = spain;
-		
+
 		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
@@ -172,7 +172,8 @@ public class VentanaUsuario {
 		pnlLogin.add(lblIcono, gbc_lblIcono);
 		lblIcono.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-usuario-60.png")));
 
-		JLabel lblMensajeBienvenida = new JLabel(MessagesVentanaUsuario.getString("VentanaUsuario.lblMensajeBienvenida.text")); //$NON-NLS-1$
+		JLabel lblMensajeBienvenida = new JLabel(
+				MessagesVentanaUsuario.getString("VentanaUsuario.lblMensajeBienvenida.text")); //$NON-NLS-1$
 		lblMensajeBienvenida.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblMensajeBienvenida = new GridBagConstraints();
 		gbc_lblMensajeBienvenida.anchor = GridBagConstraints.EAST;
@@ -259,21 +260,24 @@ public class VentanaUsuario {
 		tBHistorial.setBackground(new Color(206, 219, 197));
 		pnlHistorial.add(tBHistorial, BorderLayout.NORTH);
 
-		JButton btnAnadirHistorial = new JButton(MessagesVentanaUsuario.getString("VentanaUsuario.btnAnadirHistorial.text")); //$NON-NLS-1$
+		JButton btnAnadirHistorial = new JButton(
+				MessagesVentanaUsuario.getString("VentanaUsuario.btnAnadirHistorial.text")); //$NON-NLS-1$
 		btnAnadirHistorial.addActionListener(new BtnAnadirHistorialActionListener_1());
 		btnAnadirHistorial.setBackground(new Color(206, 219, 197));
 		btnAnadirHistorial.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-add-24.png")));
 		btnAnadirHistorial.setBorder(new RoundedBorder(10));
 		tBHistorial.add(btnAnadirHistorial);
 
-		JButton btnModificarHistorial = new JButton(MessagesVentanaUsuario.getString("VentanaUsuario.btnModificarHistorial.text")); //$NON-NLS-1$
+		JButton btnModificarHistorial = new JButton(
+				MessagesVentanaUsuario.getString("VentanaUsuario.btnModificarHistorial.text")); //$NON-NLS-1$
 		btnModificarHistorial.setBackground(new Color(206, 219, 197));
 		btnModificarHistorial
 				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
 		btnModificarHistorial.setBorder(new RoundedBorder(10));
 		tBHistorial.add(btnModificarHistorial);
 
-		JButton btnEliminarHistorial = new JButton(MessagesVentanaUsuario.getString("VentanaUsuario.btnEliminarHistorial.text")); //$NON-NLS-1$
+		JButton btnEliminarHistorial = new JButton(
+				MessagesVentanaUsuario.getString("VentanaUsuario.btnEliminarHistorial.text")); //$NON-NLS-1$
 		btnEliminarHistorial.addActionListener(new BtnEliminarHistorialActionListener());
 		btnEliminarHistorial.setBackground(new Color(206, 219, 197));
 		btnEliminarHistorial
@@ -378,8 +382,7 @@ public class VentanaUsuario {
 		JTextPane txtpnPasaUnaAnimada = new JTextPane();
 		txtpnPasaUnaAnimada.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnPasaUnaAnimada.setOpaque(false);
-		txtpnPasaUnaAnimada.setText(
-				MessagesVentanaUsuario.getString("VentanaUsuario.txtpnPasaUnaAnimada.text")); //$NON-NLS-1$
+		txtpnPasaUnaAnimada.setText(MessagesVentanaUsuario.getString("VentanaUsuario.txtpnPasaUnaAnimada.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_txtpnPasaUnaAnimada = new GridBagConstraints();
 		gbc_txtpnPasaUnaAnimada.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtpnPasaUnaAnimada.insets = new Insets(0, 0, 5, 5);
@@ -398,8 +401,7 @@ public class VentanaUsuario {
 		JTextPane txtpnEstaEscapadaEn = new JTextPane();
 		txtpnEstaEscapadaEn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnEstaEscapadaEn.setOpaque(false);
-		txtpnEstaEscapadaEn.setText(
-				MessagesVentanaUsuario.getString("VentanaUsuario.txtpnEstaEscapadaEn.text")); //$NON-NLS-1$
+		txtpnEstaEscapadaEn.setText(MessagesVentanaUsuario.getString("VentanaUsuario.txtpnEstaEscapadaEn.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_txtpnEstaEscapadaEn = new GridBagConstraints();
 		gbc_txtpnEstaEscapadaEn.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnEstaEscapadaEn.fill = GridBagConstraints.HORIZONTAL;
@@ -416,7 +418,8 @@ public class VentanaUsuario {
 		tBGruposTuristas.setBackground(new Color(206, 219, 197));
 		pnlGruposTuristas.add(tBGruposTuristas, BorderLayout.NORTH);
 
-		JButton btnAnadirGruposTuristas = new JButton(MessagesVentanaUsuario.getString("VentanaUsuario.btnAnadirGruposTuristas.text")); //$NON-NLS-1$
+		JButton btnAnadirGruposTuristas = new JButton(
+				MessagesVentanaUsuario.getString("VentanaUsuario.btnAnadirGruposTuristas.text")); //$NON-NLS-1$
 		btnAnadirGruposTuristas.addActionListener(new BtnAnadirGruposTuristasActionListener_1());
 		btnAnadirGruposTuristas.setBackground(new Color(206, 219, 197));
 		btnAnadirGruposTuristas
@@ -424,14 +427,16 @@ public class VentanaUsuario {
 		btnAnadirGruposTuristas.setBorder(new RoundedBorder(10));
 		tBGruposTuristas.add(btnAnadirGruposTuristas);
 
-		JButton btnModificarGruposTuristas = new JButton(MessagesVentanaUsuario.getString("VentanaUsuario.btnModificarGruposTuristas.text")); //$NON-NLS-1$
+		JButton btnModificarGruposTuristas = new JButton(
+				MessagesVentanaUsuario.getString("VentanaUsuario.btnModificarGruposTuristas.text")); //$NON-NLS-1$
 		btnModificarGruposTuristas.setBackground(new Color(206, 219, 197));
 		btnModificarGruposTuristas
 				.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/Presentacion/icons8-edit-file-24.png")));
 		btnModificarGruposTuristas.setBorder(new RoundedBorder(10));
 		tBGruposTuristas.add(btnModificarGruposTuristas);
 
-		JButton btnEliminarGruposTuristas = new JButton(MessagesVentanaUsuario.getString("VentanaUsuario.btnEliminarGruposTuristas.text")); //$NON-NLS-1$
+		JButton btnEliminarGruposTuristas = new JButton(
+				MessagesVentanaUsuario.getString("VentanaUsuario.btnEliminarGruposTuristas.text")); //$NON-NLS-1$
 		btnEliminarGruposTuristas.addActionListener(new BtnEliminarGruposTuristasActionListener());
 		btnEliminarGruposTuristas.setBackground(new Color(206, 219, 197));
 		btnEliminarGruposTuristas
@@ -609,17 +614,18 @@ public class VentanaUsuario {
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Usuario usuario = new Usuario(lblUsuario.getText());
-				VentanaPrincipal principal = new VentanaPrincipal(usuario);
+				VentanaPrincipal principal = new VentanaPrincipal(usuario, spain);
 				principal.frame.setVisible(true);
 				frame.dispose();
 			}
 		});
-		
+
 		lblBandera_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
+				ImageIcon imagenEnglish = new ImageIcon(
+						VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 
 				if (spain) {
 					lblBandera_2.setIcon(imagenSpain);
@@ -629,7 +635,7 @@ public class VentanaUsuario {
 					usuarioES.frame.setVisible(true);
 					frame.dispose();
 					spain = false;
-				
+
 				} else {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();

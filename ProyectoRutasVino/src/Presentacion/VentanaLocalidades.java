@@ -93,8 +93,6 @@ public class VentanaLocalidades {
 		initialize();
 	}
 
-	
-
 	public VentanaLocalidades(Localidad localidad, boolean spain, Usuario usuario) {
 		this.localidad = localidad;
 		this.spain = spain;
@@ -112,7 +110,7 @@ public class VentanaLocalidades {
 			lblBandera_2.setIcon(imagenEnglish);
 			lblBandera_2.repaint();
 			spain = true;
-			
+
 		}
 
 		initialize();
@@ -164,6 +162,7 @@ public class VentanaLocalidades {
 			gbc_lblUsuario.gridy = 1;
 			pnlLogin.add(lblUsuario, gbc_lblUsuario);
 		}
+		
 		JButton btnUsuario;
 		if (this.usuario != null) {
 			btnUsuario = new JButton("   " + this.usuario.getNombre() + "   ");
@@ -176,8 +175,7 @@ public class VentanaLocalidades {
 			btnUsuario.setBorder(new RoundedBorder(10));
 			btnUsuario.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					VentanaUsuario usuario = new VentanaUsuario(new Usuario(btnUsuario.getText().replace(" ", "")),
-							!spain);
+					VentanaUsuario usuario = new VentanaUsuario(new Usuario(btnUsuario.getText().replace(" ", "")), spain);
 					usuario.frame.setVisible(true);
 					frame.dispose();
 				}
@@ -255,7 +253,8 @@ public class VentanaLocalidades {
 		gbc_lblLocalidad.gridy = 1;
 		pnlLocalidad.add(lblLocalidad, gbc_lblLocalidad);
 
-		JLabel lblDescripcion = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblDescripcion.text")); //$NON-NLS-1$
+		JLabel lblDescripcion = new JLabel(
+				MessagesVentanaLocalidades.getString("VentanaLocalidades.lblDescripcion.text")); //$NON-NLS-1$
 		lblDescripcion.setForeground(new Color(81, 43, 55));
 		lblDescripcion.setFont(new Font("Goudy Old Style", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
@@ -291,7 +290,8 @@ public class VentanaLocalidades {
 		tBOpciones.addTab("Fechas disponibles", null, pnlFechas, null);
 		pnlFechas.setLayout(null);
 
-		JLabel lblFechasDisponibles = new JLabel(MessagesVentanaLocalidades.getString("VentanaLocalidades.lblFechasDisponibles.text")); //$NON-NLS-1$
+		JLabel lblFechasDisponibles = new JLabel(
+				MessagesVentanaLocalidades.getString("VentanaLocalidades.lblFechasDisponibles.text")); //$NON-NLS-1$
 		lblFechasDisponibles.setBounds(30, 42, 360, 61);
 		lblFechasDisponibles.setForeground(new Color(81, 43, 55));
 		lblFechasDisponibles.setFont(new Font("Goudy Old Style", Font.PLAIN, 50));
@@ -375,12 +375,15 @@ public class VentanaLocalidades {
 		{
 		}
 		{
-			btnBorrarCambios = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnBorrarCambios.text")); //$NON-NLS-1$
+			btnBorrarCambios = new JButton(
+					MessagesVentanaLocalidades.getString("VentanaLocalidades.btnBorrarCambios.text")); //$NON-NLS-1$
 			btnBorrarCambios.setOpaque(false);
 			btnBorrarCambios.setBackground(new Color(244, 229, 226));
 			btnBorrarCambios.addActionListener(new BtnBorrarCambiosActionListener());
 			{
-				btnGuardarCambios = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnGuardarCambios.text")); //$NON-NLS-1$
+
+				btnGuardarCambios = new JButton(
+						MessagesVentanaLocalidades.getString("VentanaLocalidades.btnGuardarCambios.text")); //$NON-NLS-1$
 				btnGuardarCambios.setBackground(new Color(244, 229, 226));
 				btnGuardarCambios.addActionListener(new BtnGuardarCambiosActionListener());
 				btnGuardarCambios.setOpaque(false);
@@ -393,8 +396,8 @@ public class VentanaLocalidades {
 				gbc_btnGuardarCambios.gridx = 2;
 				gbc_btnGuardarCambios.gridy = 4;
 				pnlCalendario.add(btnGuardarCambios, gbc_btnGuardarCambios);
-
 			}
+
 			btnBorrarCambios.setForeground(new Color(81, 43, 55));
 			btnBorrarCambios.setBorder(new RoundedBorder(10));
 			btnBorrarCambios.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -478,7 +481,8 @@ public class VentanaLocalidades {
 		gbc_lblIconoRuta.gridy = 8;
 		pnlPrecio.add(lblIconoRuta, gbc_lblIconoRuta);
 
-		JButton btnPersonalizarRuta = new JButton(MessagesVentanaLocalidades.getString("VentanaLocalidades.btnPersonalizarRuta.text")); //$NON-NLS-1$
+		JButton btnPersonalizarRuta = new JButton(
+				MessagesVentanaLocalidades.getString("VentanaLocalidades.btnPersonalizarRuta.text")); //$NON-NLS-1$
 		btnPersonalizarRuta.addActionListener(new BtnPersonalizarRutaActionListener());
 		btnPersonalizarRuta.setBackground(new Color(244, 229, 226));
 		btnPersonalizarRuta.setBorder(new RoundedBorder(10));
@@ -493,7 +497,8 @@ public class VentanaLocalidades {
 		pnlOpiniones.setFocusTraversalPolicyProvider(true);
 		pnlOpiniones.setFocusCycleRoot(true);
 		pnlOpiniones.setBackground(new Color(244, 229, 226));
-		pnlOpiniones.setToolTipText(MessagesVentanaLocalidades.getString("VentanaLocalidades.pnlOpiniones.toolTipText")); //$NON-NLS-1$
+		pnlOpiniones
+				.setToolTipText(MessagesVentanaLocalidades.getString("VentanaLocalidades.pnlOpiniones.toolTipText")); //$NON-NLS-1$
 		tBOpciones.addTab("Opiniones", null, pnlOpiniones, null);
 		GridBagLayout gbl_pnlOpiniones = new GridBagLayout();
 		gbl_pnlOpiniones.columnWidths = new int[] { 43, 283, 496, 266, 0 };
@@ -585,7 +590,7 @@ public class VentanaLocalidades {
 
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal principal = new VentanaPrincipal();
+				VentanaPrincipal principal = new VentanaPrincipal(usuario, spain);
 				principal.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -602,16 +607,16 @@ public class VentanaLocalidades {
 					lblBandera_2.setIcon(imagenSpain);
 					lblBandera_2.repaint();
 					MessagesVentanaLocalidades.setIdioma("inglés");
-					VentanaLocalidades localidadES = new VentanaLocalidades(new Localidad(lblLocalidad.getText()), !spain, usuario);
+					VentanaLocalidades localidadES = new VentanaLocalidades(new Localidad(lblLocalidad.getText()),!spain, usuario);
 					localidadES.frame.setVisible(true);
 					frame.dispose();
 					spain = false;
-				
+
 				} else {
 					lblBandera_2.setIcon(imagenEnglish);
 					lblBandera_2.repaint();
 					MessagesVentanaLocalidades.setIdioma("es");
-					VentanaLocalidades localidadIN = new VentanaLocalidades(new Localidad(lblLocalidad.getText()), !spain, usuario);
+					VentanaLocalidades localidadIN = new VentanaLocalidades(new Localidad(lblLocalidad.getText()),!spain, usuario);
 					localidadIN.frame.setVisible(true);
 					frame.dispose();
 					spain = true;

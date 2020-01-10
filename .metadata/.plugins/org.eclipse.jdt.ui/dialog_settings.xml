@@ -46,6 +46,7 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\Teresa\Desktop\TerceraEntregaIPoI.jar"/>
 			<item value="C:\Users\Teresa\Desktop\SegundaEntregaIPoI.jar"/>
 		</list>
 	</section>

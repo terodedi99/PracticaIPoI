@@ -8,7 +8,7 @@ public class Usuario {
 	private String correo_electronico;
 	private String fecha_nacimiento;
 	private String contrasena;
-	private String ruta_imagen_bandera;
+	private String ruta_imagen_bandera = "/Presentacion/spain.png/";
 	private ArrayList<String> nombres;
 	private ArrayList<String> contrasenas;
 	

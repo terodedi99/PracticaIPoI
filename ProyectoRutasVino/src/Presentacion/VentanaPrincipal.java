@@ -1,63 +1,40 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Rectangle;
-import javax.swing.JDesktopPane;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JToolBar;
 import java.awt.ComponentOrientation;
 import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import java.awt.Point;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.beans.PropertyChangeEvent;
-import javax.swing.JTextArea;
 import java.awt.CardLayout;
-import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
-import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.HierarchyListener;
-import java.awt.event.HierarchyEvent;
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
-import javax.swing.border.TitledBorder;
-
 import com.toedter.calendar.JDateChooser;
-
 import Dominio.Localidad;
 import Dominio.Usuario;
-
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.Cursor;
@@ -100,7 +77,7 @@ public class VentanaPrincipal {
 	private JLabel lblInfoInicioSesion;
 	private JLabel lblIniciaSesion;
 	private JLabel lblIconoInicioSesion;
-	private JLabel lblBandera;
+	JLabel lblBandera = new JLabel("");
 	private JLabel lblFlecha;
 	private JLabel lblLupa;
 	private JLabel lblNewLabel;
@@ -141,10 +118,9 @@ public class VentanaPrincipal {
 	private JButton btnLimpiarCamposRegistro;
 	private JButton btnLimpiarCamposInicioSesion;
 	private JDateChooser dateChooser; // Añadir el calendario
-	private boolean spain;
-	private Usuario usuario;
-	private JFormattedTextField formattedTextField;
-
+	public boolean spain = true;
+	public Usuario usuario;
+	public String rutaImagen = "/Presentacion/spain.png";
 	/**
 	 * Launch the application.
 	 */
@@ -169,29 +145,27 @@ public class VentanaPrincipal {
 
 	}
 	
-	public VentanaPrincipal(boolean spain) {
+	public VentanaPrincipal(Usuario usuario, boolean spain) {
+		this.usuario = usuario;
 		this.spain = spain;
 		
 		ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 		ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
-
+		
 		if (spain) {
-			lblBandera.setIcon(imagenSpain);;
+			rutaImagen = "/Presentacion/spain.png";
+			lblBandera.setIcon(imagenSpain);
 			lblBandera.repaint();
 			spain = false;
 			 
 		} else {
+			rutaImagen = "/Presentacion/english.png";
 			lblBandera.setIcon(imagenEnglish);
 			lblBandera.repaint();
 			spain = true;
 
 		}
 		
-		initialize();
-	}
-	
-	public VentanaPrincipal(Usuario usuario) {
-		this.usuario = usuario;
 		initialize();
 	
 	}
@@ -221,9 +195,9 @@ public class VentanaPrincipal {
 		gbl_pnlLogin.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_pnlLogin.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		pnlLogin.setLayout(gbl_pnlLogin);
-
+		
 		lblBandera = new JLabel("");
-		lblBandera.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png")));
+		lblBandera.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(rutaImagen)));
 		lblBandera.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		GridBagConstraints gbc_lblBandera = new GridBagConstraints();
 		gbc_lblBandera.fill = GridBagConstraints.HORIZONTAL;
@@ -1057,23 +1031,23 @@ public class VentanaPrincipal {
 		lblBandera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
-				ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png"));
 				
 				if (spain) {
+					ImageIcon imagenSpain = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/spain.png"));
 					lblBandera.setIcon(imagenSpain);
 					lblBandera.repaint();
-					MessagesVentanaPrincipal.setIdioma("ingles");
-					VentanaPrincipal principalES = new VentanaPrincipal(!spain);
+					MessagesVentanaPrincipal.setIdioma("inglés");
+					VentanaPrincipal principalES = new VentanaPrincipal(usuario, !spain);
 					principalES.frame.setVisible(true);
 					frame.dispose();
 					spain = false;
 				
 				} else {
+					ImageIcon imagenEnglish = new ImageIcon(VentanaPrincipal.class.getResource("/Presentacion/english.png")); 
 					lblBandera.setIcon(imagenEnglish);
 					lblBandera.repaint();
 					MessagesVentanaPrincipal.setIdioma("es");
-					VentanaPrincipal principalIN = new VentanaPrincipal(!spain);
+					VentanaPrincipal principalIN = new VentanaPrincipal(usuario, !spain);
 					principalIN.frame.setVisible(true);
 					frame.dispose();
 					spain = true;
@@ -1085,7 +1059,7 @@ public class VentanaPrincipal {
 
 		btnCiudadReal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Ciudad Real"), !spain, usuario);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Ciudad Real"), spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1094,7 +1068,7 @@ public class VentanaPrincipal {
 
 		btnValdepenas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Valdepeñas"), !spain, usuario);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Valdepeñas"), spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1102,7 +1076,7 @@ public class VentanaPrincipal {
 
 		btnAlmagro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Almagro"), !spain, usuario);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Almagro"), spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1110,8 +1084,7 @@ public class VentanaPrincipal {
 
 		btnAlcazar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), !spain,
-						usuario);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Alcázar de San Juan"), spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1119,7 +1092,7 @@ public class VentanaPrincipal {
 
 		btnCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Campo de Criptana"), !spain, usuario);
+				VentanaLocalidades ciudad = new VentanaLocalidades(new Localidad("Campo de Criptana"), spain, usuario);
 				ciudad.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -1133,7 +1106,7 @@ public class VentanaPrincipal {
 
 		btnEntrarInicioSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaUsuario usuario = new VentanaUsuario(new Usuario(tFUsuarioInicioSesion.getText()), !spain);
+				VentanaUsuario usuario = new VentanaUsuario(new Usuario(tFUsuarioInicioSesion.getText()), spain);
 				usuario.frame.setVisible(true);
 				frame.dispose();
 			}
